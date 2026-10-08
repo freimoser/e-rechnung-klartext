@@ -1315,6 +1315,26 @@ h1 {
   font-size: 1.1rem;
 }
 
+/* Begriffe */
+.terms dt {
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+  scroll-margin-top: 1rem;
+}
+
+.terms dd {
+  margin: 0.25rem 0 0;
+}
+
+.terms dd p {
+  margin: 0 0 0.35rem;
+}
+
+.terms dt:target + dd {
+  border-left: 3px solid var(--accent);
+  padding-left: 0.75rem;
+}
+
 /* Fehlercodes */
 .code-search {
   position: sticky;
