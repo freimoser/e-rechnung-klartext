@@ -17,7 +17,7 @@ const impressum = {
         <h2>Angaben gemäß § 5 DDG</h2>
         <p>S. Thomas Freimoser<br>München, Deutschland</p>
         <h2>Kontakt</h2>
-        <p>E-Mail: kontakt [at] freimoser.de<br>LinkedIn: <a href="https://www.linkedin.com/in/freimoser">linkedin.com/in/freimoser</a></p>
+        <p>E-Mail: kontakt [at] freimoser.de<br>LinkedIn: linkedin.com/in/freimoser</p>
         <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
         <p>S. Thomas Freimoser<br>(Anschrift wie oben)</p>
         <h2>Haftung für Inhalte</h2>

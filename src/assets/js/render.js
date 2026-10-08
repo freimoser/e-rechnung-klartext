@@ -183,7 +183,7 @@ export function renderPaper(inv, ctx) {
   // Nachlässe/Zuschläge auf Belegebene
   const docAc = [...inv.allowances.map((a) => ({ ...a, sign: '−' })), ...inv.charges.map((c) => ({ ...c, sign: '+' }))];
   const acHtml = docAc.length ? `<h3>Nachlässe und Zuschläge auf die gesamte Rechnung</h3>
-    <div class="lines-wrap"><table><thead><tr><th>Art</th><th>Grund</th><th class="num">USt.</th><th class="num">Betrag</th></tr></thead><tbody>
+    <div class="lines-wrap" tabindex="0" role="region" aria-label="Nachlässe und Zuschläge"><table><thead><tr><th>Art</th><th>Grund</th><th class="num">USt.</th><th class="num">Betrag</th></tr></thead><tbody>
     ${docAc.map((a) => `<tr><td>${a.isCharge ? 'Zuschlag' : 'Nachlass'}</td><td>${a.reason ? X(a.reason) : ''}${a.reasonCode ? ` <span class="code">(Code ${X(a.reasonCode)})</span>` : ''}${a.percent && a.base ? `<span class="line-desc">${X(a.percent, esc(numText(a.percent.v, 2)))} % von ${M(a.base)}</span>` : ''}</td><td class="num">${a.vatRate ? X(a.vatRate, esc(numText(a.vatRate.v, 2)) + ' %') : (a.vatCat ? X(a.vatCat) : '')}</td><td class="num">${a.sign} ${M(a.amount)}</td></tr>`).join('')}
     </tbody></table></div>` : '';
 
@@ -260,7 +260,7 @@ export function renderPaper(inv, ctx) {
     <dl class="meta">${meta.join('')}</dl>
     ${notes ? `<h3>Bemerkungen</h3>${notes}` : ''}
     <h3>Positionen</h3>
-    <div class="lines-wrap"><table class="lines-table">
+    <div class="lines-wrap" tabindex="0" role="region" aria-label="Positionen"><table class="lines-table">
       <thead><tr><th>Pos.</th><th>Bezeichnung</th><th class="num">Menge</th><th class="num">Einzelpreis</th><th class="num">USt.</th><th class="num">Betrag</th></tr></thead>
       <tbody>${lineRows.join('')}</tbody>
     </table></div>
@@ -309,7 +309,7 @@ export function renderRecompute(rc, currency) {
   const money = (x) => (x === null || x === undefined ? '–' : esc(moneyText(String(Number(x) / 1e8), currency)));
   const rows = rc.rows.map((r) => `<tr><th scope="row">${esc(r.label)} <span class="muted">(${r.bt})</span></th><td class="num">${money(r.stated)}</td><td class="num">${money(r.expected)}</td><td>${icon(r.ok)}</td></tr>`);
   rc.vatRows.forEach((r) => rows.push(`<tr><th scope="row">Umsatzsteuer ${esc(r.cat)} ${r.rate !== null ? esc(fmt(r.rate)) + ' %' : ''} <span class="muted">(BT-117)</span></th><td class="num">${money(r.stated)}</td><td class="num">${money(r.expected)}</td><td>${icon(r.ok)}</td></tr>`));
-  return `<div class="table-scroll"><table><caption>Nachgerechnet: Rechnungsangabe im Vergleich zum Ergebnis aus den Einzelwerten. Steuerbeträge dürfen laut Prüfregel um weniger als 1 Währungseinheit abweichen.</caption>
+  return `<div class="table-scroll" tabindex="0" role="region" aria-label="Nachgerechnete Beträge"><table><caption>Nachgerechnet: Rechnungsangabe im Vergleich zum Ergebnis aus den Einzelwerten. Steuerbeträge dürfen laut Prüfregel um weniger als 1 Währungseinheit abweichen.</caption>
     <thead><tr><th scope="col">Betrag</th><th scope="col">laut Rechnung</th><th scope="col">nachgerechnet</th><th scope="col">Ergebnis</th></tr></thead>
     <tbody>${rows.join('')}</tbody></table></div>`;
 }

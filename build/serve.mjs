@@ -25,14 +25,19 @@ const TYPES = {
   '.csv': 'text/csv; charset=utf-8',
 };
 
+const gzCache = new Map();
+
 function send(req, res, status, file, extraHeaders = {}) {
   const ext = path.extname(file);
   const type = TYPES[ext] || 'application/octet-stream';
   let body = fs.readFileSync(file);
   const headers = { 'Content-Type': type, 'Cache-Control': 'max-age=600', ...extraHeaders };
   if (/text|json|xml|javascript|svg|manifest/.test(type) && /gzip/.test(req.headers['accept-encoding'] || '')) {
-    body = zlib.gzipSync(body);
+    const key = file + ':' + fs.statSync(file).mtimeMs;
+    if (!gzCache.has(key)) gzCache.set(key, zlib.gzipSync(body));
+    body = gzCache.get(key);
     headers['Content-Encoding'] = 'gzip';
+    headers.Vary = 'Accept-Encoding';
   }
   headers['Content-Length'] = body.length;
   res.writeHead(status, headers);

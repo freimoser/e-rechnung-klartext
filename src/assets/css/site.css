@@ -283,7 +283,13 @@ h1 {
 /* Werkzeug */
 .tool {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
+}
+
+.tool code,
+.fact code {
+  overflow-wrap: anywhere;
 }
 
 .dropzone {
@@ -1091,6 +1097,12 @@ h1 {
 
 .table-scroll tr:last-child > * {
   border-bottom: none;
+}
+
+.table-scroll .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .table-scroll caption {

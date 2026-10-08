@@ -158,6 +158,8 @@ export function renderPage(page, ctx) {
   const canonical = page.noindex ? '' : `\n  <link rel="canonical" href="${url}">`;
   const scripts = (page.scripts || []).map((s) => `\n  <script type="module" src="${BASE}${s}?v=${ctx.version}"></script>`).join('');
   const pageClass = page.wide ? 'page' : 'page page-content';
+  // Seitlich scrollbare Tabellen per Tastatur erreichbar machen (WCAG: scrollable-region-focusable)
+  const body = page.html.replace(/<div class="table-scroll([^"]*)">/g, '<div class="table-scroll$1" tabindex="0" role="region" aria-label="Tabelle, bei Bedarf seitlich scrollbar">');
 
   return `<!DOCTYPE html>
 <html lang="de">
@@ -205,7 +207,7 @@ export function renderPage(page, ctx) {
 
     <main id="inhalt">
       ${breadcrumb(page)}
-${page.html}
+${body}
     </main>
 
     ${footer()}

@@ -27,10 +27,11 @@ const sections = `        <h2 id="was">Was ist Peppol?</h2>
             </tbody>
           </table>
         </div>
+        <p>Ab wann du E-Rechnungen schicken musst, steht unter <a href="${href('e-rechnung-pflicht-ab-wann/')}">E-Rechnung: Pflicht ab wann?</a></p>
         <p>${srcs(['ustae', 'Abschnitt 14.1 Abs. 4 und 5'], ['xeinkaufB2B'], ['erbPeppol'])}</p>
 
         <h2 id="xrechnung">Peppol und XRechnung</h2>
-        <p>XRechnung ist ein <strong>Format</strong>, Peppol ein <strong>Transportweg</strong>. Über Peppol lassen sich XRechnungen in UBL und CII übertragen. Für Rechnungen an die öffentliche Verwaltung innerhalb Deutschlands verlangen die nationalen Vorgaben im Peppol-Netz den Standard XRechnung; Empfänger im Netz müssen grundsätzlich auch das internationale Format Peppol BIS Billing 3.0 annehmen können. Seit XRechnung 3.0 sind außerdem Regeln aus Peppol BIS Billing 3.0 Teil der XRechnung; sie erscheinen in Prüfberichten als <a href="${href('fehlercodes/')}#gruppe-peppol">PEPPOL-EN16931-Codes</a>.</p>
+        <p>XRechnung ist ein <strong>Format</strong> (zum Unterschied zu ZUGFeRD siehe <a href="${href('xrechnung-oder-zugferd/')}">XRechnung oder ZUGFeRD</a>), Peppol ein <strong>Transportweg</strong>. Über Peppol lassen sich XRechnungen in UBL und CII übertragen. Für Rechnungen an die öffentliche Verwaltung innerhalb Deutschlands verlangen die nationalen Vorgaben im Peppol-Netz den Standard XRechnung; Empfänger im Netz müssen grundsätzlich auch das internationale Format Peppol BIS Billing 3.0 annehmen können. Seit XRechnung 3.0 sind außerdem Regeln aus Peppol BIS Billing 3.0 Teil der XRechnung; sie erscheinen in Prüfberichten als <a href="${href('fehlercodes/')}#gruppe-peppol">PEPPOL-EN16931-Codes</a>.</p>
         <p>${srcs(['xeinkaufPeppolFaq'], ['xrSpez', 'Kapitel 12.5'])}</p>
 
         <h2 id="peppol-id">Die Peppol-ID</h2>
