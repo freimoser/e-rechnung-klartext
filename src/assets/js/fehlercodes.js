@@ -1,7 +1,7 @@
 // Suche im Fehlercode-Verzeichnis (filtert die Tabellenzeilen im Browser).
 const input = document.getElementById('code-filter');
 const count = document.getElementById('code-count');
-const groups = Array.from(document.querySelectorAll('.rules-table tbody'));
+const groups = Array.from(document.querySelectorAll('.rule-group'));
 let index = null;
 
 function build() {

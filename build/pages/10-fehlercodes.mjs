@@ -64,15 +64,21 @@ const html = () => `      <header class="hero-article">
         <ol>${groups.map((g) => `<li><a href="#gruppe-${g.key}">${esc(g.title)}</a> (${g.rules.length})</li>`).join('')}</ol>
       </nav>
 
-      <div class="table-scroll rules-table">
-        <table>
-          <caption>Alle Prüfregeln der XRechnung ${STAND.xrechnung.version} und der EN 16931 (CEN ${STAND.cen.version}). Stufe laut offiziellem Schematron.</caption>
-          <thead><tr><th scope="col">Code und Stufe</th><th scope="col">Offizieller Text</th><th scope="col">Was es bedeutet</th><th scope="col">Typische Ursache</th><th scope="col">Wer muss es beheben?</th></tr></thead>
-${groups.map((g) => `          <tbody data-group="${g.key}">
-            <tr class="rule-group-head"><th colspan="5" scope="colgroup" id="gruppe-${g.key}">${esc(g.title)} – ${g.rules.length} Regeln<br><span class="muted">${esc(g.lead)}</span></th></tr>
+      <div class="rules">
+${groups.map((g, i) => `        <section class="rule-group" data-group="${g.key}" aria-labelledby="gruppe-${g.key}">
+          <h2 id="gruppe-${g.key}">${esc(g.title)} <span class="muted">(${g.rules.length} Regeln)</span></h2>
+          <p class="muted">${esc(g.lead)}</p>
+          <div class="table-scroll rules-table">
+            <table>
+              ${i === 0 ? `<caption>Prüfregeln der XRechnung ${STAND.xrechnung.version} und der EN 16931 (CEN ${STAND.cen.version}). Stufe laut offiziellem Schematron.</caption>` : `<caption class="visually-hidden">${esc(g.title)}</caption>`}
+              <colgroup><col class="c-code"><col class="c-off"><col class="c-plain"><col class="c-cause"><col class="c-who"></colgroup>
+              <thead><tr><th scope="col">Code und Stufe</th><th scope="col">Offizieller Text</th><th scope="col">Was es bedeutet</th><th scope="col">Typische Ursache</th><th scope="col">Wer muss es beheben?</th></tr></thead>
+              <tbody>
 ${rows(g.rules)}
-          </tbody>`).join('\n')}
-        </table>
+              </tbody>
+            </table>
+          </div>
+        </section>`).join('\n')}
       </div>
 
       <article class="prose">

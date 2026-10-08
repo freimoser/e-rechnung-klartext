@@ -1380,24 +1380,57 @@ h1 {
   color: var(--muted);
 }
 
-.rules-table tbody {
+.rule-group {
+  margin: 1.75rem 0 0;
   content-visibility: auto;
-  contain-intrinsic-size: auto 2400px;
+  contain-intrinsic-size: auto 2600px;
+}
+
+.rule-group:first-of-type {
+  content-visibility: visible;
+}
+
+.rule-group h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+  scroll-margin-top: 6rem;
+}
+
+.rule-group > p {
+  margin: 0 0 0.75rem;
+}
+
+.rules-table table {
+  table-layout: fixed;
+  min-width: 860px;
+}
+
+.rules-table .c-code {
+  width: 11rem;
+}
+
+.rules-table .c-off {
+  width: 30%;
+}
+
+.rules-table .c-who {
+  width: 12rem;
 }
 
 .rules-table th[scope="row"] {
-  white-space: nowrap;
   font-family: var(--mono);
   font-size: 0.82rem;
+  overflow-wrap: anywhere;
 }
 
 .rules-table th[scope="row"] a {
+  display: inline-block;
+  min-height: 28px;
+  min-width: 28px;
+  padding: 0.2rem 0;
+  line-height: 1.5;
   color: var(--accent-hover);
   text-decoration: none;
-}
-
-.rules-table td {
-  min-width: 12rem;
 }
 
 .rules-table .off {
@@ -1411,21 +1444,17 @@ h1 {
   font-size: 0.82rem;
 }
 
+.rules-table tr[id] {
+  scroll-margin-top: 7rem;
+}
+
 .rules-table tr:target {
   background: var(--accent-dim);
 }
 
 .rules-table tr.is-hidden,
-.rules-table tbody.is-hidden {
+.rule-group.is-hidden {
   display: none;
-}
-
-.rule-group-head th {
-  background: var(--bg-soft);
-  color: var(--text);
-  font-size: 0.85rem;
-  text-transform: none;
-  letter-spacing: 0;
 }
 
 /* Fußbereich */
@@ -1542,9 +1571,6 @@ noscript .notice {
     font-size: 0.8rem;
   }
 
-  .rules-table td {
-    min-width: 14rem;
-  }
 }
 
 @media print {

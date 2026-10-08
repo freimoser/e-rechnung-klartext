@@ -59,7 +59,7 @@ Im Repository enthaltene Bibliotheken, Schriften und Daten:
 | [KoSIT XRechnung Testsuite](https://github.com/itplr-kosit/xrechnung-testsuite) | 2026-08-31 | Apache-2.0 | Wird nur in den Tests heruntergeladen, nicht im Repository |
 | Codelisten aus dem [XRepository](https://www.xrepository.de/) | siehe quellen.md | Lizenzangabe im XRepository leer | Codes und offizielle Namen (abgeleitet in `data/codelisten.json`) |
 
-Nur zum Entwickeln und Testen (nicht auf der Website): Playwright (Apache-2.0), pdf.js / pdfjs-dist (Apache-2.0), axe-core (MPL-2.0), Lighthouse (Apache-2.0, über npx).
+Nur zum Entwickeln und Testen (nicht auf der Website): Playwright (Apache-2.0), pdf.js / pdfjs-dist (Apache-2.0), axe-core (MPL-2.0), Lighthouse (Apache-2.0, optional).
 
 ---
 
@@ -85,7 +85,8 @@ npm test
 
 - Testrechnungen erzeugen (`tests/fixtures/generate.mjs`, alle frei erfunden): XRechnung UBL und CII, ZUGFeRD-PDFs in den Profilen EN 16931, BASIC, EXTENDED, XRECHNUNG, MINIMUM und BASIC WL, normale PDF, Umlaute und Sonderzeichen, mehrere Steuersätze, Anhang, absichtliche Fehler, kaputte XML, 2.000 Positionen
 - Werkzeug-Tests, Website-Tests (Links, Sitemap, Metadaten, strukturierte Daten, 360 px, axe), Offline-Test, Abgleich mit dem KoSIT-Validator
-- Lighthouse: `npm run lighthouse`
+- Lighthouse: `npm i --no-save lighthouse@13 && npm run lighthouse` (misst Startseite, /fehlercodes/ und zwei Ratgeber, mobil und Desktop)
+- Externe Links: `node tests/check-external.mjs`
 
 ## Aufbau
 

@@ -109,7 +109,7 @@ for (const url of urls) {
     await page.goto(p);
     // Bei /fehlercodes/ sind die 1.340 Syntaxregeln gleich aufgebaut wie die fachlichen; geprüft werden diese
     let axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']);
-    if (p.includes('fehlercodes')) axe = axe.exclude('tbody[data-group="ubl"]').exclude('tbody[data-group="cii"]');
+    if (p.includes('fehlercodes')) axe = axe.exclude('.rule-group[data-group="ubl"] tbody').exclude('.rule-group[data-group="cii"] tbody');
     const res = await axe.analyze();
     expect(res.violations.map((v) => `${v.id}: ${v.nodes.length}× ${v.nodes[0].target}`)).toEqual([]);
   });
@@ -145,7 +145,7 @@ test('Fehlercodes: Sprungmarke und Suche', async ({ page }) => {
   await expect(page.locator('#code-count')).toHaveText(/^\d+ Treffer$/);
   await expect(page.locator('tr#br-co-10')).toBeVisible();
   await expect(page.locator('tr#br-01')).toBeHidden();
-  expect(await page.locator('.rules-table tr[id]').count()).toBe(1646);
+  expect(await page.locator('.rules tr[id]').count()).toBe(1646);
 });
 
 test('Nach dem ersten Laden auch offline nutzbar', async ({ page, context }) => {

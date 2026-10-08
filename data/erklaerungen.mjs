@@ -285,26 +285,24 @@ export function decRule(id, officialText) {
   return { plain: `Der Betrag „${name}“ darf höchstens zwei Nachkommastellen haben.`, cause: 'Die Software rundet den Betrag nicht auf Cent, bevor sie ihn in die Datei schreibt.', who: SW };
 }
 
-// Syntaxregeln (UBL-CR, CII-SR, UBL-SR, UBL-DT, CII-DT) – Erklärung aus dem offiziellen Text abgeleitet
+// Syntaxregeln (UBL-CR, CII-SR, UBL-SR, UBL-DT, CII-DT) – kurze, elementbezogene Erklärung aus dem offiziellen Text
 export function syntaxRule(id, officialText, flag) {
-  const t = String(officialText || '').replace(/^\[[^\]]+\]\s*-?\s*/, '').trim();
+  const t = String(officialText || '').replace(/^\[[^\]]+\]\s*-?\s*/, '').trim().replace(/\.$/, '');
   const warn = flag === 'warning';
+  const who = warn ? 'Softwarehersteller (nicht zwingend)' : 'Softwarehersteller';
+  const r = (plain, cause) => ({ plain, cause, who });
   let m;
-  if (/^(UBL-CR|CII-SR)/.test(id) && (m = /should not (?:be present|include (?:a |an |the )?)(.*)$/i.exec(t)) && /should not/.test(t)) {
-    const what = /should not be present/i.test(t) ? t.replace(/\s*should not be present.*$/i, '') : m[1];
-    return {
-      plain: `Das Element „${what.replace(/\.$/, '')}“ ist in der EN 16931 nicht vorgesehen. ${warn ? 'Es ist nur eine Warnung: Der Empfänger darf die Angabe ignorieren, die Rechnung bleibt gültig.' : 'Es darf nicht verwendet werden.'}`,
-      cause: 'Die Rechnungssoftware schreibt zusätzliche Felder aus der vollen UBL- bzw. CII-Syntax, die das Datenmodell der E-Rechnung nicht kennt.',
-      who: warn ? 'Niemand zwingend; auf Dauer sollte der Softwarehersteller die Angabe weglassen.' : SW,
-    };
+  if ((m = /^(.*?)\s*should not be present$/i.exec(t)) || (m = /^A UBL (?:invoice|credit note) should not include (?:a |an |the )?(.*)$/i.exec(t))) {
+    return r(`„${m[1]}“ ist in der EN 16931 nicht vorgesehen${warn ? '; nur Warnung, die Rechnung bleibt gültig' : ''}.`, 'Zusatzfeld der vollen Syntax');
   }
-  if ((m = /(?:shall|should) (?:only )?(?:occur|exist) (?:maximum |at most )?once/i.exec(t)) || /maximum once|only exist once|only occur once/i.test(t)) {
-    const what = t.replace(/\s*(shall|should).*$/i, '');
-    return { plain: `„${what}“ darf nur einmal vorkommen.`, cause: 'Die Software schreibt die Angabe mehrfach.', who: SW };
+  if ((m = /^A UBL (?:invoice|credit note) shall not include (?:a |an |the )?(.*)$/i.exec(t)) || (m = /^(.*?)\s+shall not be used$/i.exec(t))) {
+    return r(`„${m[1]}“ darf in der E-Rechnung nicht vorkommen.`, 'Unzulässiges Feld geschrieben');
   }
-  if (/fraction digits|decimal/i.test(t)) return { plain: 'Ein Zahlenwert hat zu viele Nachkommastellen oder ein ungültiges Zahlenformat.', cause: 'Die Software rundet nicht oder nutzt ein Komma statt eines Punkts.', who: SW };
-  if (/schemeName|schemeAgencyID|schemeVersionID|listID|listAgencyID|listVersionID|format|unitCode|currencyID|mimeCode|filename/i.test(t)) {
-    return { plain: `Ein Attribut ist hier nicht vorgesehen oder falsch belegt: ${t}`, cause: 'Die Software schreibt zusätzliche oder falsche Attribute.', who: SW };
+  if ((m = /^(.*?)\s+(?:shall|should|must) (?:only )?(?:occur|exist|be present) (?:maximum |at most )?once\b(.*)$/i.exec(t)) || (m = /^Only one (.*?) (?:should|shall|must) be present(.*)$/i.exec(t)) || (m = /^Only one (.*?) is allowed(.*)$/i.exec(t))) {
+    return r(`„${m[1]}“ darf nur einmal vorkommen.`, 'Angabe mehrfach geschrieben');
   }
-  return { plain: `Syntaxregel der ${id.startsWith('UBL') ? 'UBL' : 'CII'}-Abbildung: Die Datei weicht vom vorgesehenen Aufbau ab (siehe offizieller Text).`, cause: 'Die Rechnungssoftware bildet die Daten nicht genau nach der Syntax-Vorgabe ab.', who: SW };
+  if ((m = /^(.*?)\s+shall occur maximum twice(.*)$/i.exec(t))) return r(`„${m[1]}“ darf höchstens zweimal vorkommen.`, 'Angabe zu oft geschrieben');
+  if ((m = /^(.*?)\s+must exist exactly once$/i.exec(t))) return r(`„${m[1]}“ muss genau einmal vorhanden sein.`, 'Pflichtelement fehlt oder ist doppelt');
+  if (/fraction digits|decimal/i.test(t)) return r('Zahlenwert mit zu vielen Nachkommastellen oder falschem Format.', 'Nicht gerundet oder Komma statt Punkt');
+  return r('Abweichung vom vorgesehenen Aufbau der Datei; Einzelheiten im offiziellen Text.', 'Syntax nicht genau eingehalten');
 }

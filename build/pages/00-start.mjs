@@ -119,6 +119,8 @@ export default {
   llms: 'Werkzeug im Browser: XRechnung (UBL/CII) und ZUGFeRD/Factur-X öffnen, Format und Profil erkennen, Vorprüfung nach KoSIT- und EN-16931-Regeln, Export als PDF und CSV, ohne Upload.',
   updated: UPDATED,
   scripts: ['assets/js/app.js'],
+  // Abhängigkeiten von app.js parallel laden statt nacheinander
+  preload: ['xml.js', 'dec.js', 'stand.js', 'quellen.js', 'parse.js', 'format.js', 'codes.js', 'validate.js', 'render.js', 'xmlview.js', 'zugferd.js'].map((f) => 'assets/js/' + f),
   faq: faq.map((f) => ({ q: f.q, a: f.a })),
   jsonld: [
     {
