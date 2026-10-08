@@ -66,6 +66,7 @@ export default {
   html: () => ratgeber({
     h1: 'XRechnung oder ZUGFeRD: der Unterschied',
     answer: 'Eine <strong>XRechnung</strong> ist eine reine XML-Datei, eine <strong>ZUGFeRD</strong>-Rechnung eine PDF mit eingebetteter XML-Datei. Beide sind zulässige E-Rechnungen; bei ZUGFeRD gilt das ab Version 2.0.1 und nicht für die Profile MINIMUM und BASIC-WL. Für Rechnungen an den Bund ist grundsätzlich XRechnung vorgeschrieben.',
+    answerSrc: [['ustae', 'Abschnitt 14.1 Abs. 12–14'], ['erbPeppol']],
     tocItems: [['vergleich', 'Vergleichstabelle'], ['xrechnung', 'XRechnung kurz erklärt'], ['zugferd', 'ZUGFeRD kurz erklärt'], ['empfehlung', 'Welches Format für welchen Fall?'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

@@ -57,6 +57,7 @@ export default {
   html: () => ratgeber({
     h1: 'E-Rechnung in der Arztpraxis',
     answer: 'Jede Arzt-, Zahnarzt- und Tierarztpraxis muss seit dem 1. Januar 2025 E-Rechnungen <strong>empfangen</strong> können. <strong>Ausstellen</strong> muss sie E-Rechnungen nur für steuerpflichtige Leistungen an andere Unternehmen – steuerfreie Heilbehandlungen und Rechnungen an Privatpersonen sind nicht betroffen.',
+    answerSrc: [['ustae', 'Abschnitt 14.1 Abs. 5'], ['bmfFaq', 'Frage 3'], ['ustg14', 'Abs. 2 Satz 2']],
     tocItems: [['ueberblick', 'Überblick als Tabelle'], ['empfangen', 'Empfangen'], ['aerzte', 'Arzt- und Zahnarztpraxen'], ['tieraerzte', 'Tierarztpraxen'], ['it', 'Für die Praxis-IT'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

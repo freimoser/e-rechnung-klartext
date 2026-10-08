@@ -997,6 +997,10 @@ h1 {
   border-radius: 12px;
 }
 
+.answer-src {
+  margin: 0.4rem 0 0;
+}
+
 .meta-line {
   margin: 0.75rem 0 0;
   font-size: 0.82rem;

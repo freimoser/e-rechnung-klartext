@@ -57,6 +57,7 @@ export default {
   html: () => ratgeber({
     h1: 'E-Rechnung und Privatpersonen',
     answer: 'Für Rechnungen an Privatpersonen gibt es <strong>keine E-Rechnungspflicht</strong>: Die Pflicht gilt nur zwischen Unternehmen. Eine E-Rechnung darf eine Privatperson nur mit ihrer Zustimmung bekommen, und Privatpersonen müssen auch keine E-Rechnungen empfangen können.',
+    answerSrc: [['ustg14', 'Abs. 1 Satz 5 und Abs. 2 Satz 2 Nr. 1'], ['bmfFaq', 'Einleitung und Frage 4']],
     tocItems: [['ueberblick', 'Überblick'], ['warum', 'Warum Privatpersonen nicht betroffen sind'], ['zustimmung', 'Kann ich gezwungen werden?'], ['geoeffnet', 'XRechnung bekommen – was tun?'], ['vereine', 'Vereine und Behörden'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

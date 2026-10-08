@@ -86,10 +86,11 @@ export function related(slugs) {
 }
 
 // Gemeinsamer Aufbau einer Ratgeberseite
-export function ratgeber({ h1, answer, sections, faq, relatedSlugs, tocItems, ctaTitle, ctaText }) {
+export function ratgeber({ h1, answer, answerSrc, sections, faq, relatedSlugs, tocItems, ctaTitle, ctaText }) {
   return `      <header class="hero-article">
         <h1>${esc(h1)}</h1>
         <p class="answer">${answer}</p>
+        ${answerSrc ? `<p class="answer-src">${answerSrc.map(([id, f]) => src(id, f)).join('')}</p>` : ''}
         ${metaLine()}
       </header>
       ${tocItems ? toc(tocItems) : ''}

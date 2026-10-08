@@ -85,6 +85,7 @@ export default {
   html: () => ratgeber({
     h1: 'ZUGFeRD-Rechnung prüfen',
     answer: 'Eine gültige ZUGFeRD-Rechnung ist eine PDF mit eingebetteter XML-Datei in Version 2.0.1 oder neuer und in einem Profil ab BASIC; MINIMUM und BASIC-WL gelten nicht als E-Rechnung. Prüfen kannst du das, indem du die PDF in einen Viewer lädst, der die XML ausliest, Profil und Version anzeigt und Summen sowie Pflichtangaben nachrechnet.',
+    answerSrc: [['ustae', 'Abschnitt 14.1 Abs. 14'], ['ferdFaq', 'Profile']],
     tocItems: [['merkmale', 'Merkmale einer gültigen ZUGFeRD-Rechnung'], ['profile', 'Die Profile im Überblick'], ['anleitung', 'So prüfst du'], ['fehler', 'Häufige Probleme'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

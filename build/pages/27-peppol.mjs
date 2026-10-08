@@ -54,6 +54,7 @@ export default {
   html: () => ratgeber({
     h1: 'Peppol: das Netzwerk für E-Rechnungen',
     answer: 'Peppol ist ein internationales Netzwerk mit einheitlichen Regeln, über das Unternehmen und Behörden E-Rechnungen von Software zu Software austauschen. Für Unternehmen in Deutschland ist Peppol <strong>nicht vorgeschrieben</strong>: Den Übertragungsweg stimmen Rechnungssteller und Empfänger ab, und für den Empfang genügt ein E-Mail-Postfach.',
+    answerSrc: [['xeinkaufB2B'], ['ustae', 'Abschnitt 14.1 Abs. 5']],
     tocItems: [['was', 'Was ist Peppol?'], ['brauche-ich', 'Brauche ich Peppol?'], ['xrechnung', 'Peppol und XRechnung'], ['peppol-id', 'Die Peppol-ID'], ['kosten', 'Kosten'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

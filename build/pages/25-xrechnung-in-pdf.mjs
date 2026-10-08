@@ -67,6 +67,7 @@ export default {
   html: () => ratgeber({
     h1: 'XRechnung in PDF umwandeln und drucken',
     answer: 'Eine XRechnung wandelst du in ein PDF um, indem du die XML-Datei in einen Viewer lädst und dort „Als PDF speichern“ oder „Drucken“ wählst. Das geht kostenlos hier im Browser, ohne Upload. Wichtig: Das PDF ist nur eine Ansicht – aufbewahren musst du die Original-XML.',
+    answerSrc: [['ustae', 'Abschnitt 14b.1 Abs. 1'], ['bmf2025', 'Rn. 60']],
     tocItems: [['anleitung', 'Schritt-für-Schritt-Anleitung'], ['warum', 'Warum XRechnungen unleserlich aussehen'], ['original', 'PDF oder XML aufbewahren?'], ['csv', 'Positionen nach Excel'], ['probleme', 'Wenn etwas nicht klappt'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

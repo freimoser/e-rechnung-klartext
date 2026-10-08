@@ -65,6 +65,7 @@ export default {
   html: () => ratgeber({
     h1: 'E-Rechnung: Pflicht ab wann?',
     answer: 'E-Rechnungen <strong>empfangen</strong> müssen alle Unternehmen in Deutschland seit dem 1. Januar 2025. E-Rechnungen <strong>ausstellen</strong> müssen sie für Leistungen an andere inländische Unternehmen spätestens für Umsätze ab dem 1. Januar 2028; bis dahin gelten Übergangsregeln.',
+    answerSrc: [['ustae', 'Abschnitt 14.1 Abs. 5'], ['ustg27', 'Abs. 38'], ['ustg14', 'Abs. 2 Satz 2 Nr. 1']],
     tocItems: [['kurz', 'Das Wichtigste'], ['zeitplan', 'Zeitplan als Tabelle'], ['was-ist', 'Was als E-Rechnung zählt'], ['ausnahmen', 'Ausnahmen'], ['empfang', 'Was „empfangen können“ bedeutet'], ['folgen', 'Folgen einer falschen Form'], ['faq', 'Häufige Fragen']],
     sections,
     faq,

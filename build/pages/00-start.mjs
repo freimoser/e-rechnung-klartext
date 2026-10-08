@@ -39,7 +39,7 @@ const faq = [
 const html = () => `      <section class="hero" aria-labelledby="seitentitel">
         <h1 id="seitentitel">E-Rechnung kostenlos öffnen – XRechnung und ZUGFeRD ohne Upload</h1>
         <p class="lead">Datei hineinziehen und die Rechnung lesen wie auf Papier. Dazu eine Vorprüfung nach den offiziellen Regeln, Fehlercodes in normaler Sprache und Export als PDF oder CSV.</p>
-        <p class="stand-line">${esc(standSatz())}. <a href="${Q.xrVersionen.url}">Quelle: KoSIT</a> · <a href="${href('fehlercodes/')}">Was die Fehlercodes bedeuten</a></p>
+        <p class="stand-line">${esc(standSatz())}. Stand ${dateDE(UPDATED)}, Quelle: <a href="${Q.xrVersionen.url}">KoSIT, Versionen und Bundles der XRechnung</a> · <a href="${href('fehlercodes/')}">Was die Fehlercodes bedeuten</a></p>
       </section>
 
       <section class="tool" aria-label="Werkzeug zum Öffnen von E-Rechnungen">
@@ -100,7 +100,7 @@ const html = () => `      <section class="hero" aria-labelledby="seitentitel">
         <h2 id="ratgeber">Ratgeber</h2>
         <div class="card-grid">
           <a class="card-link" href="${href('e-rechnung-arztpraxis/')}"><h3>E-Rechnung in der Arztpraxis</h3><p>Arzt-, Zahnarzt- und Tierarztpraxen: was beim Empfangen und Ausstellen gilt.</p></a>
-          <a class="card-link" href="${href('e-rechnung-kleinunternehmer/')}"><h3>Kleinunternehmer</h3><p>Empfangen ja, ausstellen nein: die Regeln für § 19 UStG.</p></a>
+          <a class="card-link" href="${href('e-rechnung-kleinunternehmer/')}"><h3>Kleinunternehmer</h3><p>Empfangen ja, ausstellen nein: was für Kleinunternehmer gilt.</p></a>
           <a class="card-link" href="${href('e-rechnung-privatperson/')}"><h3>Privatpersonen</h3><p>Warum es für Privatkunden keine Pflicht gibt.</p></a>
           <a class="card-link" href="${href('zugferd-rechnung-pruefen/')}"><h3>ZUGFeRD-Rechnung prüfen</h3><p>Profile erkennen und gültige ZUGFeRD-Rechnungen von normalen PDFs unterscheiden.</p></a>
           <a class="card-link" href="${href('fehlercodes/')}"><h3>Fehlercodes erklärt</h3><p>BR-DE-15, BR-CO-10 und alle anderen Prüfregeln in einfacher Sprache.</p></a>

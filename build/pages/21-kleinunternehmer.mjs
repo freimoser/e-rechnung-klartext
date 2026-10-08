@@ -63,6 +63,7 @@ export default {
   html: () => ratgeber({
     h1: 'E-Rechnung für Kleinunternehmer',
     answer: 'Kleinunternehmer müssen E-Rechnungen seit dem 1. Januar 2025 <strong>empfangen</strong> können, müssen selbst aber <strong>keine</strong> E-Rechnungen ausstellen: Ihre Rechnungen dürfen immer auf Papier oder als einfache PDF verschickt werden.',
+    answerSrc: [['ustae', 'Abschnitt 14.1 Abs. 5 Satz 2'], ['ustdv34a', 'Satz 4']],
     tocItems: [['ueberblick', 'Überblick als Tabelle'], ['wer', 'Wer ist Kleinunternehmer?'], ['empfangen', 'Empfangen'], ['ausstellen', 'Ausstellen und Pflichtangaben'], ['wechsel', 'Wenn du die Grenze überschreitest'], ['faq', 'Häufige Fragen']],
     sections,
     faq,
