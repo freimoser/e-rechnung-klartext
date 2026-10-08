@@ -38,7 +38,7 @@ const faq = [
 
 const html = () => `      <section class="hero" aria-labelledby="seitentitel">
         <h1 id="seitentitel">E-Rechnung kostenlos öffnen – XRechnung und ZUGFeRD ohne Upload</h1>
-        <p class="lead">${esc(TAGLINE)}. Mit Vorprüfung nach den offiziellen Regeln und Fehlercodes in normaler Sprache.</p>
+        <p class="lead">Datei hineinziehen und die Rechnung lesen wie auf Papier. Dazu eine Vorprüfung nach den offiziellen Regeln, Fehlercodes in normaler Sprache und Export als PDF oder CSV.</p>
         <p class="stand-line">${esc(standSatz())}. <a href="${Q.xrVersionen.url}">Quelle: KoSIT</a> · <a href="${href('fehlercodes/')}">Was die Fehlercodes bedeuten</a></p>
       </section>
 

@@ -19,10 +19,9 @@ export function dateLong(iso) {
 export function src(id, fundstelle = '') {
   const q = Q[id];
   if (!q) throw new Error('Unbekannte Quelle ' + id);
-  const title = esc(q.titel.replace(/^BMF-Schreiben „.*“$/, 'BMF-Schreiben'));
-  const label = q.url ? `<a href="${esc(q.url)}">${title}</a>` : title;
-  const extra = [q.version, fundstelle].filter(Boolean).map(esc).join(', ');
-  return `<span class="source">Stand ${dateDE(ABGERUFEN)}, Quelle: ${label}${extra ? ` (${extra})` : ''}</span>`;
+  const text = esc([q.kurz || q.titel, fundstelle].filter(Boolean).join(', '));
+  const label = q.url ? `<a href="${esc(q.url)}">${text}</a>` : text;
+  return `<span class="source">Stand ${dateDE(ABGERUFEN)}, Quelle: ${label}</span>`;
 }
 
 // Mehrere Quellen in einer Zeile
@@ -41,7 +40,7 @@ export function faqHtml(faq, id = 'faq', title = 'Häufige Fragen') {
       <div class="faq">
         ${faq.map((f) => `<details>
           <summary>${esc(f.q)}</summary>
-          <p>${f.a}</p>
+          <p>${f.a}</p>${f.src ? `\n          <p>${f.src.map(([id, fs]) => src(id, fs)).join('')}</p>` : ''}
         </details>`).join('\n        ')}
       </div>`;
 }

@@ -222,7 +222,7 @@ function renderInvoice(entry) {
         ${format.outdated ? `<p><strong>${esc(format.outdated)}</strong></p>` : ''}
         ${format.specId ? `<p class="muted">Kennung (BT-24): <code>${esc(format.specId)}</code></p>` : ''}</div>
       <div class="fact ${erCls}"><span class="label">Gilt als E-Rechnung?</span><span class="value">${erText}</span>
-        <p>${esc(er.text)}</p>${er.quelle ? `<p>${quelleLink(er.quelle)}</p>` : ''}</div>
+        <p>${esc(er.text)}</p>${er.status === 'ja' && errors ? '<p><strong>Das Format ist zulässig, die Vorprüfung hat aber Fehler gefunden.</strong> Bitte den Rechnungssteller um eine korrigierte Rechnung.</p>' : ''}${er.quelle ? `<p>${quelleLink(er.quelle)}</p>` : ''}</div>
       <div class="fact ${checkCls}"><span class="label">Vorprüfung</span><span class="value">${esc(checkText)}</span>
         <p><a href="#pruefung">Zu den Einzelheiten</a></p></div>
     </div>

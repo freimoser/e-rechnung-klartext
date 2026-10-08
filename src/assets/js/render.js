@@ -298,7 +298,7 @@ export function renderFindings(findings, meta, base, refs) {
       <h3><span class="badge ${s.badge}">${s.text}</span> <a href="${base}fehlercodes/#${anchor}">${esc(f.id)}</a></h3>
       <p>${esc(f.msg)}</p>
       ${m.plain ? `<p><strong>Was das bedeutet:</strong> ${esc(m.plain)}</p>` : ''}
-      <p class="who">Wer muss es beheben? ${esc(m.who || 'In der Regel der Rechnungssteller bzw. dessen Rechnungssoftware.')}</p>
+      <p><strong>Wer muss es beheben?</strong> ${esc(m.who || 'In der Regel der Rechnungssteller bzw. dessen Rechnungssoftware.')}</p>
       ${f.el ? `<p><button type="button" class="btn btn-ghost" data-jump="${x.match(/\d+/)[0]}">Stelle im XML zeigen</button></p>` : ''}
     </li>`;
   }).join('')}</ul>`;
