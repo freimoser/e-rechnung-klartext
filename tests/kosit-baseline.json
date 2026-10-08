@@ -1,0 +1,673 @@
+{
+ "01.01_comprehensive_test_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.01_comprehensive_test_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "CII-SR-475",
+    "warning"
+   ],
+   [
+    "CII-SR-476",
+    "warning"
+   ]
+  ]
+ },
+ "01.01a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.01a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.02_comprehensive_test_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.02_comprehensive_test_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.02a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.02a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.03_comprehensive_test_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.03_comprehensive_test_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.03a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.03a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.04_comprehensive_test_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.04_comprehensive_test_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.04a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.04a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.05_minimal_test_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.05_minimal_test_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.05a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.05a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.06_minimal_test_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.06_minimal_test_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.06a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.06a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.07a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.07a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.08a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.08a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.09a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.09a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.10a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.10a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.11a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.11a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.12a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.12a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.13a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.13a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.14a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.14a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.15a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.15a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.17a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.17a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "01.18a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.18a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.19a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.19a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.20a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.20a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.21a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "01.21a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.01a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.01a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.01a-cvd_INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-CL-13",
+    "error"
+   ]
+  ]
+ },
+ "02.01a-cvd_INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-CL-13",
+    "error"
+   ]
+  ]
+ },
+ "02.02a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.02a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.03a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.03a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.04a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.04a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "02.05a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "02.05a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "02.06a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "02.06a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "03.01a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.01a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.02a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "03.02a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "03.03a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ]
+  ]
+ },
+ "03.03a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ],
+   [
+    "CII-SR-475",
+    "warning"
+   ]
+  ]
+ },
+ "03.04a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.04a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.05a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.05a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.06a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.06a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.07a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": []
+ },
+ "03.07a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "CII-SR-475",
+    "warning"
+   ],
+   [
+    "CII-SR-476",
+    "warning"
+   ]
+  ]
+ },
+ "04.01a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "UBL-CR-646",
+    "warning"
+   ]
+  ]
+ },
+ "04.02a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "UBL-CR-646",
+    "warning"
+   ]
+  ]
+ },
+ "04.03a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "UBL-CR-646",
+    "warning"
+   ]
+  ]
+ },
+ "04.04a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ],
+   [
+    "UBL-CR-646",
+    "warning"
+   ]
+  ]
+ },
+ "04.05a-INVOICE_uncefact": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-CL-10",
+    "error"
+   ],
+   [
+    "BR-CL-21",
+    "error"
+   ]
+  ]
+ },
+ "05.01a-INVOICE_ubl": {
+  "result": "accept",
+  "messages": [
+   [
+    "BR-CO-16",
+    "error"
+   ],
+   [
+    "BR-DE-TMP-32",
+    "information"
+   ],
+   [
+    "UBL-CR-470",
+    "warning"
+   ]
+  ]
+ },
+ "fehlerhaft-cii": {
+  "result": "reject",
+  "messages": [
+   [
+    "BR-DE-15",
+    "error"
+   ],
+   [
+    "PEPPOL-EN16931-R001",
+    "error"
+   ]
+  ]
+ },
+ "fehlerhaft": {
+  "result": "reject",
+  "messages": [
+   [
+    "BR-CO-10",
+    "error"
+   ],
+   [
+    "BR-CO-13",
+    "error"
+   ],
+   [
+    "BR-DE-15",
+    "error"
+   ],
+   [
+    "BR-DE-27",
+    "warning"
+   ],
+   [
+    "BR-DE-6",
+    "error"
+   ]
+  ]
+ },
+ "gross-2000": {
+  "result": "accept",
+  "messages": []
+ },
+ "kaputt": {
+  "result": "reject",
+  "messages": [
+   [
+    "generic-error",
+    "error"
+   ]
+  ]
+ },
+ "mehrere-steuersaetze-cii": {
+  "result": "accept",
+  "messages": []
+ },
+ "mehrere-steuersaetze": {
+  "result": "accept",
+  "messages": []
+ },
+ "mit-anhang-cii": {
+  "result": "accept",
+  "messages": []
+ },
+ "mit-anhang": {
+  "result": "accept",
+  "messages": []
+ },
+ "umlaute-sonderzeichen": {
+  "result": "accept",
+  "messages": []
+ },
+ "xrechnung-cii": {
+  "result": "accept",
+  "messages": []
+ },
+ "xrechnung-ubl": {
+  "result": "accept",
+  "messages": []
+ }
+}
