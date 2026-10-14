@@ -9,13 +9,14 @@ const impressum = {
   h1: 'Impressum',
   llms: 'Anbieterkennzeichnung nach § 5 DDG.',
   crumbs: [{ slug: 'impressum/', label: 'Impressum' }],
-  updated: UPDATED,
+  published: UPDATED,
+  updated: '2026-10-14',
   html: () => `      <header class="hero-article">
         <h1>Impressum</h1>
       </header>
       <article class="prose">
         <h2>Angaben gemäß § 5 DDG</h2>
-        <p>S. Thomas Freimoser<br>München, Deutschland</p>
+        <p>S. Thomas Freimoser<br>Schinkelstraße 15<br>80805 München<br>Deutschland</p>
         <h2>Kontakt</h2>
         <p>E-Mail: kontakt [at] freimoser.de<br>LinkedIn: linkedin.com/in/freimoser</p>
         <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
@@ -39,17 +40,18 @@ const datenschutz = {
   h1: 'Datenschutzerklärung',
   llms: 'Datenschutzerklärung: keine Datenerhebung durch die Website, Rechnungen nur lokal im Browser, Hosting bei GitHub Pages.',
   crumbs: [{ slug: 'datenschutz/', label: 'Datenschutz' }],
-  updated: UPDATED,
+  published: UPDATED,
+  updated: '2026-10-14',
   html: () => `      <header class="hero-article">
         <h1>Datenschutzerklärung</h1>
-        <p class="meta-line">Stand: ${dateLong(UPDATED)}</p>
+        <p class="meta-line">Stand: ${dateLong('2026-10-14')}</p>
       </header>
       <article class="prose">
         <h2 id="kurz">Kurz gesagt</h2>
         <p>Diese Website erhebt selbst keine personenbezogenen Daten. Rechnungen, die du im Werkzeug öffnest, werden ausschließlich in deinem Browser verarbeitet und nicht hochgeladen. Es gibt keine Cookies, kein Tracking, keine Analysewerkzeuge, keine Werbung und keine eingebundenen Inhalte fremder Anbieter, auch keine externen Schriften.</p>
 
         <h2 id="verantwortlich">Verantwortlicher</h2>
-        <p>S. Thomas Freimoser, München, Deutschland. E-Mail: kontakt [at] freimoser.de. Weitere Angaben im <a href="${href('impressum/')}">Impressum</a>.</p>
+        <p>S. Thomas Freimoser, Schinkelstraße 15, 80805 München, Deutschland. E-Mail: kontakt [at] freimoser.de. Weitere Angaben im <a href="${href('impressum/')}">Impressum</a>.</p>
 
         <h2 id="rechnungen">Verarbeitung deiner Rechnungen</h2>
         <p>Wenn du eine Datei auswählst oder in das Werkzeug ziehst, liest dein Browser sie direkt von deinem Gerät. Anzeige, Vorprüfung, PDF- und CSV-Export laufen vollständig in deinem Browser. Die Datei und ihre Inhalte werden weder an uns noch an Dritte übertragen und nicht dauerhaft gespeichert. Schließt du den Tab, ist alles wieder weg.</p>
