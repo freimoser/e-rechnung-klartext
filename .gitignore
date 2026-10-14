@@ -1,0 +1,8 @@
+node_modules/
+_site/
+test-results/
+playwright-report/
+tests/.cache/
+tests/fixtures/out/
+lighthouse/
+.DS_Store
