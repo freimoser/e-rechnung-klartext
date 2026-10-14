@@ -8,9 +8,27 @@ export const REPO_URL = 'https://github.com/freimoser/e-rechnung-klartext';
 export const GOOGLE_VERIFICATION = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
 export const THEME_COLOR = '#0f1419';
 
+// Rechtsangaben: die EINZIGE Stelle. Impressum, Datenschutz und Autorenangaben lesen von hier.
+// Betrieb als Privatperson: bewusst ohne Firmennamen, ohne Telefon (EuGH C-298/07) und ohne USt-IdNr.
+export const LEGAL = {
+  operator: 'Thomas Freimoser',
+  companyName: '',
+  street: 'Schinkelstraße 15',
+  zip: '80805',
+  city: 'München',
+  country: 'Deutschland',
+  email: 'kontakt@freimoser.de',
+  phone: '',
+  vatId: '',
+  responsible: 'Thomas Freimoser',
+};
+
+// E-Mail-Adresse mit [at] als einfacher Schutz vor Adresssammlern
+export const emailText = (email) => email.replace('@', ' [at] ');
+
 export const AUTHOR = {
   '@type': 'Person',
-  name: 'S. Thomas Freimoser',
+  name: LEGAL.operator,
   url: 'https://freimoser.de/',
 };
 

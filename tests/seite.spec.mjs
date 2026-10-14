@@ -1,17 +1,56 @@
 // Tests der Website: Links, Sitemap, Metadaten, strukturierte Daten, Darstellung, Barrierefreiheit.
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { sitemapUrls, localPath, openFiles } from './helpers.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import { sitemapUrls, localPath, openFiles, ROOT } from './helpers.mjs';
 
 const SITE = 'https://freimoser.github.io/e-rechnung-klartext/';
 const urls = sitemapUrls();
 const VERIFY = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
 
-test('Sitemap enthält alle 14 indexierbaren Seiten mit lastmod', async ({ request }) => {
-  expect(urls).toHaveLength(14);
+test('Sitemap enthält alle 12 indexierbaren Seiten mit lastmod', async ({ request }) => {
+  expect(urls).toHaveLength(12);
   const xml = await (await request.get('sitemap.xml')).text();
-  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(14);
+  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(12);
   for (const u of urls) expect(u.startsWith(SITE) && u.endsWith('/')).toBe(true);
+});
+
+test('Sitemap und noindex passen in beide Richtungen zusammen', () => {
+  const dir = path.join(ROOT, '_site');
+  const inSitemap = new Set(urls.map((u) => new URL(u).pathname));
+  const problems = [];
+  for (const f of fs.readdirSync(dir, { recursive: true }).filter((x) => x.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(dir, f), 'utf8');
+    const route = '/e-rechnung-klartext/' + f.split(path.sep).join('/').replace(/index\.html$/, '').replace(/\.html$/, '');
+    const noindex = /<meta name="robots" content="noindex/.test(html);
+    if (noindex && inSitemap.has(route)) problems.push(`${route}: steht in der Sitemap, trägt aber noindex`);
+    if (!noindex && !inSitemap.has(route)) problems.push(`${route}: ist indexierbar, fehlt aber in der Sitemap`);
+  }
+  expect(problems).toEqual([]);
+});
+
+// Rechtsseiten: Privatanschrift, deshalb nicht im Suchindex; geprüft werden Fehlerklassen, keine konkreten Werte
+for (const p of ['./impressum/', './datenschutz/']) {
+  test(`Rechtsseite ${p}: noindex, Anschrift und Kontakt vollständig`, async ({ page }) => {
+    await page.goto(p);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow');
+    const text = await page.locator('main').innerText();
+    expect(text).toMatch(/\b\d{5} [A-ZÄÖÜ]/);
+    expect(text).toMatch(/(straße|str\.|weg|platz|allee|gasse)\s*\d+/i);
+    expect(text).toMatch(/\[at\]|@/);
+    expect(text).not.toMatch(/TODO|Platzhalter|wird gerade eingerichtet/i);
+  });
+}
+
+test('llms.txt und llms-full.txt für Antwortmaschinen', async ({ request }) => {
+  const llms = await (await request.get('llms.txt')).text();
+  for (const h of ['## Wofür diese Seite eine gute Quelle ist', '## Grenzen dieser Quelle', '## Aussagen, die ohne Kontext irreführen', '## Kernaussagen (mit Quelle)']) expect(llms).toContain(h);
+  expect(llms).not.toMatch(/\/(impressum|datenschutz)\//);
+  const full = await (await request.get('llms-full.txt')).text();
+  expect(full).toContain('# E-Rechnung: Pflicht ab wann?');
+  expect(full).toContain('https://www.gesetze-im-internet.de/');
+  expect(full).not.toMatch(/<(p|span|a|div|h[1-6]|li|ul|ol|table|tr|td|th|strong|br|nav|section)[\s>]/);
 });
 
 test('Alle internen Links und Sitemap-Einträge liefern 200', async ({ page, request }) => {
@@ -86,6 +125,8 @@ for (const url of urls) {
     if (ratgeber) {
       const art = lds.find((l) => l['@type'] === 'Article');
       expect(art.dateModified).toMatch(/^2026-/);
+      expect(art.citation.length, 'Quellen als citation').toBeGreaterThan(2);
+      for (const c of art.citation) expect(c.url).toMatch(/^https:\/\//);
       await expect(page.locator('.legal-note')).toContainText('Allgemeine Information, keine Steuer- oder Rechtsberatung');
       await expect(page.locator('.answer')).toBeVisible();
       await expect(page.locator('.cta-box a[href="/e-rechnung-klartext/"]')).toHaveCount(1);
@@ -97,7 +138,9 @@ for (const url of urls) {
     expect(await page.locator('img:not([alt])').count()).toBe(0);
     expect(errors).toEqual([]);
   });
+}
 
+for (const p of [...urls.map(localPath), './impressum/', './datenschutz/']) {
   test(`360 px ohne seitliches Scrollen: ${p}`, async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 740 });
     await page.goto(p);

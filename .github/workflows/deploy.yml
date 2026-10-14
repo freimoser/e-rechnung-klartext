@@ -24,6 +24,8 @@ jobs:
           node-version: 22
       - name: Seite bauen
         run: node build/build.mjs
+      - name: Livegang-Prüfung (Blocker stoppen den Deploy)
+        run: node tests/check-launch.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

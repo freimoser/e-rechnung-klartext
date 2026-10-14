@@ -10,7 +10,8 @@
     "serve": "node build/serve.mjs",
     "fixtures": "node tests/fixtures/generate.mjs",
     "test": "npm run build && npm run fixtures && playwright test",
-    "lighthouse": "node tests/lighthouse.mjs"
+    "lighthouse": "node tests/lighthouse.mjs",
+    "check:launch": "node tests/check-launch.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

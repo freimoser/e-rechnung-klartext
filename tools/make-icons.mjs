@@ -22,6 +22,8 @@ async function render(markup, size, file, transparent = true) {
 const p16 = await render(svg, 16, 'favicon-16.png');
 const p32 = await render(svg, 32, 'favicon-32.png');
 const p48 = await render(svg, 48, 'favicon-48.png');
+// Google zeigt ein Favicon im Suchergebnis nur bei einem Vielfachen von 48 px
+await render(svg, 96, 'favicon-96.png');
 await render(square, 180, 'apple-touch-icon.png', false);
 await render(svg, 192, 'icon-192.png');
 await render(square, 512, 'icon-512.png', false);

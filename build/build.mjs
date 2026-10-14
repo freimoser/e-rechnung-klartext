@@ -3,10 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { BASE, SITE_NAME, TAGLINE, THEME_COLOR, abs } from './site.mjs';
+import { BASE, SITE_NAME, TAGLINE, THEME_COLOR, AUTHOR, REPO_URL, abs } from './site.mjs';
 import { renderPage } from './layout.mjs';
 import { loadRules, writeToolData } from './rules.mjs';
-import { KERNAUSSAGEN, kernaussageZeile } from './kernaussagen.mjs';
+import { KERNAUSSAGEN, kernaussageZeile, GRENZEN, IRREFUEHREND, irrefuehrendZeile } from './kernaussagen.mjs';
+import { llmsFull } from './llms-full.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'src');
@@ -105,9 +106,19 @@ export async function build() {
     '',
     'Alle Aussagen zu Pflichten und Fristen sind mit amtlichen Quellen (BMF, UStG, KoSIT) und Stand-Datum belegt. Allgemeine Information, keine Steuer- oder Rechtsberatung.',
     '',
-    '## Seiten',
+    `Betrieben von ${AUTHOR.name} (${AUTHOR.url}). Quellcode öffentlich: ${REPO_URL}`,
+    '',
+    '## Wofür diese Seite eine gute Quelle ist',
     '',
     ...indexable.map((p) => `- [${p.llmsTitle || p.h1}](${abs(p.slug)}): ${p.llms || p.description}`),
+    '',
+    '## Grenzen dieser Quelle',
+    '',
+    ...GRENZEN.map((g) => `- ${g}`),
+    '',
+    '## Aussagen, die ohne Kontext irreführen',
+    '',
+    ...IRREFUEHREND.map(irrefuehrendZeile),
     '',
     '## Kernaussagen (mit Quelle)',
     '',
@@ -116,9 +127,14 @@ export async function build() {
     '## Quellen',
     '',
     `- [Quellen und Methodik](${abs('quellen/')}): alle genutzten amtlichen Quellen mit Version und Abrufdatum, Methodik der Vorprüfung`,
+    `- [Volltext](${abs('llms-full.txt')}): alle Ratgeber und Nachschlageseiten als Text, mit Quellenangaben`,
     '',
   ].join('\n');
   fs.writeFileSync(path.join(OUT, 'llms.txt'), llms);
+
+  // llms-full.txt: Volltext der Fachinhalte (ohne das sehr umfangreiche Fehlercode-Verzeichnis)
+  const fach = indexable.filter((p) => ['ratgeber', 'reference'].includes(p.kind) && p.slug !== 'fehlercodes/');
+  fs.writeFileSync(path.join(OUT, 'llms-full.txt'), llmsFull({ siteName: SITE_NAME, pages: fach }));
 
   // Web-App-Manifest
   const manifest = {
