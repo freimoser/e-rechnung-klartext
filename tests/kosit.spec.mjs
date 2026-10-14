@@ -57,6 +57,5 @@ test('Offizielle KoSIT-Testsuite: keine falschen Fehlermeldungen', async ({ page
   const res = await runVorpruefung(page, files);
   const { extra, missed } = compare(res);
   expect(extra, 'Meldungen, die der KoSIT-Validator nicht hat').toEqual([]);
-  // Nicht abgedeckte Codelisten-Regeln (BR-CL-10, BR-CL-13, BR-CL-21) sind bekannt und dokumentiert
-  expect(missed.filter((m) => !/BR-CL-(10|13|21)$/.test(m))).toEqual([]);
+  expect(missed, 'Offizielle Fehler, die die Vorprüfung nicht findet').toEqual([]);
 });

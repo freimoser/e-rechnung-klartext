@@ -14,7 +14,7 @@
 | **Öffnen** | XRechnung als XML (UBL 2.1 und UN/CEFACT CII), ZUGFeRD/Factur-X als PDF mit eingebetteter XML, mehrere Dateien gleichzeitig, Drag & Drop |
 | **Erkennen** | Format, Syntax, XRechnung-Version (auch veraltete), ZUGFeRD-Profil; Bewertung „gilt als E-Rechnung?“ mit Quelle; normale PDFs ohne Daten werden erkannt |
 | **Anzeigen** | Rechnung wie auf Papier, Codes (Einheiten, Steuerkategorien, Zahlungsarten …) in Klartext, eingebettete Anhänge einzeln herunterladbar |
-| **Vorprüfen** | Summen und Steuer nachrechnen, 201 offizielle Prüfregeln (EN 16931 und XRechnung) mit Erklärung, Zuständigkeit und Link auf das Fehlercode-Verzeichnis – ausdrücklich keine amtliche Validierung |
+| **Vorprüfen** | Summen und Steuer nachrechnen, 206 offizielle Prüfregeln (EN 16931 und XRechnung) mit Erklärung, Zuständigkeit und Link auf das Fehlercode-Verzeichnis – ausdrücklich keine amtliche Validierung |
 | **Exportieren** | PDF im Browser erzeugt (mit Hinweis „Ansicht, nicht die Originalrechnung“), Druckansicht, Positionen als CSV (Semikolon, UTF-8 mit BOM) |
 | **Rohansicht** | XML eingerückt, mit Suche; Klick auf einen Wert springt zur Stelle im XML |
 | **Fehlercodes** | Alle 1.646 Prüfregeln mit offiziellem Text, Erklärung in einfacher Sprache, typischer Ursache und Zuständigkeit, Sprungmarke je Code (z. B. `/fehlercodes/#br-de-15`) |

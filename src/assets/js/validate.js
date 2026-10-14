@@ -30,7 +30,8 @@ export const IMPLEMENTED = [
   'BR-CO-16', 'BR-CO-17', 'BR-CO-18', 'BR-CO-19', 'BR-CO-20', 'BR-CO-21', 'BR-CO-22', 'BR-CO-23', 'BR-CO-24', 'BR-CO-26',
   ...CATS.flatMap((c) => ['01', '05', '08', '09', '10'].map((n) => `${CAT_RULE[c]}-${n}`)),
   'BR-S-02', 'BR-Z-02', 'BR-E-02', 'BR-AE-02', 'BR-IC-02', 'BR-G-02', 'BR-O-02', 'BR-O-11',
-  'BR-CL-01', 'BR-CL-04', 'BR-CL-05', 'BR-CL-14', 'BR-CL-16', 'BR-CL-17', 'BR-CL-18', 'BR-CL-23', 'BR-CL-25',
+  'BR-CL-01', 'BR-CL-04', 'BR-CL-05', 'BR-CL-10', 'BR-CL-11', 'BR-CL-13', 'BR-CL-14', 'BR-CL-16', 'BR-CL-17', 'BR-CL-18',
+  'BR-CL-21', 'BR-CL-23', 'BR-CL-25', 'BR-CL-26',
   'BR-DEC-01', 'BR-DEC-02', 'BR-DEC-05', 'BR-DEC-06', 'BR-DEC-09', 'BR-DEC-10', 'BR-DEC-11', 'BR-DEC-12', 'BR-DEC-13',
   'BR-DEC-14', 'BR-DEC-15', 'BR-DEC-16', 'BR-DEC-17', 'BR-DEC-18', 'BR-DEC-19', 'BR-DEC-20', 'BR-DEC-23', 'BR-DEC-24',
   'BR-DEC-25', 'BR-DEC-27', 'BR-DEC-28',
@@ -75,6 +76,7 @@ export function validate(inv, format, meta = {}) {
 
   if (en) checkEN16931(inv, add);
   if (en) checkCodes(inv, add);
+  if (en) checkSchemes(inv, add);
   if (en) checkDecimals(inv, add);
   if (xr) checkXRechnung(inv, add);
   if (xr) checkPeppol(inv, add);
@@ -390,6 +392,63 @@ function checkCodes(inv, add) {
   [inv.seller && inv.seller.endpoint, inv.buyer && inv.buyer.endpoint].forEach((e) => {
     if (e && e.scheme && isKnown('eas', e.scheme) === false) add('BR-CL-25', `Das Schema „${e.scheme}“ der elektronischen Adresse ist nicht in der Codeliste EAS.`, e.el);
   });
+}
+
+/* -------- Kennungsschemata (ISO 6523 ICD, UNTDID 7143) --------
+   Kontexte wie in den CEN-Prüfregeln 1.3.16 für UBL und CII. */
+const NS_CAC = 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2';
+const NS_CBC = 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2';
+const NS_RAM = 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100';
+
+// XPath normalize-space: nur Leerzeichen, Tabulator und Zeilenumbrüche
+const normSpace = (s) => s.replace(/[ \t\r\n]+/g, ' ').replace(/^ | $/g, '');
+const isEl = (el, ns, name) => !!el && el.nodeType === 1 && el.namespaceURI === ns && el.localName === name;
+const hasAncestor = (el, ns, name) => {
+  for (let p = el.parentNode; p && p.nodeType === 1; p = p.parentNode) if (isEl(p, ns, name)) return true;
+  return false;
+};
+
+function checkSchemes(inv, add) {
+  if (!codeLists().klassifikation || !inv.root) return;
+  const all = (ns, name) => Array.from(inv.root.getElementsByTagNameNS(ns, name));
+  const inList = (list, raw, extra) => {
+    const s = normSpace(raw);
+    return s !== '' && !s.includes(' ') && (isKnown(list, s) === true || s === extra);
+  };
+  const report = (id, el, attr, list, what, extra) => {
+    if (!el.hasAttribute(attr)) return;
+    const raw = el.getAttribute(attr);
+    if (inList(list, raw, extra)) return;
+    const liste = list === 'icd' ? 'ISO 6523 ICD' : 'UNTDID 7143';
+    add(id, `${what}: Das Schema „${raw}“ steht nicht in der Codeliste ${liste}.`, el);
+  };
+  if (inv.syntax === 'UBL') {
+    all(NS_CBC, 'ID').forEach((el) => {
+      const p = el.parentNode;
+      if (isEl(p, NS_CAC, 'PartyIdentification')) {
+        const sepa = hasAncestor(el, NS_CAC, 'AccountingSupplierParty') || hasAncestor(el, NS_CAC, 'PayeeParty') ? 'SEPA' : null;
+        report('BR-CL-10', el, 'schemeID', 'icd', 'Kennung eines Beteiligten', sepa);
+      } else if (isEl(p, NS_CAC, 'StandardItemIdentification')) report('BR-CL-21', el, 'schemeID', 'icd', 'Standardkennung eines Artikels (BT-157)');
+      else if (isEl(p, NS_CAC, 'DeliveryLocation')) report('BR-CL-26', el, 'schemeID', 'icd', 'Kennung des Lieferorts (BT-71)');
+    });
+    all(NS_CBC, 'CompanyID').forEach((el) => {
+      if (isEl(el.parentNode, NS_CAC, 'PartyLegalEntity')) report('BR-CL-11', el, 'schemeID', 'icd', 'Registernummer eines Beteiligten');
+    });
+    all(NS_CBC, 'ItemClassificationCode').forEach((el) => {
+      if (isEl(el.parentNode, NS_CAC, 'CommodityClassification')) report('BR-CL-13', el, 'listID', 'klassifikation', 'Artikelklassifizierung (BT-158)');
+    });
+  } else if (inv.syntax === 'CII') {
+    all(NS_RAM, 'GlobalID').forEach((el) => {
+      const p = el.parentNode;
+      if (isEl(p, NS_RAM, 'SpecifiedTradeProduct')) report('BR-CL-21', el, 'schemeID', 'icd', 'Standardkennung eines Artikels (BT-157)');
+      else if (isEl(p, NS_RAM, 'ShipToTradeParty') && isEl(p.parentNode, NS_RAM, 'ApplicableHeaderTradeDelivery')) report('BR-CL-26', el, 'schemeID', 'icd', 'Kennung des Lieferorts (BT-71)');
+      else if (!hasAncestor(el, NS_RAM, 'SpecifiedTradeProduct') && !hasAncestor(el, NS_RAM, 'ShipToTradeParty')) report('BR-CL-10', el, 'schemeID', 'icd', 'Kennung eines Beteiligten');
+    });
+    all(NS_RAM, 'ID').forEach((el) => {
+      if (!hasAncestor(el, NS_RAM, 'SpecifiedTaxRegistration')) report('BR-CL-11', el, 'schemeID', 'icd', 'Registernummer eines Beteiligten');
+    });
+    all(NS_RAM, 'ClassCode').forEach((el) => report('BR-CL-13', el, 'listID', 'klassifikation', 'Artikelklassifizierung (BT-158)'));
+  }
 }
 
 /* -------- Nachkommastellen -------- */

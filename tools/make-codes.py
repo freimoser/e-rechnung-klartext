@@ -28,7 +28,7 @@ for a in ET.parse(cen_ubl).iter(NS + 'assert'):
 
 units = {**gc('rec20_3'), **gc('rec21_3')}
 data = {
-    '_quelle': 'XRepository (KoSIT): rec20_3, rec21_3, untdid.4461_4, untdid.1001_5, untdid.5305_4, vatex_2; erlaubte Codes: CEN EN16931-Prüfregeln 1.3.16 (BR-CL-…)',
+    '_quelle': 'XRepository (KoSIT): rec20_3, rec21_3, untdid.4461_4, untdid.1001_5, untdid.5305_4, vatex_2; erlaubte Codes: CEN EN16931-Prüfregeln 1.3.16 (BR-CL-…; ICD ohne SEPA aus BR-CL-11, Klassifikation UNTDID 7143 aus BR-CL-13)',
     'einheiten': {c: units.get(c, '') for c in allowed['BR-CL-23']},
     'zahlungsarten': {c: n for c, n in gc('untdid.4461_4').items() if c in allowed['BR-CL-16']},
     'rechnungsarten': {c: n for c, n in gc('untdid.1001_5').items() if c in allowed['BR-CL-01']},
@@ -37,7 +37,9 @@ data = {
     'waehrungen': allowed['BR-CL-04'],
     'laender': allowed['BR-CL-14'],
     'eas': allowed['BR-CL-25'],
-    'icd': allowed['BR-CL-10'],
+    # ISO 6523 ICD ohne den Sonderfall SEPA (der nur bei BR-CL-10 für Verkäufer und Zahlungsempfänger gilt)
+    'icd': allowed['BR-CL-11'],
+    'klassifikation': allowed['BR-CL-13'],
 }
 json.dump(data, open('data/codelisten.json', 'w'), ensure_ascii=False, indent=0, sort_keys=True)
 print({k: len(v) for k, v in data.items() if not k.startswith('_')})

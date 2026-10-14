@@ -88,6 +88,49 @@ test.describe('Fehlerhafte Dateien', () => {
     expect(ids).toContain('PEPPOL-EN16931-R001');
   });
 
+  // Kennungsschemata nach ISO 6523 ICD und UNTDID 7143 (BR-CL-10, -11, -13, -21, -26), Kontexte wie in den CEN-Prüfregeln
+  const SCHEMA_CODES = ['BR-CL-10', 'BR-CL-11', 'BR-CL-13', 'BR-CL-21', 'BR-CL-26'];
+  const schemaFile = (name, base, edits) => {
+    let xml = fs.readFileSync(fixture(base), 'utf8');
+    for (const [from, to] of edits) {
+      if (!xml.includes(from)) throw new Error('Stelle fehlt: ' + from);
+      xml = xml.replace(from, to);
+    }
+    return { name, mimeType: 'application/xml', buffer: Buffer.from(xml) };
+  };
+  const ublSchemata = (sellerId, buyerId, company, classList, stdScheme, deliveryScheme) => [
+    ['<cbc:EndpointID schemeID="EM">rechnung@', `<cac:PartyIdentification><cbc:ID schemeID="${sellerId}">DE98ZZZ09999999999</cbc:ID></cac:PartyIdentification><cbc:EndpointID schemeID="EM">rechnung@`],
+    ['<cbc:EndpointID schemeID="EM">praxis@', `<cac:PartyIdentification><cbc:ID schemeID="${buyerId}">4000001000005</cbc:ID></cac:PartyIdentification><cbc:EndpointID schemeID="EM">praxis@`],
+    ['</cbc:RegistrationName></cac:PartyLegalEntity>', `</cbc:RegistrationName><cbc:CompanyID schemeID="${company}">HRB 12345</cbc:CompanyID></cac:PartyLegalEntity>`],
+    ['</cac:SellersItemIdentification>', `</cac:SellersItemIdentification><cac:StandardItemIdentification><cbc:ID schemeID="${stdScheme}">4000001123452</cbc:ID></cac:StandardItemIdentification><cac:CommodityClassification><cbc:ItemClassificationCode listID="${classList}">12345</cbc:ItemClassificationCode></cac:CommodityClassification>`],
+    ['<cac:PaymentMeans>', `<cac:Delivery><cac:DeliveryLocation><cbc:ID schemeID="${deliveryScheme}">4000001000012</cbc:ID></cac:DeliveryLocation></cac:Delivery><cac:PaymentMeans>`],
+  ];
+
+  test('Kennungsschemata: gültige Codes und SEPA beim Verkäufer werden akzeptiert (UBL)', async ({ page }) => {
+    await page.goto('./');
+    await page.setInputFiles('#file-input', [schemaFile('schemata-ok.xml', 'xrechnung-ubl.xml', ublSchemata('SEPA', '0088', '0088', 'STI', '0160', '0088'))]);
+    await page.waitForSelector('#result:not(.hidden) .result-head');
+    const ids = await findingIds(page);
+    expect(ids.filter((id) => SCHEMA_CODES.includes(id))).toEqual([]);
+  });
+
+  test('Kennungsschemata: unbekannte Codes werden gemeldet (UBL und CII)', async ({ page }) => {
+    await page.goto('./');
+    await page.setInputFiles('#file-input', [schemaFile('schemata-falsch.xml', 'xrechnung-ubl.xml', ublSchemata('SEPA', 'SEPA', '0088 0060', 'QQQ', 'XYZ', '9999'))]);
+    await page.waitForSelector('#result:not(.hidden) .result-head');
+    expect([...new Set(await findingIds(page))].filter((id) => SCHEMA_CODES.includes(id)).sort()).toEqual(SCHEMA_CODES);
+
+    await page.goto('./');
+    await page.setInputFiles('#file-input', [schemaFile('schemata-falsch-cii.xml', 'xrechnung-cii.xml', [
+      ['<ram:SellerTradeParty>', '<ram:SellerTradeParty><ram:GlobalID schemeID="SEPA">DE98ZZZ09999999999</ram:GlobalID>'],
+      ['<ram:BuyerTradeParty>', '<ram:BuyerTradeParty><ram:SpecifiedLegalOrganization><ram:ID schemeID="XX">HRB 1</ram:ID></ram:SpecifiedLegalOrganization>'],
+      ['<ram:Name>Kurierfahrt Probenabholung</ram:Name>', '<ram:GlobalID schemeID="XYZ">4000001123452</ram:GlobalID><ram:Name>Kurierfahrt Probenabholung</ram:Name><ram:DesignatedProductClassification><ram:ClassCode listID="QQQ">1</ram:ClassCode></ram:DesignatedProductClassification>'],
+      ['<ram:ApplicableHeaderTradeDelivery>', '<ram:ApplicableHeaderTradeDelivery><ram:ShipToTradeParty><ram:GlobalID schemeID="9999">4000001000012</ram:GlobalID><ram:Name>Lager</ram:Name></ram:ShipToTradeParty>'],
+    ])]);
+    await page.waitForSelector('#result:not(.hidden) .result-head');
+    expect([...new Set(await findingIds(page))].filter((id) => SCHEMA_CODES.includes(id)).sort()).toEqual(SCHEMA_CODES);
+  });
+
   test('Kaputte XML wird freundlich erklärt', async ({ page }) => {
     await openFiles(page, ['kaputt.xml']);
     await expect(result(page)).toContainText('Die XML-Datei ist beschädigt');
