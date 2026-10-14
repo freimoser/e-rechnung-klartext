@@ -44,6 +44,7 @@ const html = () => `      <header class="hero-article">
         <h1>XRechnung Fehlercodes: alle Prüfregeln erklärt</h1>
         <p class="answer">Ein XRechnung-Fehlercode wie BR-DE-15 oder BR-CO-10 nennt die offizielle Prüfregel, gegen die eine E-Rechnung verstößt. Hier stehen alle ${all.length.toLocaleString('de-DE')} Regeln mit offiziellem Text, Erklärung in einfacher Sprache, typischer Ursache und der Antwort, wer den Fehler beheben muss.</p>
         <p class="stand-line"><strong>${esc(standSatz())}</strong> (Schematron ${STAND.kosit.schematron}, Validator-Konfiguration ${dateDE(STAND.kosit.validatorKonfiguration)}) und CEN-Prüfregeln EN 16931 Version ${STAND.cen.version} vom ${dateDE(STAND.cen.vom)}.</p>
+        ${STAND.cen.neuere ? `<p class="stand-line">Hinweis: CEN hat am ${dateDE(STAND.cen.neuere.vom)} die Prüfregeln ${STAND.cen.neuere.version} veröffentlicht. Die KoSIT-Konfiguration und damit das offizielle XRechnung-Prüftool nutzen noch ${STAND.cen.version}; dieses Verzeichnis folgt dem offiziellen Prüftool. ${srcs(['cenSchematron1317'], ['xrValidatorKonfig'])}</p>` : ''}
         ${metaLine()}
       </header>
 

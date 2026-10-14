@@ -6,6 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { BASE, SITE_NAME, TAGLINE, THEME_COLOR, abs } from './site.mjs';
 import { renderPage } from './layout.mjs';
 import { loadRules, writeToolData } from './rules.mjs';
+import { KERNAUSSAGEN } from './kernaussagen.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'src');
@@ -108,9 +109,13 @@ export async function build() {
     '',
     ...indexable.map((p) => `- [${p.llmsTitle || p.h1}](${abs(p.slug)}): ${p.llms || p.description}`),
     '',
+    '## Kernaussagen (mit Quelle)',
+    '',
+    ...KERNAUSSAGEN.map((k) => `- ${k.text} Quelle: ${k.quelle} (${k.url})`),
+    '',
     '## Quellen',
     '',
-    '- [Quellenverzeichnis](https://github.com/freimoser/e-rechnung-klartext/blob/main/quellen.md): alle genutzten amtlichen Quellen mit Version, Link und Abrufdatum',
+    `- [Quellen und Methodik](${abs('quellen/')}): alle genutzten amtlichen Quellen mit Version und Abrufdatum, Methodik der Vorprüfung`,
     '',
   ].join('\n');
   fs.writeFileSync(path.join(OUT, 'llms.txt'), llms);

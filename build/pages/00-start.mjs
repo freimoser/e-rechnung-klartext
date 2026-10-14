@@ -145,7 +145,7 @@ export default {
         'Rohansicht des XML mit Suche',
         'Keine Datei verlässt den Rechner',
       ],
-      author: { '@type': 'Person', name: 'S. Thomas Freimoser', url: 'https://freimoser.github.io/freimoser.de/' },
+      author: { '@type': 'Person', name: 'S. Thomas Freimoser', url: 'https://freimoser.de/' },
     },
     {
       '@context': 'https://schema.org',

@@ -1,5 +1,5 @@
 // Bausteine für die Inhaltsseiten: Quellenangaben, FAQ, Handlungsaufforderung, weiterführende Links.
-import { Q, ABGERUFEN } from '../src/assets/js/quellen.js';
+import { Q, abgerufen } from '../src/assets/js/quellen.js';
 import { href, esc, RATGEBER } from './site.mjs';
 
 export const UPDATED = '2026-10-08';
@@ -21,7 +21,7 @@ export function src(id, fundstelle = '') {
   if (!q) throw new Error('Unbekannte Quelle ' + id);
   const text = esc([q.kurz || q.titel, fundstelle].filter(Boolean).join(', '));
   const label = q.url ? `<a href="${esc(q.url)}">${text}</a>` : text;
-  return `<span class="source">Stand ${dateDE(ABGERUFEN)}, Quelle: ${label}</span>`;
+  return `<span class="source">Stand ${dateDE(abgerufen(id))}, Quelle: ${label}</span>`;
 }
 
 // Mehrere Quellen in einer Zeile
@@ -32,7 +32,7 @@ export function srcs(...items) {
 export const LEGAL_NOTE = '<p class="legal-note">Allgemeine Information, keine Steuer- oder Rechtsberatung. Für deinen Einzelfall wende dich an deine Steuerberatung.</p>';
 
 export function metaLine(updated = UPDATED) {
-  return `<p class="meta-line">Stand: ${dateLong(updated)} · Allgemeine Information, keine Steuer- oder Rechtsberatung · von <a href="https://freimoser.github.io/freimoser.de/">S. Thomas Freimoser</a></p>`;
+  return `<p class="meta-line">Stand: ${dateLong(updated)} · Allgemeine Information, keine Steuer- oder Rechtsberatung · von <a href="https://freimoser.de/">S. Thomas Freimoser</a></p>`;
 }
 
 export function faqHtml(faq, id = 'faq', title = 'Häufige Fragen') {

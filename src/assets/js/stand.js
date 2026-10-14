@@ -21,6 +21,8 @@ export const STAND = {
   cen: {
     version: '1.3.16',
     vom: '2026-04-13',
+    // Neuere CEN-Version, die die KoSIT-Konfiguration noch nicht übernommen hat (null, wenn keine)
+    neuere: { version: '1.3.17', vom: '2026-10-12' },
   },
   // Datum, an dem die Rechts- und Fachquellen zuletzt abgerufen wurden
   quellenAbgerufen: '2026-10-08',

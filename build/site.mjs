@@ -11,7 +11,7 @@ export const THEME_COLOR = '#0f1419';
 export const AUTHOR = {
   '@type': 'Person',
   name: 'S. Thomas Freimoser',
-  url: 'https://freimoser.github.io/freimoser.de/',
+  url: 'https://freimoser.de/',
 };
 
 // Interne Adresse aus einem Pfad relativ zur Basis ('' = Startseite)
@@ -57,5 +57,5 @@ export const RATGEBER = [
 export const MORE_TOOLS = [
   { url: 'https://freimoser.github.io/gdt-viewer/', label: 'GDT Viewer' },
   { url: 'https://freimoser.github.io/easy-photo-editor/', label: 'Easy Photo Editor' },
-  { url: 'https://freimoser.github.io/freimoser.de/', label: 'Über den Entwickler' },
+  { url: 'https://freimoser.de/', label: 'Über den Entwickler' },
 ];

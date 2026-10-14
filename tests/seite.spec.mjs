@@ -7,10 +7,10 @@ const SITE = 'https://freimoser.github.io/e-rechnung-klartext/';
 const urls = sitemapUrls();
 const VERIFY = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
 
-test('Sitemap enthält alle 13 indexierbaren Seiten mit lastmod', async ({ request }) => {
-  expect(urls).toHaveLength(13);
+test('Sitemap enthält alle 14 indexierbaren Seiten mit lastmod', async ({ request }) => {
+  expect(urls).toHaveLength(14);
   const xml = await (await request.get('sitemap.xml')).text();
-  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(13);
+  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(14);
   for (const u of urls) expect(u.startsWith(SITE) && u.endsWith('/')).toBe(true);
 });
 

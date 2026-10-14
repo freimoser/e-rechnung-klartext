@@ -109,4 +109,4 @@ Allgemeine Information, keine Steuer- oder Rechtsberatung. Die Vorprüfung erset
 
 - [GDT Viewer](https://freimoser.github.io/gdt-viewer/)
 - [Easy Photo Editor](https://freimoser.github.io/easy-photo-editor/)
-- [Über den Entwickler](https://freimoser.github.io/freimoser.de/)
+- [Über den Entwickler](https://freimoser.de/)

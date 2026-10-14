@@ -1,17 +1,10 @@
 // Erzeugt quellen.md aus dem zentralen Quellenverzeichnis (src/assets/js/quellen.js).
 import fs from 'node:fs';
-import { Q, ABGERUFEN } from '../src/assets/js/quellen.js';
+import { Q, ABGERUFEN, abgerufen } from '../src/assets/js/quellen.js';
 import { STAND, datumDE } from '../src/assets/js/stand.js';
+import { QUELLEN_GRUPPEN } from '../build/quellen-gruppen.mjs';
 
-const groups = [
-  ['Gesetze und Verordnungen', ['ustg14', 'ustg14b', 'ustg4', 'ustg19', 'ustg27', 'ustdv33', 'ustdv34', 'ustdv34a', 'ao147']],
-  ['Bundesfinanzministerium', ['bmf2025', 'bmf2024', 'ustae', 'bmfFaq', 'elsterViewer']],
-  ['KoSIT (XRechnung, Prüfregeln, Peppol Authority)', ['xrVersionen', 'xrStart', 'xr4', 'xrSpez', 'xrSchematron', 'xrValidatorKonfig', 'kositValidator', 'xrTestsuite', 'xrVisualisierung', 'leitwegFaq', 'xrepository', 'xeinkaufPeppol', 'xeinkaufPeppolFaq', 'xeinkaufB2B']],
-  ['CEN / EN 16931', ['cenSchematron']],
-  ['ZUGFeRD / Factur-X', ['ferdZf252', 'ferdFaq', 'ferdBeispiele', 'facturx']],
-  ['Peppol und Bund', ['peppolOrg', 'peppolAuthorities', 'peppolCodelists', 'erbPeppol', 'erbGlossar', 'erbFaq']],
-  ['Syntax', ['ubl21']],
-];
+const groups = QUELLEN_GRUPPEN;
 const used = new Set(groups.flatMap((g) => g[1]));
 const missing = Object.keys(Q).filter((k) => !used.has(k));
 if (missing.length) throw new Error('Nicht zugeordnete Quellen: ' + missing.join(', '));
@@ -19,7 +12,7 @@ if (missing.length) throw new Error('Nicht zugeordnete Quellen: ' + missing.join
 const esc = (s) => String(s).replace(/\|/g, '\\|');
 let md = `# Quellen
 
-Alle Aussagen auf E-Rechnung Klartext zu Pflichten, Fristen, Formaten und Prüfregeln stützen sich ausschließlich auf die folgenden offiziellen Quellen. Abrufdatum aller Quellen: ${datumDE(ABGERUFEN)}.
+Alle Aussagen auf E-Rechnung Klartext zu Pflichten, Fristen, Formaten und Prüfregeln stützen sich ausschließlich auf die folgenden offiziellen Quellen. Abrufdatum der Quellen: ${datumDE(ABGERUFEN)}; später ergänzte Quellen tragen ihr eigenes Datum in der Tabelle.
 
 Fachlicher Stand der Vorprüfung (zentral gepflegt in \`src/assets/js/stand.js\`): XRechnung ${STAND.xrechnung.version} (Spezifikation vom ${datumDE(STAND.xrechnung.spezifikationVom)}), KoSIT-Schematron ${STAND.kosit.schematron} vom ${datumDE(STAND.kosit.schematronVom)}, Validator-Konfiguration ${datumDE(STAND.kosit.validatorKonfiguration)}, CEN-Prüfregeln EN 16931 ${STAND.cen.version} vom ${datumDE(STAND.cen.vom)}.
 
@@ -29,7 +22,7 @@ for (const [title, ids] of groups) {
   for (const id of ids) {
     const q = Q[id];
     const link = q.url ? `<${q.url}>` : (q.hinweis ? esc(q.hinweis) : '–');
-    md += `| ${esc(q.titel)} | ${esc(q.version)} | ${link} | ${datumDE(ABGERUFEN)} |\n`;
+    md += `| ${esc(q.titel)} | ${esc(q.version)} | ${link} | ${datumDE(abgerufen(id))} |\n`;
   }
   md += '\n';
 }

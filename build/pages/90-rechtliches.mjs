@@ -27,7 +27,7 @@ const impressum = {
         <h2>Urheberrecht</h2>
         <p>Die durch den Betreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Der Quellcode des Werkzeugs steht unter der MIT-Lizenz; verwendete Bibliotheken und Daten Dritter sind im <a href="https://github.com/freimoser/e-rechnung-klartext#lizenzen">README auf GitHub</a> mit ihren Lizenzen aufgeführt.</p>
         <h2>Über den Entwickler</h2>
-        <p>Weitere Informationen und Projekte: <a href="https://freimoser.github.io/freimoser.de/">freimoser.de</a>.</p>
+        <p>Weitere Informationen und Projekte: <a href="https://freimoser.de/">freimoser.de</a>.</p>
       </article>`,
 };
 

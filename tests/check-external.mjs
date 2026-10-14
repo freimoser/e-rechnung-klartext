@@ -14,16 +14,21 @@ for (const f of sources) {
     let u = m[0].replace(/&amp;/g, '&').replace(/[.,;]+$/, '');
     if (/^https?:\/\/(localhost|schema\.org|www\.w3\.org|purl\.org|docs\.oasis-open\.org\/ubl\/os-UBL-2\.1\/xsd)/.test(u)) continue;
     if (u.startsWith('https://freimoser.github.io/e-rechnung-klartext')) continue; // eigene Seite, lokal getestet
+    if (u.endsWith('.git')) continue; // Klon-Adresse im README, kein Link
     if (!found.has(u)) found.set(u, new Set());
     found.get(u).add(f);
   }
 }
+// Browser-Kennung: Manche Behördenseiten (ELSTER, xeinkauf) leiten unbekannte Programme im Kreis um
+const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
 const results = [];
 for (const u of [...found.keys()].sort()) {
   let status = 0;
   try {
-    const res = await fetch(u, { redirect: 'follow', headers: { 'user-agent': 'Mozilla/5.0 (Linkpruefung E-Rechnung Klartext)' }, signal: AbortSignal.timeout(20000) });
+    // Weiterleitungen nicht folgen: Jeder Link soll direkt auf die Zieladresse zeigen
+    const res = await fetch(u, { redirect: 'manual', headers: { 'user-agent': UA, 'accept-language': 'de-DE,de;q=0.9' }, signal: AbortSignal.timeout(20000) });
     status = res.status;
+    if (status >= 300 && status < 400) status = `${status} → ${res.headers.get('location')}`;
   } catch (e) {
     status = 'Fehler: ' + e.message;
   }

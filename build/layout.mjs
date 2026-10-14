@@ -116,7 +116,7 @@ function footer() {
             <li><a href="${href('')}">E-Rechnung öffnen</a></li>
             <li><a href="${href('fehlercodes/')}">Fehlercodes</a></li>
             <li><a href="${href('begriffe/')}">Begriffe</a></li>
-            <li><a href="${REPO_URL}/blob/main/quellen.md">Quellen</a></li>
+            <li><a href="${href('quellen/')}">Quellen und Methodik</a></li>
             <li><a href="${REPO_URL}">Quellcode auf GitHub</a></li>
           </ul>
         </div>

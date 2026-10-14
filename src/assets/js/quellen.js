@@ -142,6 +142,13 @@ export const Q = {
     version: '1.3.16 vom 13.04.2026',
     url: 'https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.16',
   },
+  cenSchematron1317: {
+    kurz: 'CEN: EN-16931-Prüfregeln 1.3.17 (12.10.2026)',
+    titel: 'CEN/TC 434: EN16931 validation artefacts, neuere Version (noch nicht in der KoSIT-Konfiguration)',
+    version: '1.3.17 vom 12.10.2026',
+    url: 'https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.17',
+    abgerufen: '2026-10-14',
+  },
   leitwegFaq: {
     kurz: 'KoSIT: Die Leitweg-ID',
     titel: 'KoSIT: Die Leitweg-ID',
@@ -170,7 +177,7 @@ export const Q = {
     kurz: 'FeRD/AWV: ZUGFeRD-Beispielrechnungen 2.5.2',
     titel: 'FeRD/AWV: Offizielle ZUGFeRD-Beispielrechnungen',
     version: 'ZUGFeRD 2.5.2, 22.09.2026',
-    url: 'https://awv-git.de/outreach/examples/-/releases/permalink/latest/downloads/beispiele',
+    url: 'https://awv-git.de/outreach/examples/-/releases/Beispiele_Bereitstellung_ZF_2_5_2_22_09_2026',
   },
   facturx: {
     kurz: 'FNFE-MPE: Factur-X',
@@ -200,7 +207,7 @@ export const Q = {
     kurz: 'KoSIT: FAQ Peppol',
     titel: 'KoSIT: FAQ Peppol',
     version: 'abgerufen 08.10.2026',
-    url: 'https://xeinkauf.de/faq/peppol',
+    url: 'https://xeinkauf.de/peppol/faq',
   },
   xeinkaufB2B: {
     kurz: 'KoSIT: E-Rechnungspflicht im B2B-Bereich',
@@ -242,7 +249,7 @@ export const Q = {
     kurz: 'ELSTER: E-Rechnungs-Viewer',
     titel: 'ELSTER: E-Rechnungs-Viewer der Finanzverwaltung',
     version: 'genannt in der BMF-FAQ, Frage 12a',
-    url: 'https://www.e-rechnung.elster.de',
+    url: 'https://www.elster.de/eportal/e-rechnung',
   },
 };
 
@@ -250,4 +257,9 @@ export function quelle(id) {
   const q = Q[id];
   if (!q) throw new Error('Unbekannte Quelle: ' + id);
   return q;
+}
+
+// Abrufdatum einer Quelle (eigenes Datum, wenn die Quelle später ergänzt wurde)
+export function abgerufen(id) {
+  return quelle(id).abgerufen || ABGERUFEN;
 }

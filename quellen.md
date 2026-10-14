@@ -1,6 +1,6 @@
 # Quellen
 
-Alle Aussagen auf E-Rechnung Klartext zu Pflichten, Fristen, Formaten und Prüfregeln stützen sich ausschließlich auf die folgenden offiziellen Quellen. Abrufdatum aller Quellen: 08.10.2026.
+Alle Aussagen auf E-Rechnung Klartext zu Pflichten, Fristen, Formaten und Prüfregeln stützen sich ausschließlich auf die folgenden offiziellen Quellen. Abrufdatum der Quellen: 08.10.2026; später ergänzte Quellen tragen ihr eigenes Datum in der Tabelle.
 
 Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`): XRechnung 3.0.2 (Spezifikation vom 20.06.2024), KoSIT-Schematron 2.6.0 vom 31.08.2026, Validator-Konfiguration 31.08.2026, CEN-Prüfregeln EN 16931 1.3.16 vom 13.04.2026.
 
@@ -26,7 +26,7 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 | BMF-Schreiben „Ausstellung von Rechnungen nach § 14 UStG; Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025“ | 15.10.2024, GZ III C 2 - S 7287-a/23/10001 :007, BStBl I 2024 S. 1320 | Die ursprüngliche PDF-Adresse beim BMF liefert keine Antwort 200 mehr; die Inhalte sind in den UStAE (Stand 2. Juni 2026) eingearbeitet und gelten nach dem BMF-Schreiben vom 15.10.2025 fort. | 08.10.2026 |
 | Umsatzsteuer-Anwendungserlass (UStAE), konsolidierte Fassung | Stand 2. Juni 2026 | <https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/Umsatzsteuer-Anwendungserlass-aktuell.pdf?__blob=publicationFile&v=52> | 08.10.2026 |
 | BMF: Fragen und Antworten zur Einführung der obligatorischen (verpflichtenden) E-Rechnung zum 1. Januar 2025 | Stand März 2026 | <https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html> | 08.10.2026 |
-| ELSTER: E-Rechnungs-Viewer der Finanzverwaltung | genannt in der BMF-FAQ, Frage 12a | <https://www.e-rechnung.elster.de> | 08.10.2026 |
+| ELSTER: E-Rechnungs-Viewer der Finanzverwaltung | genannt in der BMF-FAQ, Frage 12a | <https://www.elster.de/eportal/e-rechnung> | 08.10.2026 |
 
 ## KoSIT (XRechnung, Prüfregeln, Peppol Authority)
 
@@ -44,7 +44,7 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 | KoSIT: Die Leitweg-ID | abgerufen 08.10.2026 | <https://xeinkauf.de/aktuelles/xrechnung/leitweg-id/> | 08.10.2026 |
 | XRepository (KoSIT): Codelisten UNTDID 1001, 4461, 5305, UNECE Rec 20/21, VATEX | untdid.1001_5, untdid.4461_4, untdid.5305_4, rec20_3, rec21_3, vatex_2 | <https://www.xrepository.de/> | 08.10.2026 |
 | KoSIT: Peppol | Stand April 2025 | <https://xeinkauf.de/peppol/> | 08.10.2026 |
-| KoSIT: FAQ Peppol | abgerufen 08.10.2026 | <https://xeinkauf.de/faq/peppol> | 08.10.2026 |
+| KoSIT: FAQ Peppol | abgerufen 08.10.2026 | <https://xeinkauf.de/peppol/faq> | 08.10.2026 |
 | KoSIT: E-Rechnungspflicht im B2B-Bereich | abgerufen 08.10.2026 | <https://xeinkauf.de/b2b-verpflichtung> | 08.10.2026 |
 
 ## CEN / EN 16931
@@ -52,6 +52,7 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 | Titel | Version / Stand | Link | Abgerufen |
 |---|---|---|---|
 | CEN/TC 434: EN16931 validation artefacts (Prüfregeln der EN 16931) | 1.3.16 vom 13.04.2026 | <https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.16> | 08.10.2026 |
+| CEN/TC 434: EN16931 validation artefacts, neuere Version (noch nicht in der KoSIT-Konfiguration) | 1.3.17 vom 12.10.2026 | <https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.17> | 14.10.2026 |
 
 ## ZUGFeRD / Factur-X
 
@@ -59,7 +60,7 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 |---|---|---|---|
 | FeRD: ZUGFeRD 2.5.2 veröffentlicht | 04.08.2026 (entspricht Factur-X 1.09.2) | <https://www.ferd-net.de/aktuelles-veranstaltungen/aktuelles/news/zugferd-252-veroeffentlicht> | 08.10.2026 |
 | FeRD: FAQ „Zu ZUGFeRD“ | Stand 07.09.2026 | <https://www.ferd-net.de/standards/zugferd-faq> | 08.10.2026 |
-| FeRD/AWV: Offizielle ZUGFeRD-Beispielrechnungen | ZUGFeRD 2.5.2, 22.09.2026 | <https://awv-git.de/outreach/examples/-/releases/permalink/latest/downloads/beispiele> | 08.10.2026 |
+| FeRD/AWV: Offizielle ZUGFeRD-Beispielrechnungen | ZUGFeRD 2.5.2, 22.09.2026 | <https://awv-git.de/outreach/examples/-/releases/Beispiele_Bereitstellung_ZF_2_5_2_22_09_2026> | 08.10.2026 |
 | FNFE-MPE: Factur-X | 1.09.2 | <https://fnfe-mpe.org/factur-x/> | 08.10.2026 |
 
 ## Peppol und Bund
