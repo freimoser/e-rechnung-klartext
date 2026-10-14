@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { BASE, SITE_NAME, TAGLINE, THEME_COLOR, abs } from './site.mjs';
 import { renderPage } from './layout.mjs';
 import { loadRules, writeToolData } from './rules.mjs';
-import { KERNAUSSAGEN } from './kernaussagen.mjs';
+import { KERNAUSSAGEN, kernaussageZeile } from './kernaussagen.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'src');
@@ -111,7 +111,7 @@ export async function build() {
     '',
     '## Kernaussagen (mit Quelle)',
     '',
-    ...KERNAUSSAGEN.map((k) => `- ${k.text} Quelle: ${k.quelle} (${k.url})`),
+    ...KERNAUSSAGEN.map(kernaussageZeile),
     '',
     '## Quellen',
     '',

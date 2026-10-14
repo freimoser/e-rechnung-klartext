@@ -45,7 +45,7 @@ const html = () => `      <header class="hero-article">
         <p class="answer">Ein XRechnung-Fehlercode wie BR-DE-15 oder BR-CO-10 nennt die offizielle Prüfregel, gegen die eine E-Rechnung verstößt. Hier stehen alle ${all.length.toLocaleString('de-DE')} Regeln mit offiziellem Text, Erklärung in einfacher Sprache, typischer Ursache und der Antwort, wer den Fehler beheben muss.</p>
         <p class="stand-line"><strong>${esc(standSatz())}</strong> (Schematron ${STAND.kosit.schematron}, Validator-Konfiguration ${dateDE(STAND.kosit.validatorKonfiguration)}) und CEN-Prüfregeln EN 16931 Version ${STAND.cen.version} vom ${dateDE(STAND.cen.vom)}.</p>
         ${STAND.cen.neuere ? `<p class="stand-line">Hinweis: CEN hat am ${dateDE(STAND.cen.neuere.vom)} die Prüfregeln ${STAND.cen.neuere.version} veröffentlicht. Die KoSIT-Konfiguration und damit das offizielle XRechnung-Prüftool nutzen noch ${STAND.cen.version}; dieses Verzeichnis folgt dem offiziellen Prüftool. ${srcs(['cenSchematron1317'], ['xrValidatorKonfig'])}</p>` : ''}
-        ${metaLine()}
+        ${metaLine('2026-10-14')}
       </header>
 
       <div class="prose">
@@ -99,7 +99,8 @@ export default {
   h1: 'XRechnung Fehlercodes: alle Prüfregeln erklärt',
   llms: 'Vollständiges Verzeichnis aller Prüfregeln (BR, BR-CO, BR-DE, BR-CL, BR-DEC, PEPPOL, UBL, CII) mit offiziellem Text, einfacher Erklärung, typischer Ursache und Zuständigkeit; Sprungmarke je Code, z. B. /fehlercodes/#br-de-15.',
   crumbs: [{ slug: 'fehlercodes/', label: 'Fehlercodes' }],
-  updated: UPDATED,
+  published: UPDATED,
+  updated: '2026-10-14',
   faq,
   scripts: ['assets/js/fehlercodes.js'],
   jsonld: [{
