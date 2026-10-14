@@ -435,6 +435,12 @@ h1 {
   font-size: 0.88rem;
 }
 
+.impl {
+  color: var(--ok);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
 .facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));

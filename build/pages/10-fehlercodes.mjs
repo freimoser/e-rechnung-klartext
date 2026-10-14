@@ -3,6 +3,9 @@ import { src, srcs, metaLine, faqHtml, cta, related, LEGAL_NOTE, UPDATED, dateDE
 import { loadRules, GROUPS, cmp } from '../rules.mjs';
 import { STAND, standSatz } from '../../src/assets/js/stand.js';
 import { Q } from '../../src/assets/js/quellen.js';
+import { IMPLEMENTED } from '../../src/assets/js/validate.js';
+
+const IMPL = new Set(IMPLEMENTED);
 
 const STUFE = { fatal: 'Fehler', error: 'Fehler', warning: 'Warnung', information: 'Hinweis' };
 
@@ -32,7 +35,7 @@ function rows(rules) {
     const id = r.id.toLowerCase();
     const al = alias(r.id);
     const off = `<span class="off" lang="${r.lang}">${esc(r.official)}</span>${r.officialAlt.map((t) => `<span class="off-en" lang="${/[äöü]| muss /.test(t) ? 'de' : 'en'}">${esc(t)}</span>`).join('')}${r.de ? `<span class="off-en">Deutsche Fassung (Spezifikation XRechnung 3.0.2): ${esc(r.de)}</span>` : ''}`;
-    return `<tr id="${id}"><th scope="row">${al ? `<span id="${al}"></span>` : ''}<a href="#${id}">${esc(r.id)}</a><br><span class="muted">${esc(stufe(r.flags))}</span></th><td>${off}</td><td>${esc(r.plain)}</td><td>${esc(r.cause)}</td><td>${esc(r.who)}</td></tr>`;
+    return `<tr id="${id}"><th scope="row">${al ? `<span id="${al}"></span>` : ''}<a href="#${id}">${esc(r.id)}</a><br><span class="muted">${esc(stufe(r.flags))}</span>${IMPL.has(r.id) ? '<br><span class="impl">Prüft das Werkzeug</span>' : ''}</th><td>${off}</td><td>${esc(r.plain)}</td><td>${esc(r.cause)}</td><td>${esc(r.who)}</td></tr>`;
   }).join('\n');
 }
 
@@ -51,7 +54,7 @@ const html = () => `      <header class="hero-article">
       <div class="prose">
         <p>Die Codes stammen direkt aus den offiziellen Prüfregeln. Fachliche Regeln (BR-…, BR-CO-…, BR-DE-… und weitere, zusammen ${businessCount.toLocaleString('de-DE')}) prüfen den Inhalt der Rechnung. Syntaxregeln (UBL-… und CII-…) prüfen den technischen Aufbau der Datei. Die Stufe „Fehler“ entspricht im Prüfbericht „fatal“.</p>
         <p>${srcs(['xrSchematron'], ['xrValidatorKonfig'], ['cenSchematron'], ['xrSpez', 'Kapitel 12 und 17, deutsche Regeltexte'])}</p>
-        <p>Deine Rechnung zeigt einen dieser Codes? <a href="${href('')}">Öffne sie im Werkzeug</a>: Die Vorprüfung nennt die betroffene Stelle und springt auf Wunsch ins XML. Verbindlich ist nur das <a href="${Q.kositValidator.url}">offizielle KoSIT-Prüftool</a>.</p>
+        <p>Deine Rechnung zeigt einen dieser Codes? <a href="${href('')}">Öffne sie im Werkzeug</a>: Die Vorprüfung nennt die betroffene Stelle und springt auf Wunsch ins XML. ${IMPLEMENTED.length} Regeln erkennt sie selbst; sie sind mit „Prüft das Werkzeug“ markiert. Wie sie nachgebaut und mit dem offiziellen Prüftool abgeglichen werden, steht unter <a href="${href('quellen/')}#vorpruefung">Quellen und Methodik</a>. Verbindlich ist nur das <a href="${Q.kositValidator.url}">offizielle KoSIT-Prüftool</a>.</p>
       </div>
 
       <div class="code-search no-print">
