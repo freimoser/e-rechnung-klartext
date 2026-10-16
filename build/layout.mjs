@@ -2,6 +2,7 @@ import {
   BASE, SITE_NAME, TAGLINE, REPO_URL, GOOGLE_VERIFICATION, THEME_COLOR, AUTHOR,
   NAV, RATGEBER, MORE_TOOLS, href, abs, esc,
 } from './site.mjs';
+import { Q } from '../src/assets/js/quellen.js';
 
 export const CSP = [
   "default-src 'self'",
@@ -51,7 +52,23 @@ export function stripTags(s) {
   return String(s).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 }
 
+// Quellenangaben der Seite (<span class="source">… <a href>…</a></span>) als maschinenlesbare citation
+const TITEL_NACH_URL = new Map(Object.values(Q).filter((q) => q.url).map((q) => [q.url, q.titel]));
+const unesc = (s) => s.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+function citations(html) {
+  const seen = new Map();
+  for (const [, span] of html.matchAll(/<span class="source">(.*?)<\/span>/g)) {
+    const m = span.match(/<a href="(https?:[^"]+)">([^<]+)<\/a>/);
+    if (m && !seen.has(m[1])) {
+      const url = unesc(m[1]);
+      seen.set(m[1], { '@type': 'CreativeWork', name: TITEL_NACH_URL.get(url) || unesc(m[2]), url });
+    }
+  }
+  return [...seen.values()];
+}
+
 function articleLd(page) {
+  const citation = citations(page.html);
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -64,6 +81,7 @@ function articleLd(page) {
     publisher: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
     mainEntityOfPage: abs(page.slug),
     image: abs('og-image.png'),
+    ...(citation.length ? { citation } : {}),
   };
 }
 
@@ -194,6 +212,7 @@ export function renderPage(page, ctx) {
   <link rel="icon" href="${BASE}favicon-16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="${BASE}favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="${BASE}favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="${BASE}favicon-96.png" type="image/png" sizes="96x96">
   <link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="${BASE}site.webmanifest">
   ${lds.map(jsonld).join('\n  ')}${scripts}

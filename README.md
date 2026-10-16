@@ -85,6 +85,7 @@ npm test
 
 - Testrechnungen erzeugen (`tests/fixtures/generate.mjs`, alle frei erfunden): XRechnung UBL und CII, ZUGFeRD-PDFs in den Profilen EN 16931, BASIC, EXTENDED, XRECHNUNG, MINIMUM und BASIC WL, normale PDF, Umlaute und Sonderzeichen, mehrere Steuersätze, Anhang, absichtliche Fehler, kaputte XML, 2.000 Positionen
 - Werkzeug-Tests, Website-Tests (Links, Sitemap, Metadaten, strukturierte Daten, 360 px, axe), Offline-Test, Abgleich mit dem KoSIT-Validator
+- Livegang-Prüfung: `npm run check:launch` nach dem Build (Impressum und Datenschutz vollständig und auf noindex, Canonical, Sitemap gegen noindex, Favicon, Messung gegen Datenschutzerklärung). Blocker beenden mit Exit 1 und stoppen auch den Deploy.
 - Lighthouse: `npm i --no-save lighthouse@13 && npm run lighthouse` (misst Startseite, /fehlercodes/ und zwei Ratgeber, mobil und Desktop)
 - Externe Links: `node tests/check-external.mjs`
 

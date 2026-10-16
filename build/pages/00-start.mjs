@@ -1,4 +1,4 @@
-import { href, abs, esc, SITE_NAME, TAGLINE } from '../site.mjs';
+import { href, abs, esc, SITE_NAME, TAGLINE, AUTHOR } from '../site.mjs';
 import { src, srcs, UPDATED, dateDE } from '../content.mjs';
 import { STAND, standSatz } from '../../src/assets/js/stand.js';
 import { Q } from '../../src/assets/js/quellen.js';
@@ -145,7 +145,7 @@ export default {
         'Rohansicht des XML mit Suche',
         'Keine Datei verlässt den Rechner',
       ],
-      author: { '@type': 'Person', name: 'S. Thomas Freimoser', url: 'https://freimoser.de/' },
+      author: AUTHOR,
     },
     {
       '@context': 'https://schema.org',

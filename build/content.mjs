@@ -1,6 +1,6 @@
 // Bausteine für die Inhaltsseiten: Quellenangaben, FAQ, Handlungsaufforderung, weiterführende Links.
 import { Q, abgerufen } from '../src/assets/js/quellen.js';
-import { href, esc, RATGEBER } from './site.mjs';
+import { href, esc, RATGEBER, AUTHOR } from './site.mjs';
 
 export const UPDATED = '2026-10-08';
 
@@ -29,10 +29,10 @@ export function srcs(...items) {
   return items.map(([id, f]) => src(id, f)).join('');
 }
 
-export const LEGAL_NOTE = '<p class="legal-note">Allgemeine Information, keine Steuer- oder Rechtsberatung. Für deinen Einzelfall wende dich an deine Steuerberatung.</p>';
+export const LEGAL_NOTE = `<p class="legal-note">Allgemeine Information, keine Steuer- oder Rechtsberatung. Für deinen Einzelfall wende dich an deine Steuerberatung. Wie die Angaben belegt sind, steht unter <a href="${href('quellen/')}">Quellen und Methodik</a>.</p>`;
 
 export function metaLine(updated = UPDATED) {
-  return `<p class="meta-line">Stand: ${dateLong(updated)} · Allgemeine Information, keine Steuer- oder Rechtsberatung · von <a href="https://freimoser.de/">S. Thomas Freimoser</a></p>`;
+  return `<p class="meta-line">Stand: ${dateLong(updated)} · Allgemeine Information, keine Steuer- oder Rechtsberatung · von <a href="${AUTHOR.url}">${esc(AUTHOR.name)}</a></p>`;
 }
 
 export function faqHtml(faq, id = 'faq', title = 'Häufige Fragen') {

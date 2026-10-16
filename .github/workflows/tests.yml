@@ -17,6 +17,8 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm test
+      - name: Livegang-Prüfung
+        run: node tests/check-launch.mjs
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
