@@ -190,6 +190,7 @@ export function renderPage(page, ctx) {
   <meta name="description" content="${esc(page.description)}">
   <meta name="robots" content="${robots}">${canonical}
   <meta name="google-site-verification" content="${GOOGLE_VERIFICATION}" />
+  <meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC" />
   <meta name="theme-color" content="${THEME_COLOR}">
   <meta name="author" content="${esc(AUTHOR.name)}">
   <meta property="og:type" content="${page.kind === 'tool' ? 'website' : 'article'}">
