@@ -63,6 +63,13 @@ export const Q = {
     version: '15.10.2025, GZ III C 2 - S 7287-a/00019/007/243',
     url: 'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2025-10-15-einfuehrung-obligatorische-e-rechnung.pdf?__blob=publicationFile&v=5',
   },
+  bmf2026: {
+    kurz: 'BMF-Schreiben vom 15.10.2026',
+    titel: 'BMF-Schreiben „Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025; Ergänzende Regelungen“',
+    version: '15.10.2026, GZ III C 5 - S 7287-a/00019/021/017',
+    url: 'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2',
+    abgerufen: '2026-10-22',
+  },
   bmf2024: {
     kurz: 'BMF-Schreiben vom 15.10.2024 (BStBl I 2024 S. 1320)',
     titel: 'BMF-Schreiben „Ausstellung von Rechnungen nach § 14 UStG; Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025“',

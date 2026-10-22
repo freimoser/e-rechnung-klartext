@@ -6,6 +6,7 @@ export const SITE_NAME = 'E-Rechnung Klartext';
 export const TAGLINE = 'XRechnung und ZUGFeRD öffnen, verstehen und als PDF speichern – ohne Upload';
 export const REPO_URL = 'https://github.com/freimoser/e-rechnung-klartext';
 export const GOOGLE_VERIFICATION = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
+export const BING_VERIFICATION = 'E1F30DEB311AAF5458907DB431B481AC';
 export const THEME_COLOR = '#0f1419';
 
 // Rechtsangaben: die EINZIGE Stelle. Impressum, Datenschutz und Autorenangaben lesen von hier.

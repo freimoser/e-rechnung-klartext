@@ -65,6 +65,12 @@ for (const [name, re] of Object.entries(messung)) {
 }
 if (!gemessen) hinweis.push('Keine Messung eingebunden; die Datenschutzerklärung sagt ausdrücklich, dass nichts gemessen wird.');
 
+// Bestätigungs-Tags: jede Anmeldung bei einem Suchmaschinen-Dienst steht in der Datenschutzerklärung
+const bestaetigung = { 'Google Search Console': /<meta name="google-site-verification" content="[^"]+"/, 'Bing Webmaster Tools': /<meta name="msvalidate\.01" content="[^"]+"/ };
+for (const [name, re] of Object.entries(bestaetigung)) {
+  if (re.test(start) && !new RegExp(name, 'i').test(ds)) blocker.push(`Bestätigungs-Tag für ${name} eingebunden, die Datenschutzerklärung erwähnt ${name} nicht.`);
+}
+
 // Antwortmaschinen
 for (const f of ['llms.txt', 'llms-full.txt']) if (!lies(f)) blocker.push(`${f} fehlt.`);
 
