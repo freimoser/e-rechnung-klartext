@@ -7,7 +7,7 @@ const faq = [
   { q: 'Welcher Umsatz zählt für die 800.000-Euro-Grenze 2027?', a: 'Maßgeblich ist der Gesamtumsatz nach § 19 Abs. 2 UStG im Vorjahr, also 2026. Das ist die Summe der steuerbaren Umsätze nach vereinnahmten Entgelten, abzüglich bestimmter steuerfreier Umsätze.', src: [['ustg27', 'Abs. 38 Nr. 2'], ['ustg19', 'Abs. 2']] },
   { q: 'Was passiert, wenn ein Kunde meine E-Rechnung nicht annimmt?', a: 'Er hat dann keinen Anspruch auf eine Papier- oder PDF-Rechnung. Deine Pflichten gelten als erfüllt, wenn du eine E-Rechnung ausgestellt und dich nachweislich, zum Beispiel per Sendeprotokoll, um die Übermittlung bemüht hast.', src: [['ustae', 'Abschnitt 14.1 Abs. 5']] },
   { q: 'Gilt die Pflicht auch für Gutschriften und Reverse-Charge-Rechnungen?', a: 'Ja. Die Regeln gelten auch für Gutschriften und für Umsätze nach § 13b UStG, wenn beide Beteiligte im Inland ansässig sind.', src: [['bmf2025', 'Rn. 17']] },
-  { q: 'Was passiert, wenn ich trotz Pflicht eine PDF-Rechnung schicke?', a: 'Dann liegt keine ordnungsmäßige Rechnung vor, und der Empfänger kann daraus dem Grunde nach keine Vorsteuer abziehen. Die Rechnung kann aber durch eine E-Rechnung berichtigt werden.', src: [['ustae', 'Abschnitt 15.2a Abs. 1']] },
+  { q: 'Was passiert, wenn ich trotz Pflicht eine PDF-Rechnung schicke?', a: 'Dann liegt keine ordnungsmäßige Rechnung vor, und der Empfänger kann daraus dem Grunde nach keine Vorsteuer abziehen. Die Rechnung kann aber durch eine E-Rechnung berichtigt werden. Ein Bußgeld droht dem Aussteller dafür nicht.', src: [['ustae', 'Abschnitt 15.2a Abs. 1'], ['bmf2026', 'Rn. 28']] },
 ];
 
 const sections = `        <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
@@ -49,8 +49,9 @@ const sections = `        <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
         <p>${srcs(['ustae', 'Abschnitt 14.1 Abs. 5'], ['bmf2025', 'Rn. 17 und 60'], ['ustg14b', 'Abs. 1'])}</p>
 
         <h2 id="folgen">Welche Folgen eine falsche Form hat</h2>
-        <p>Besteht für einen Umsatz die Pflicht zur E-Rechnung und kommt stattdessen eine sonstige Rechnung (etwa eine einfache PDF), ist das keine ordnungsmäßige Rechnung: Der Empfänger kann daraus dem Grunde nach keine Vorsteuer abziehen. Hat eine E-Rechnung Fehler, unterscheidet das BMF: Formatfehler machen die Datei zur sonstigen Rechnung; fehlen Pflichtangaben, ist die Rechnung nicht ordnungsmäßig; andere Regelverstöße, etwa eine fehlende Käuferreferenz, sind umsatzsteuerlich unbeachtlich. Was einzelne Fehlercodes bedeuten, steht unter <a href="${href('fehlercodes/')}">XRechnung-Fehlercodes</a>.</p>
-        <p>${srcs(['ustae', 'Abschnitt 15.2a Abs. 1'], ['bmf2025', 'Rn. 6a, 6b und 35a'])}</p>`;
+        <p>Besteht für einen Umsatz die Pflicht zur E-Rechnung und kommt stattdessen eine sonstige Rechnung (etwa eine einfache PDF), ist das keine ordnungsmäßige Rechnung: Der Empfänger kann daraus dem Grunde nach keine Vorsteuer abziehen. Ein Bußgeld droht dem Aussteller dafür nicht: Eine sonstige Rechnung statt der vorgeschriebenen E-Rechnung ist keine Ordnungswidrigkeit nach § 26a Abs. 2 Nr. 1 UStG.</p>
+        <p>Hat eine E-Rechnung Fehler, unterscheidet das BMF: Formatfehler machen die Datei zur sonstigen Rechnung; fehlen Pflichtangaben, ist die Rechnung nicht ordnungsmäßig; andere Regelverstöße, etwa eine fehlende Käuferreferenz, sind umsatzsteuerlich unbeachtlich. Auch wenn eine Datei technisch nicht mehr der EN 16931 entspricht, bleibt sie umsatzsteuerlich grundsätzlich eine E-Rechnung. Was einzelne Fehlercodes bedeuten, steht unter <a href="${href('fehlercodes/')}">XRechnung-Fehlercodes</a>.</p>
+        <p>${srcs(['ustae', 'Abschnitt 15.2a Abs. 1'], ['bmf2025', 'Rn. 6a, 6b und 35a'], ['bmf2026', 'Rn. 22, 23 und 28'])}</p>`;
 
 export default {
   slug: 'e-rechnung-pflicht-ab-wann/',
@@ -60,7 +61,7 @@ export default {
   h1: 'E-Rechnung: Pflicht ab wann?',
   llms: 'Zeitplan der E-Rechnungspflicht in Deutschland: Empfang seit 01.01.2025, Übergangsregeln für den Versand bis 31.12.2027 (800.000-Euro-Grenze, EDI), Pflicht ab 2028, Ausnahmen, Folgen; mit Belegen aus UStG, UStAE und BMF.',
   crumbs: [{ slug: 'e-rechnung-pflicht-ab-wann/', label: 'Pflicht ab wann?' }],
-  updated: UPDATED,
+  updated: '2026-10-22',
   faq,
   html: () => ratgeber({
     h1: 'E-Rechnung: Pflicht ab wann?',

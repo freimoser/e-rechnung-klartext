@@ -47,10 +47,10 @@ const datenschutz = {
   h1: 'Datenschutzerklärung',
   crumbs: [{ slug: 'datenschutz/', label: 'Datenschutz' }],
   published: UPDATED,
-  updated: '2026-10-15',
+  updated: '2026-10-22',
   html: () => `      <header class="hero-article">
         <h1>Datenschutzerklärung</h1>
-        <p class="meta-line">Stand: ${dateLong('2026-10-15')}</p>
+        <p class="meta-line">Stand: ${dateLong('2026-10-22')}</p>
       </header>
       <article class="prose">
         <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
@@ -67,9 +67,9 @@ const datenschutz = {
         <p>Die Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc. (USA). Beim Aufruf einer Seite verarbeitet GitHub technisch notwendige Zugriffsdaten, insbesondere deine IP-Adresse, um die Seite auszuliefern. Nach eigener Angabe speichert GitHub die IP-Adresse von Besuchern einer GitHub-Pages-Seite aus Sicherheitsgründen (<a href="https://docs.github.com/de/pages/getting-started-with-github-pages/what-is-github-pages">GitHub-Dokumentation, Abschnitt „Datenerfassung“</a>). Auf diese Protokolle habe ich keinen Zugriff.</p>
         <p>Rechtsgrundlage ist mein berechtigtes Interesse an einer sicheren und zuverlässigen Bereitstellung der Website (Art. 6 Abs. 1 lit. f DSGVO). Dabei werden Daten in die USA übermittelt. GitHub ist nach dem EU-US Data Privacy Framework zertifiziert (<a href="https://www.dataprivacyframework.gov/participant/6174">Eintrag in der offiziellen Liste</a>); die Übermittlung stützt sich auf den Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO). Einzelheiten stehen in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">Datenschutzerklärung von GitHub</a>.</p>
 
-        <h2 id="search-console">Google Search Console: keine Verarbeitung über diese Website</h2>
-        <p>Diese Website ist in der Google Search Console angemeldet. <strong>Dabei wird nichts in deinem Browser geladen und nichts über dich an mich übermittelt.</strong> Es gibt kein Skript, kein Cookie und keinen Zählpixel. Die Daten entstehen bei Google im Rahmen der Suche, also unabhängig davon, ob du diese Website je aufrufst, und ich sehe sie ausschließlich zusammengefasst.</p>
-        <p>Der Nachweis, dass mir diese Website gehört, steht als Bestätigungs-Tag im Quelltext jeder Seite. Das ist ein reiner Texteintrag: Er lädt nichts nach und baut keine Verbindung zu Google auf. Für eine Auskunft nach Art. 15 DSGVO zu deinen Suchdaten ist Google der richtige Ansprechpartner.</p>
+        <h2 id="search-console">Google Search Console und Bing Webmaster Tools: keine Verarbeitung über diese Website</h2>
+        <p>Diese Website ist in der Google Search Console und in den Bing Webmaster Tools von Microsoft angemeldet. <strong>Dabei wird nichts in deinem Browser geladen und nichts über dich an mich übermittelt.</strong> Es gibt kein Skript, kein Cookie und keinen Zählpixel. Die Daten entstehen bei Google und Microsoft im Rahmen der Suche, also unabhängig davon, ob du diese Website je aufrufst, und ich sehe sie ausschließlich zusammengefasst.</p>
+        <p>Der Nachweis, dass mir diese Website gehört, steht jeweils als Bestätigungs-Tag im Quelltext jeder Seite. Das ist ein reiner Texteintrag: Er lädt nichts nach und baut keine Verbindung zu Google oder Microsoft auf. Für eine Auskunft nach Art. 15 DSGVO zu deinen Suchdaten sind Google und Microsoft die richtigen Ansprechpartner.</p>
 
         <h2 id="speicher">Cookies und Speicherung im Browser</h2>
         <p>Diese Website setzt keine Cookies. Gespeichert wird in deinem Browser nur das Folgende:</p>
