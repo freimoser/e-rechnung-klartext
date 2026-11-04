@@ -84,10 +84,11 @@ export const Q = {
     url: 'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/Umsatzsteuer-Anwendungserlass-aktuell.pdf?__blob=publicationFile&v=52',
   },
   bmfFaq: {
-    kurz: 'BMF-FAQ zur E-Rechnung, Stand März 2026',
+    kurz: 'BMF-FAQ zur E-Rechnung, Stand Oktober 2026',
     titel: 'BMF: Fragen und Antworten zur Einführung der obligatorischen (verpflichtenden) E-Rechnung zum 1. Januar 2025',
-    version: 'Stand März 2026',
+    version: 'Stand Oktober 2026 (veröffentlicht 29.10.2026)',
     url: 'https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html',
+    abgerufen: '2026-11-04',
   },
   xrVersionen: {
     kurz: 'KoSIT: Versionen und Bundles der XRechnung',

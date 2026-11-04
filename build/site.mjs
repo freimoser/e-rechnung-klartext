@@ -72,9 +72,10 @@ export const RATGEBER = [
 ];
 
 // Weitere Seiten von Thomas – nur Adressen, die beim letzten Prüflauf 200 geliefert haben
-// (Prüfung: tests/check-external.mjs). LDT & BDT Viewer und CSV to Calendar lieferten 404.
+// (Prüfung: tests/check-external.mjs). CSV to Calendar lieferte am 04.11.2026 noch 404.
 export const MORE_TOOLS = [
   { url: 'https://freimoser.github.io/gdt-viewer/', label: 'GDT Viewer' },
+  { url: 'https://freimoser.github.io/ldt-bdt-viewer/', label: 'LDT & BDT Viewer' },
   { url: 'https://freimoser.github.io/easy-photo-editor/', label: 'Easy Photo Editor' },
   { url: 'https://freimoser.de/', label: 'Über den Entwickler' },
 ];
