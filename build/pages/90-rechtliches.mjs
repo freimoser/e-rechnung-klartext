@@ -13,7 +13,7 @@ const impressum = {
   h1: 'Impressum',
   crumbs: [{ slug: 'impressum/', label: 'Impressum' }],
   published: UPDATED,
-  updated: '2026-10-15',
+  updated: '2026-11-04',
   html: () => `      <header class="hero-article">
         <h1>Impressum</h1>
       </header>
@@ -21,7 +21,7 @@ const impressum = {
         <h2>Angaben gemäß § 5 DDG</h2>
         <p>${esc(LEGAL.operator)}${LEGAL.companyName ? `<br>${esc(LEGAL.companyName)}` : ''}<br>${adresse('<br>')}</p>
         <h2>Kontakt</h2>
-        <p>E-Mail: ${esc(emailText(LEGAL.email))}${LEGAL.phone ? `<br>Telefon: ${esc(LEGAL.phone)}` : ''}<br>LinkedIn: linkedin.com/in/freimoser</p>
+        <p>E-Mail: ${esc(emailText(LEGAL.email))}${LEGAL.phone ? `<br>Telefon: ${esc(LEGAL.phone)}` : ''}${LEGAL.linkedin ? `<br>LinkedIn: ${esc(LEGAL.linkedin)}` : ''}</p>
         ${LEGAL.vatId ? `<h2>Umsatzsteuer-Identifikationsnummer</h2>\n        <p>Umsatzsteuer-Identifikationsnummer nach § 27a UStG: ${esc(LEGAL.vatId)}</p>` : ''}
         <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
         <p>${esc(LEGAL.responsible)}<br>(Anschrift wie oben)</p>

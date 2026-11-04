@@ -20,6 +20,8 @@ export const LEGAL = {
   country: 'Deutschland',
   email: 'kontakt@freimoser.de',
   phone: '',
+  // Zweiter Kontaktweg; muss mit freimoser.de/impressum übereinstimmen (dort am 27.10.2026 korrigiert)
+  linkedin: 'linkedin.com/in/thomas-freimoser',
   vatId: '',
   responsible: 'Thomas Freimoser',
 };
