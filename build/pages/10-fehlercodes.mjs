@@ -26,7 +26,7 @@ const faq = [
   { q: 'Was bedeutet BR-DE-15?', a: 'Die Käuferreferenz (BT-10) fehlt. Bei Rechnungen an Behörden steht dort die Leitweg-ID. Beheben muss es der Rechnungssteller; die Referenz bekommt er vom Rechnungsempfänger.' },
   { q: 'Was ist der Unterschied zwischen Fehler und Warnung?', a: 'Bei einem Fehler (Stufe „fatal“) entspricht die Rechnung nicht den Regeln; das offizielle Prüftool empfiehlt dann, sie nicht automatisch anzunehmen. Eine Warnung weist auf eine Abweichung hin, die die Gültigkeit nach den Prüfregeln nicht aufhebt.' },
   { q: 'Wer muss einen Fehler in einer E-Rechnung beheben?', a: 'Fast immer der Rechnungssteller, denn nur er kann die Datei neu erzeugen. Als Empfänger meldest du ihm den Fehlercode und bittest um eine korrigierte Rechnung.' },
-  { q: 'Macht ein Prüffehler die Rechnung steuerlich ungültig?', a: 'Nicht automatisch. Laut BMF ist zu unterscheiden: Formatfehler machen die Datei zu einer sonstigen Rechnung; fehlende Pflichtangaben nach § 14 Abs. 4 UStG machen sie nicht ordnungsgemäß; andere Geschäftsregelfehler, etwa eine fehlende Käuferreferenz, sind umsatzsteuerlich unbeachtlich.' },
+  { q: 'Macht ein Prüffehler die Rechnung steuerlich ungültig?', a: 'Nicht automatisch. Laut BMF ist zu unterscheiden: Formatfehler machen die Datei zu einer sonstigen Rechnung; fehlende Pflichtangaben nach § 14 Abs. 4 UStG machen sie nicht ordnungsgemäß; andere Geschäftsregelfehler, etwa eine fehlende Käuferreferenz, sind umsatzsteuerlich unbeachtlich. Dass die Datei technisch nicht mehr der EN 16931 entspricht, ist für die Umsatzsteuer nicht maßgebend.' },
   { q: 'Woher stammen die Fehlercodes?', a: 'Aus den offiziellen Prüfregeln: den EN-16931-Regeln von CEN (BR-, BR-CO-, BR-CL-, UBL-, CII-Codes) und den XRechnung-Regeln der KoSIT (BR-DE-, BR-DEX-, BR-TMP-, PEPPOL-Codes).' },
 ];
 
@@ -87,7 +87,7 @@ ${rows(g.rules)}
 
       <article class="prose">
 ${faqHtml(faq)}
-        <p>${srcs(['bmf2025', 'Rn. 6a, 6b und 35a'], ['ustae', 'Abschnitt 14.5 Abs. 1'])}</p>
+        <p>${srcs(['bmf2025', 'Rn. 6a, 6b und 35a'], ['bmf2026', 'Rn. 22 und 23'], ['ustae', 'Abschnitt 14.5 Abs. 1'])}</p>
       </article>
       ${cta('Fehlercode in deiner Rechnung?', 'Öffne die Datei im Werkzeug: Die Vorprüfung zeigt jeden Befund mit Code, Erklärung und Fundstelle im XML.')}
       ${LEGAL_NOTE}
@@ -103,7 +103,7 @@ export default {
   llms: 'Vollständiges Verzeichnis aller Prüfregeln (BR, BR-CO, BR-DE, BR-CL, BR-DEC, PEPPOL, UBL, CII) mit offiziellem Text, einfacher Erklärung, typischer Ursache und Zuständigkeit; Sprungmarke je Code, z. B. /fehlercodes/#br-de-15.',
   crumbs: [{ slug: 'fehlercodes/', label: 'Fehlercodes' }],
   published: UPDATED,
-  updated: '2026-10-14',
+  updated: '2026-10-22',
   faq,
   scripts: ['assets/js/fehlercodes.js'],
   jsonld: [{

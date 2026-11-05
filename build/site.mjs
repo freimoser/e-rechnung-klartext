@@ -6,6 +6,7 @@ export const SITE_NAME = 'E-Rechnung Klartext';
 export const TAGLINE = 'XRechnung und ZUGFeRD öffnen, verstehen und als PDF speichern – ohne Upload';
 export const REPO_URL = 'https://github.com/freimoser/e-rechnung-klartext';
 export const GOOGLE_VERIFICATION = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
+export const BING_VERIFICATION = 'E1F30DEB311AAF5458907DB431B481AC';
 export const THEME_COLOR = '#0f1419';
 
 // Rechtsangaben: die EINZIGE Stelle. Impressum, Datenschutz und Autorenangaben lesen von hier.
@@ -19,6 +20,8 @@ export const LEGAL = {
   country: 'Deutschland',
   email: 'kontakt@freimoser.de',
   phone: '',
+  // Zweiter Kontaktweg; muss mit freimoser.de/impressum übereinstimmen (dort am 27.10.2026 korrigiert)
+  linkedin: 'linkedin.com/in/thomas-freimoser',
   vatId: '',
   responsible: 'Thomas Freimoser',
 };
@@ -71,9 +74,10 @@ export const RATGEBER = [
 ];
 
 // Weitere Seiten von Thomas – nur Adressen, die beim letzten Prüflauf 200 geliefert haben
-// (Prüfung: tests/check-external.mjs). LDT & BDT Viewer und CSV to Calendar lieferten 404.
+// (Prüfung: tests/check-external.mjs). CSV to Calendar lieferte am 04.11.2026 noch 404.
 export const MORE_TOOLS = [
   { url: 'https://freimoser.github.io/gdt-viewer/', label: 'GDT Viewer' },
+  { url: 'https://freimoser.github.io/ldt-bdt-viewer/', label: 'LDT & BDT Viewer' },
   { url: 'https://freimoser.github.io/easy-photo-editor/', label: 'Easy Photo Editor' },
   { url: 'https://freimoser.de/', label: 'Über den Entwickler' },
 ];

@@ -1,5 +1,5 @@
 import {
-  BASE, SITE_NAME, TAGLINE, REPO_URL, GOOGLE_VERIFICATION, THEME_COLOR, AUTHOR,
+  BASE, SITE_NAME, TAGLINE, REPO_URL, GOOGLE_VERIFICATION, BING_VERIFICATION, THEME_COLOR, AUTHOR,
   NAV, RATGEBER, MORE_TOOLS, href, abs, esc,
 } from './site.mjs';
 import { Q } from '../src/assets/js/quellen.js';
@@ -190,7 +190,7 @@ export function renderPage(page, ctx) {
   <meta name="description" content="${esc(page.description)}">
   <meta name="robots" content="${robots}">${canonical}
   <meta name="google-site-verification" content="${GOOGLE_VERIFICATION}" />
-  <meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC" />
+  <meta name="msvalidate.01" content="${BING_VERIFICATION}" />
   <meta name="theme-color" content="${THEME_COLOR}">
   <meta name="author" content="${esc(AUTHOR.name)}">
   <meta property="og:type" content="${page.kind === 'tool' ? 'website' : 'article'}">

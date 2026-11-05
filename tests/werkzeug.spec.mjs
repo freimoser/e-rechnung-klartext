@@ -276,12 +276,18 @@ test.describe('Bedienung', () => {
 
   test('Datei-Knopf ist per Tastatur erreichbar und öffnet die Dateiauswahl', async ({ page }) => {
     await page.goto('./');
+    // Erst drücken, wenn das Werkzeug seine Knöpfe verdrahtet hat (init setzt die Klasse js)
+    await expect(page.locator('html')).toHaveClass(/\bjs\b/);
     await page.keyboard.press('Tab');
     await expect(page.locator('.skip-link')).toBeFocused();
-    await page.locator('#file-button').focus();
-    const [chooser] = await Promise.all([page.waitForEvent('filechooser'), page.keyboard.press('Enter')]);
+    const button = page.locator('#file-button');
+    await button.focus();
+    await expect(button).toBeFocused();
+    const [chooser] = await Promise.all([page.waitForEvent('filechooser', { timeout: 15000 }), button.press('Enter')]);
     expect(chooser.isMultiple()).toBe(true);
     await chooser.setFiles(fixture('xrechnung-cii.xml'));
+    // Gleiche Wartebedingung wie openFiles(): Das Öffnen braucht unter Last länger als das Standard-Timeout
+    await page.waitForSelector('#result:not(.hidden) .result-head');
     await expect(result(page).locator('.result-head h2')).toHaveText('xrechnung-cii.xml');
   });
 
