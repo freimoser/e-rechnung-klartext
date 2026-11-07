@@ -10,6 +10,8 @@ const hinweis = [];
 const lies = (f) => (fs.existsSync(path.join(OUT, f)) ? fs.readFileSync(path.join(OUT, f), 'utf8') : null);
 const text = (html) => html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 const noindex = (html) => /<meta name="robots" content="noindex/.test(html);
+// Bestätigungsdateien der Search Console (googleXXXX.html) sind keine Seiten
+const istSeite = (f) => f.endsWith('.html') && !/(^|\/)google[0-9a-f]+\.html$/.test(f);
 
 // Pflichtseiten: vorhanden, vollständig, nicht im Suchindex (Privatanschrift)
 for (const [seite, name] of [['impressum/index.html', 'Impressum'], ['datenschutz/index.html', 'Datenschutzerklärung']]) {
@@ -36,7 +38,7 @@ const xml = lies('sitemap.xml');
 if (!xml) blocker.push('sitemap.xml fehlt.');
 else {
   const inSitemap = new Set([...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname));
-  for (const f of fs.readdirSync(OUT, { recursive: true }).filter((x) => x.endsWith('.html'))) {
+  for (const f of fs.readdirSync(OUT, { recursive: true }).filter(istSeite)) {
     const route = BASE + f.split(path.sep).join('/').replace(/index\.html$/, '').replace(/\.html$/, '');
     const ni = noindex(lies(f));
     if (ni && inSitemap.has(route)) blocker.push(`${route} steht in der Sitemap, trägt aber noindex.`);
