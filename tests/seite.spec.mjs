@@ -20,7 +20,8 @@ test('Sitemap und noindex passen in beide Richtungen zusammen', () => {
   const dir = path.join(ROOT, '_site');
   const inSitemap = new Set(urls.map((u) => new URL(u).pathname));
   const problems = [];
-  for (const f of fs.readdirSync(dir, { recursive: true }).filter((x) => x.endsWith('.html'))) {
+  // Bestätigungsdateien der Search Console (googleXXXX.html) sind keine Seiten
+  for (const f of fs.readdirSync(dir, { recursive: true }).filter((x) => x.endsWith('.html') && !/^google[0-9a-f]+\.html$/.test(x))) {
     const html = fs.readFileSync(path.join(dir, f), 'utf8');
     const route = '/e-rechnung-klartext/' + f.split(path.sep).join('/').replace(/index\.html$/, '').replace(/\.html$/, '');
     const noindex = /<meta name="robots" content="noindex/.test(html);
