@@ -32,6 +32,11 @@ if (!canonical) blocker.push('Startseite hat kein Canonical.');
 else if (/localhost|127\.0\.0\.1|\.pages\.dev|^http:/.test(canonical)) blocker.push(`Canonical zeigt auf ${canonical} statt auf die Live-Adresse.`);
 else if (canonical !== SITE_URL) blocker.push(`Canonical der Startseite (${canonical}) weicht von ${SITE_URL} ab.`);
 if (!/<meta name="google-site-verification" content="[^"]+"/.test(start)) hinweis.push('Kein Search-Console-Bestätigungs-Tag auf der Startseite.');
+// Bestätigungsdatei der Search Console: Fehlt sie oder stimmt ihr Inhalt nicht, verliert die Property ihre Bestätigung
+const BESTAETIGUNGSDATEIEN = ['google48e9055c753551d4.html'];
+for (const f of BESTAETIGUNGSDATEIEN) {
+  if (lies(f) !== `google-site-verification: ${f}`) blocker.push(`Search-Console-Bestätigungsdatei ${f} fehlt oder hat einen falschen Inhalt.`);
+}
 
 // Sitemap und noindex: beide Richtungen
 const xml = lies('sitemap.xml');
