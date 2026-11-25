@@ -9,10 +9,10 @@ const SITE = 'https://freimoser.github.io/e-rechnung-klartext/';
 const urls = sitemapUrls();
 const VERIFY = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
 
-test('Sitemap enthält alle 15 indexierbaren Seiten mit lastmod', async ({ request }) => {
-  expect(urls).toHaveLength(15);
+test('Sitemap enthält alle 30 indexierbaren Seiten mit lastmod', async ({ request }) => {
+  expect(urls).toHaveLength(30);
   const xml = await (await request.get('sitemap.xml')).text();
-  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(15);
+  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(30);
   for (const u of urls) expect(u.startsWith(SITE) && u.endsWith('/')).toBe(true);
 });
 
@@ -122,9 +122,10 @@ for (const url of urls) {
       for (const q of faq.mainEntity) await expect(page.getByText(q.name, { exact: true }).first()).toBeVisible();
     }
     expect(types).not.toContain('HowTo'); // seit 2023 ohne Darstellung in den Suchergebnissen, deshalb entfernt
-    if (/begriffe|fehlercodes/.test(p)) expect(types).toContain('DefinedTermSet');
+    if (/(begriffe|fehlercodes)\/$/.test(p)) expect(types).toContain('DefinedTermSet');
+    if (/fehlercodes\/br-/.test(p)) expect(types).toContain('DefinedTerm');
     if (p === './') { expect(types).toContain('WebApplication'); expect(types).toContain('WebSite'); }
-    const ratgeber = /xrechnung-oder|xrechnung-in-pdf|zugferd-rechnung|pflicht|kleinunternehmer|privatperson|arztpraxis|peppol/.test(p);
+    const ratgeber = /xrechnung-oder|xrechnung-in-pdf|zugferd-rechnung|pflicht|kleinunternehmer|privatperson|arztpraxis|peppol|empfangen|vermieter|aufbewahren|fehlercodes\/br-/.test(p);
     if (ratgeber) {
       const art = lds.find((l) => l['@type'] === 'Article');
       expect(art.dateModified).toMatch(/^2026-/);

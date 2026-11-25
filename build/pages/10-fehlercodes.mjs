@@ -4,6 +4,7 @@ import { loadRules, GROUPS, cmp } from '../rules.mjs';
 import { STAND, standSatz } from '../../src/assets/js/stand.js';
 import { Q } from '../../src/assets/js/quellen.js';
 import { IMPLEMENTED } from '../../src/assets/js/validate.js';
+import { CODE_SEITEN } from '../fehlercode-seiten.mjs';
 
 const IMPL = new Set(IMPLEMENTED);
 
@@ -35,7 +36,7 @@ function rows(rules) {
     const id = r.id.toLowerCase();
     const al = alias(r.id);
     const off = `<span class="off" lang="${r.lang}">${esc(r.official)}</span>${r.officialAlt.map((t) => `<span class="off-en" lang="${/[äöü]| muss /.test(t) ? 'de' : 'en'}">${esc(t)}</span>`).join('')}${r.de ? `<span class="off-en">Deutsche Fassung (Spezifikation XRechnung 3.0.2): ${esc(r.de)}</span>` : ''}`;
-    return `<tr id="${id}"><th scope="row">${al ? `<span id="${al}"></span>` : ''}<a href="#${id}">${esc(r.id)}</a><br><span class="muted">${esc(stufe(r.flags))}</span>${IMPL.has(r.id) ? '<br><span class="impl">Prüft das Werkzeug</span>' : ''}</th><td>${off}</td><td>${esc(r.plain)}</td><td>${esc(r.cause)}</td><td>${esc(r.who)}</td></tr>`;
+    return `<tr id="${id}"><th scope="row">${al ? `<span id="${al}"></span>` : ''}<a href="#${id}">${esc(r.id)}</a><br><span class="muted">${esc(stufe(r.flags))}</span>${IMPL.has(r.id) ? '<br><span class="impl">Prüft das Werkzeug</span>' : ''}${CODE_SEITEN[r.id] ? `<br><a href="${href(`fehlercodes/${id}/`)}">Ursache und Lösung</a>` : ''}</th><td>${off}</td><td>${esc(r.plain)}</td><td>${esc(r.cause)}</td><td>${esc(r.who)}</td></tr>`;
   }).join('\n');
 }
 
@@ -120,7 +121,7 @@ const fehlercodes = {
   title: 'XRechnung Fehlercodes: alle Prüfregeln einfach erklärt',
   description: `XRechnung Fehlercodes wie BR-DE-15 oder BR-CO-10 verstehen: alle ${zahl(businessCount)} fachlichen Prüfregeln mit Erklärung, Ursache und wer den Fehler beheben muss.`,
   h1: 'XRechnung Fehlercodes: alle Prüfregeln erklärt',
-  llms: 'Verzeichnis aller fachlichen Prüfregeln (BR, BR-CO, BR-DE, BR-CL, BR-DEC, PEPPOL) mit offiziellem Text, einfacher Erklärung, typischer Ursache und Zuständigkeit; Sprungmarke je Code, z. B. /fehlercodes/#br-de-15. Syntaxregeln (UBL, CII) unter /fehlercodes/syntax/.',
+  llms: 'Verzeichnis aller fachlichen Prüfregeln (BR, BR-CO, BR-DE, BR-CL, BR-DEC, PEPPOL) mit offiziellem Text, einfacher Erklärung, typischer Ursache und Zuständigkeit; Sprungmarke je Code, z. B. /fehlercodes/#br-de-15. Syntaxregeln (UBL, CII) unter /fehlercodes/syntax/. Ausführliche Seiten mit Lösung für häufige Codes, z. B. /fehlercodes/br-de-15/ und /fehlercodes/br-co-10/.',
   crumbs: [{ slug: 'fehlercodes/', label: 'Fehlercodes' }],
   published: UPDATED,
   updated: '2026-11-25',
