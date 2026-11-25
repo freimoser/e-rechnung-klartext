@@ -5,11 +5,11 @@ import { Q } from './quellen.js';
 
 const U = Q.ustae.url;
 export const QUELLEN = {
-  bmfRn25: { text: 'Abschnitt 14.1 Abs. 12–14 UStAE (Stand 2. Juni 2026); BMF-Schreiben vom 15.10.2024, Rn. 25', url: U },
-  ustaePdf: { text: 'Abschnitt 14.1 Abs. 2 Satz 4 Nr. 2 UStAE (Stand 2. Juni 2026): PDF-Dateien ohne integrierte Datensätze sind sonstige Rechnungen', url: U },
-  bmfHybrid: { text: 'Abschnitt 14.4 Abs. 3 UStAE (Stand 2. Juni 2026): Bei hybriden Formaten ist der strukturierte Teil führend', url: U },
+  bmfRn25: { text: `Abschnitt 14.1 Abs. 12–14 UStAE (${Q.ustae.version}); BMF-Schreiben vom 15.10.2024, Rn. 25`, url: U },
+  ustaePdf: { text: `Abschnitt 14.1 Abs. 2 Satz 4 Nr. 2 UStAE (${Q.ustae.version}): PDF-Dateien ohne integrierte Datensätze sind sonstige Rechnungen`, url: U },
+  bmfHybrid: { text: `Abschnitt 14.4 Abs. 3 UStAE (${Q.ustae.version}): Bei hybriden Formaten ist der strukturierte Teil führend`, url: U },
   bmfAufbewahrung: { text: 'BMF-Schreiben vom 15.10.2025, Rn. 60; Abschnitt 14b.1 UStAE', url: Q.bmf2025.url },
-  bmfRn26: { text: 'Abschnitt 14.1 Abs. 12 Satz 3–4 UStAE (Stand 2. Juni 2026): weitere europäische Formate nach EN 16931', url: U },
+  bmfRn26: { text: `Abschnitt 14.1 Abs. 12 Satz 3–4 UStAE (${Q.ustae.version}): weitere europäische Formate nach EN 16931`, url: U },
   kositVersionen: { text: 'KoSIT: Versionen und Bundles der XRechnung', url: Q.xrVersionen.url },
   ferdFaq: { text: 'FeRD: FAQ „Zu ZUGFeRD“', url: Q.ferdFaq.url },
 };

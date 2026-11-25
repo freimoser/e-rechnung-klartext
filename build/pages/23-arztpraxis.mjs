@@ -12,7 +12,7 @@ const faq = [
 const sections = `        <h2 id="ueberblick">Überblick nach Art der Rechnung</h2>
         <div class="table-scroll">
           <table>
-            <caption>Rechnungen von Arzt-, Zahnarzt- und Tierarztpraxen im Inland. Stand 08.10.2026.</caption>
+            <caption>Rechnungen von Arzt-, Zahnarzt- und Tierarztpraxen im Inland.</caption>
             <thead><tr><th scope="col">Rechnung</th><th scope="col">E-Rechnung nötig?</th><th scope="col">Rechtsgrundlage</th></tr></thead>
             <tbody>
               <tr><th scope="row">Eingangsrechnungen von Lieferanten, Labor, Software-Anbietern</th><td>Empfang muss seit 1.1.2025 möglich sein</td><td>Abschnitt 14.1 Abs. 5 UStAE, BMF-FAQ Frage 3</td></tr>

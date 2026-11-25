@@ -32,6 +32,11 @@ if (!canonical) blocker.push('Startseite hat kein Canonical.');
 else if (/localhost|127\.0\.0\.1|\.pages\.dev|^http:/.test(canonical)) blocker.push(`Canonical zeigt auf ${canonical} statt auf die Live-Adresse.`);
 else if (canonical !== SITE_URL) blocker.push(`Canonical der Startseite (${canonical}) weicht von ${SITE_URL} ab.`);
 if (!/<meta name="google-site-verification" content="[^"]+"/.test(start)) hinweis.push('Kein Search-Console-Bestätigungs-Tag auf der Startseite.');
+// Bestätigungsdatei der Search Console: Fehlt sie oder stimmt ihr Inhalt nicht, verliert die Property ihre Bestätigung
+const BESTAETIGUNGSDATEIEN = ['google48e9055c753551d4.html'];
+for (const f of BESTAETIGUNGSDATEIEN) {
+  if (lies(f) !== `google-site-verification: ${f}`) blocker.push(`Search-Console-Bestätigungsdatei ${f} fehlt oder hat einen falschen Inhalt.`);
+}
 
 // Sitemap und noindex: beide Richtungen
 const xml = lies('sitemap.xml');
@@ -44,6 +49,20 @@ else {
     if (ni && inSitemap.has(route)) blocker.push(`${route} steht in der Sitemap, trägt aber noindex.`);
     if (!ni && !inSitemap.has(route)) blocker.push(`${route} ist indexierbar, fehlt aber in der Sitemap.`);
   }
+}
+
+// Datumsangaben: sichtbarer Stand, dateModified im Schema und lastmod in der Sitemap sind dasselbe Datum
+const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+const lastmod = new Map([...(xml || '').matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)].map((m) => [new URL(m[1]).pathname, m[2]]));
+for (const f of fs.readdirSync(OUT, { recursive: true }).filter(istSeite)) {
+  const html = lies(f);
+  const route = BASE + f.split(path.sep).join('/').replace(/index\.html$/, '').replace(/\.html$/, '');
+  const s = html.match(/<p class="meta-line">Stand: (\d{1,2})\. (\S+) (\d{4})/);
+  const sichtbar = s ? `${s[3]}-${String(MONATE.indexOf(s[2]) + 1).padStart(2, '0')}-${s[1].padStart(2, '0')}` : null;
+  const geaendert = html.match(/"dateModified":"([^"]+)"/)?.[1] ?? null;
+  const werte = { sichtbar, dateModified: geaendert, lastmod: lastmod.get(route) ?? null };
+  if (new Set(Object.values(werte).filter(Boolean)).size > 1) blocker.push(`${route}: Datumsangaben widersprechen sich (${Object.entries(werte).map(([k, v]) => `${k} ${v ?? '–'}`).join(', ')}).`);
+  if (html.includes('<!--meta-line-->')) blocker.push(`${route}: Platzhalter der Stand-Zeile wurde nicht ersetzt.`);
 }
 
 // Favicon: Google nutzt nur Kantenlängen, die ein Vielfaches von 48 sind

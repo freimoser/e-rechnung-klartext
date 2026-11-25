@@ -47,10 +47,10 @@ const datenschutz = {
   h1: 'Datenschutzerklärung',
   crumbs: [{ slug: 'datenschutz/', label: 'Datenschutz' }],
   published: UPDATED,
-  updated: '2026-10-22',
+  updated: '2026-11-07',
   html: () => `      <header class="hero-article">
         <h1>Datenschutzerklärung</h1>
-        <p class="meta-line">Stand: ${dateLong('2026-10-22')}</p>
+        <p class="meta-line">Stand: ${dateLong('2026-11-07')}</p>
       </header>
       <article class="prose">
         <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
@@ -69,7 +69,7 @@ const datenschutz = {
 
         <h2 id="search-console">Google Search Console und Bing Webmaster Tools: keine Verarbeitung über diese Website</h2>
         <p>Diese Website ist in der Google Search Console und in den Bing Webmaster Tools von Microsoft angemeldet. <strong>Dabei wird nichts in deinem Browser geladen und nichts über dich an mich übermittelt.</strong> Es gibt kein Skript, kein Cookie und keinen Zählpixel. Die Daten entstehen bei Google und Microsoft im Rahmen der Suche, also unabhängig davon, ob du diese Website je aufrufst, und ich sehe sie ausschließlich zusammengefasst.</p>
-        <p>Der Nachweis, dass mir diese Website gehört, steht jeweils als Bestätigungs-Tag im Quelltext jeder Seite. Das ist ein reiner Texteintrag: Er lädt nichts nach und baut keine Verbindung zu Google oder Microsoft auf. Für eine Auskunft nach Art. 15 DSGVO zu deinen Suchdaten sind Google und Microsoft die richtigen Ansprechpartner.</p>
+        <p>Der Nachweis, dass mir diese Website gehört, steht als Bestätigungs-Tag im Quelltext jeder Seite und als kleine Bestätigungsdatei auf dem Server, die nur Google abruft. Das sind reine Texteinträge: Sie laden nichts nach und bauen keine Verbindung zu Google oder Microsoft auf. Für eine Auskunft nach Art. 15 DSGVO zu deinen Suchdaten sind Google und Microsoft die richtigen Ansprechpartner.</p>
 
         <h2 id="speicher">Cookies und Speicherung im Browser</h2>
         <p>Diese Website setzt keine Cookies. Gespeichert wird in deinem Browser nur das Folgende:</p>

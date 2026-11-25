@@ -294,8 +294,10 @@ export function renderFindings(findings, meta, base, refs) {
     let x = '';
     if (f.el) x = ` data-x="${refs.push(f.el) - 1}"`;
     const anchor = f.id.toLowerCase();
+    // Syntaxregeln (UBL-…, CII-…) stehen auf einer eigenen Seite
+    const seite = /^(UBL|CII)-/.test(f.id) ? 'fehlercodes/syntax/' : 'fehlercodes/';
     return `<li class="finding ${s.cls}">
-      <h3><span class="badge ${s.badge}">${s.text}</span> <a href="${base}fehlercodes/#${anchor}">${esc(f.id)}</a></h3>
+      <h3><span class="badge ${s.badge}">${s.text}</span> <a href="${base}${seite}#${anchor}">${esc(f.id)}</a></h3>
       <p>${esc(f.msg)}</p>
       ${m.plain ? `<p><strong>Was das bedeutet:</strong> ${esc(m.plain)}</p>` : ''}
       <p><strong>Wer muss es beheben?</strong> ${esc(m.who || 'In der Regel der Rechnungssteller bzw. dessen Rechnungssoftware.')}</p>

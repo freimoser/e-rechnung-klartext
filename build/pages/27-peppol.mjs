@@ -15,9 +15,10 @@ const sections = `        <h2 id="was">Was ist Peppol?</h2>
         <p>In Deutschland ist die <strong>KoSIT</strong> im Auftrag des IT-Planungsrats die nationale Peppol Authority. ${srcs(['xeinkaufPeppol'], ['peppolAuthorities'])}</p>
 
         <h2 id="brauche-ich">Brauche ich Peppol?</h2>
+        <p>In der Regel nicht: Peppol ist weder für den Empfang noch für den Versand von E-Rechnungen zwischen Unternehmen vorgeschrieben, und auch an den Bund kannst du auf anderen Wegen schicken. Sinnvoll ist Peppol vor allem, wenn viele Rechnungen vollautomatisch an Behörden gehen.</p>
         <div class="table-scroll">
           <table>
-            <caption>Stand 08.10.2026.</caption>
+            <caption>Wann Peppol nötig ist.</caption>
             <thead><tr><th scope="col">Situation</th><th scope="col">Peppol nötig?</th><th scope="col">Beleg</th></tr></thead>
             <tbody>
               <tr><th scope="row">E-Rechnungen von Lieferanten empfangen</th><td>Nein, ein E-Mail-Postfach genügt</td><td>Abschnitt 14.1 Abs. 5 UStAE</td></tr>

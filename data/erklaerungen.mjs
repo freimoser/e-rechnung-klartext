@@ -228,6 +228,13 @@ export const E = {
   'BR-O-12': { plain: 'Eine Rechnung über nicht steuerbare Umsätze (O) darf keine Positionen mit anderer Steuerkategorie enthalten.', cause: 'Kategorien gemischt.', who: S },
   'BR-O-13': { plain: 'Eine Rechnung über nicht steuerbare Umsätze (O) darf keine Nachlässe mit anderer Steuerkategorie enthalten.', cause: 'Kategorien gemischt.', who: S },
   'BR-O-14': { plain: 'Eine Rechnung über nicht steuerbare Umsätze (O) darf keine Zuschläge mit anderer Steuerkategorie enthalten.', cause: 'Kategorien gemischt.', who: S },
+  // Syntaxregeln, deren offizieller Text nicht ins allgemeine Muster passt (siehe syntaxRule)
+  'UBL-CR-002': { plain: 'Das Element „UBLVersionID“ ist in der EN 16931 nicht vorgesehen. Kommt es trotzdem vor, soll es den Wert 2.1 haben; nur Warnung, die Rechnung bleibt gültig.', cause: 'Software schreibt eine andere UBL-Version als 2.1', who: 'Softwarehersteller (nicht zwingend)' },
+  'UBL-CR-665': { plain: 'Ein Kennungsschema (schemeID) an einer Dokumentreferenz ist nur vorgesehen, wenn die Referenz eine Rechnungsobjektkennung ist (Dokumenttyp 130); nur Warnung, die Rechnung bleibt gültig.', cause: 'schemeID an einer gewöhnlichen Dokumentreferenz gesetzt', who: 'Softwarehersteller (nicht zwingend)' },
+  'UBL-CR-666': { plain: 'Eine Dokumentreferenz darf nicht gleichzeitig eine Rechnungsobjektkennung (Dokumenttyp 130) und einen Anhang enthalten. Kennung und Anlage gehören in getrennte Referenzen.', cause: 'Kennung und Anlage in derselben Dokumentreferenz', who: 'Softwarehersteller' },
+  'UBL-CR-673': { plain: 'Eine Dokumentreferenz darf nicht gleichzeitig eine Rechnungsobjektkennung (Dokumenttyp 130) und eine Dokumentbeschreibung enthalten. Beides gehört in getrennte Referenzen.', cause: 'Kennung und Beschreibung in derselben Dokumentreferenz', who: 'Softwarehersteller' },
+  'CII-SR-457': { plain: 'Die Vergabe- oder Losnummer (IssuerAssignedID mit TypeCode 50) darf nur einmal vorkommen; nur Warnung, die Rechnung bleibt gültig.', cause: 'Angabe mehrfach geschrieben', who: 'Softwarehersteller (nicht zwingend)' },
+  'CII-SR-458': { plain: 'Die Rechnungsobjektkennung (IssuerAssignedID mit TypeCode 130) darf nur einmal vorkommen; nur Warnung, die Rechnung bleibt gültig.', cause: 'Angabe mehrfach geschrieben', who: 'Softwarehersteller (nicht zwingend)' },
 };
 
 // Steuerkategorie-Regeln (gleicher Aufbau je Kategorie)

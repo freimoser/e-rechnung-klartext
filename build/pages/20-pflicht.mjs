@@ -4,6 +4,7 @@ import { src, srcs, ratgeber, UPDATED } from '../content.mjs';
 const faq = [
   { q: 'Muss ich für den Empfang von E-Rechnungen etwas anschaffen?', a: 'Nein. Für den Empfang reicht ein E-Mail-Postfach; ein eigenes Postfach nur für E-Rechnungen ist nicht nötig. Um die XML-Datei zu lesen, brauchst du einen Viewer wie das Werkzeug auf dieser Seite.', src: [['ustae', 'Abschnitt 14.1 Abs. 5']] },
   { q: 'Darf ich 2026 noch Papierrechnungen an Firmen schicken?', a: 'Ja. Für Umsätze bis Ende 2026 darf die Rechnung bis 31.12.2026 noch auf Papier übermittelt werden, eine andere elektronische Form wie eine einfache PDF nur mit Zustimmung des Empfängers.', src: [['ustg27', 'Abs. 38 Nr. 1']] },
+  { q: 'Ich rechne eine Leistung vom Dezember 2026 erst im Januar 2027 ab. Reicht Papier?', a: 'In der Regel nein. Die Übergangsregel für 2025 und 2026 verlangt, dass die Rechnung bis zum 31.12.2026 übermittelt wird. Die Verlängerung bis Ende 2027 gilt nur für Umsätze, die 2027 ausgeführt werden. Greift keine der Ausnahmen, etwa für Kleinbeträge oder Kleinunternehmer, ist dann eine E-Rechnung nötig.', src: [['ustg27', 'Abs. 38 Nr. 1 und 2'], ['ustg14', 'Abs. 2 Satz 2 Nr. 1']] },
   { q: 'Welcher Umsatz zählt für die 800.000-Euro-Grenze 2027?', a: 'Maßgeblich ist der Gesamtumsatz nach § 19 Abs. 2 UStG im Vorjahr, also 2026. Das ist die Summe der steuerbaren Umsätze nach vereinnahmten Entgelten, abzüglich bestimmter steuerfreier Umsätze.', src: [['ustg27', 'Abs. 38 Nr. 2'], ['ustg19', 'Abs. 2']] },
   { q: 'Was passiert, wenn ein Kunde meine E-Rechnung nicht annimmt?', a: 'Er hat dann keinen Anspruch auf eine Papier- oder PDF-Rechnung. Deine Pflichten gelten als erfüllt, wenn du eine E-Rechnung ausgestellt und dich nachweislich, zum Beispiel per Sendeprotokoll, um die Übermittlung bemüht hast.', src: [['ustae', 'Abschnitt 14.1 Abs. 5']] },
   { q: 'Gilt die Pflicht auch für Gutschriften und Reverse-Charge-Rechnungen?', a: 'Ja. Die Regeln gelten auch für Gutschriften und für Umsätze nach § 13b UStG, wenn beide Beteiligte im Inland ansässig sind.', src: [['bmf2025', 'Rn. 17']] },
@@ -17,7 +18,7 @@ const sections = `        <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
         <h2 id="zeitplan">Zeitplan: Empfang und Versand</h2>
         <div class="table-scroll">
           <table>
-            <caption>Gilt für Rechnungen zwischen Unternehmen, die beide im Inland ansässig sind. Stand 08.10.2026.</caption>
+            <caption>Gilt für Rechnungen zwischen Unternehmen, die beide im Inland ansässig sind.</caption>
             <thead><tr><th scope="col">Umsatz ausgeführt</th><th scope="col">Empfangen</th><th scope="col">Ausstellen an andere Unternehmen</th><th scope="col">Rechtsgrundlage</th></tr></thead>
             <tbody>
               <tr><th scope="row">2025 und 2026</th><td>E-Rechnung muss empfangen werden können</td><td>Papierrechnung erlaubt; andere elektronische Formate (z. B. einfache PDF) nur mit Zustimmung des Empfängers; Übermittlung bis 31.12.2026</td><td>§ 27 Abs. 38 Nr. 1 UStG</td></tr>
@@ -29,6 +30,11 @@ const sections = `        <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
         </div>
         <p>${srcs(['ustg27', 'Abs. 38 Nr. 1 bis 3'], ['ustg14', 'Abs. 2 Satz 2 Nr. 1'])}</p>
         <p>Auch nach 2027 bleibt ein zwischen beiden Seiten vereinbartes strukturiertes Format zulässig (zum Beispiel ein EDI-Verfahren), wenn es die richtige und vollständige Übertragung der Rechnungsangaben in ein Format nach der Norm EN 16931 erlaubt. ${src('ustg14', 'Abs. 1 Satz 6 Nr. 2')}</p>
+
+        <h2 id="jahreswechsel">Achtung beim Jahreswechsel 2026/2027</h2>
+        <p>Die Übergangsregel für 2025 und 2026 hat zwei Bedingungen: Der Umsatz ist vor dem 1. Januar 2027 ausgeführt, <strong>und</strong> die Rechnung wird bis zum <strong>31. Dezember 2026</strong> übermittelt. Wer eine Leistung aus dem Dezember 2026 erst im Januar 2027 abrechnet, kann sich darauf nicht mehr stützen. Die Verlängerung bis Ende 2027 für Unternehmen mit höchstens 800.000 Euro Vorjahresumsatz hilft dabei ebenfalls nicht, genauso wenig die Ausnahme für EDI-Verfahren: Beide gelten nur für Umsätze, die 2027 ausgeführt werden.</p>
+        <p>Für solche Rechnungen an andere inländische Unternehmen ist ab dem 1. Januar 2027 deshalb eine E-Rechnung nötig, sofern keine der <a href="#ausnahmen">Ausnahmen</a> greift. Wer Leistungen aus 2026 noch auf Papier oder als einfache PDF abrechnen will, muss die Rechnung bis zum 31. Dezember 2026 verschicken.</p>
+        <p>${srcs(['ustg27', 'Abs. 38 Nr. 1 bis 3'], ['ustg14', 'Abs. 2 Satz 2 Nr. 1'], ['bmfFaq', 'Frage 11'])}</p>
 
         <h2 id="was-ist">Was als E-Rechnung zählt</h2>
         <p>Eine E-Rechnung ist eine Rechnung in einem strukturierten elektronischen Format, das eine elektronische Verarbeitung ermöglicht. Eine einfache PDF, ein Foto oder eine E-Mail mit Rechnungstext ist <strong>keine</strong> E-Rechnung, sondern eine „sonstige Rechnung“. Zulässig sind laut Finanzverwaltung insbesondere XRechnung und ZUGFeRD ab Version 2.0.1, ausgenommen die Profile MINIMUM und BASIC-WL. Mehr dazu unter <a href="${href('xrechnung-oder-zugferd/')}">XRechnung oder ZUGFeRD</a>.</p>
@@ -43,9 +49,10 @@ const sections = `        <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
           <li><strong>Privatpersonen</strong>: Die Pflicht gilt nur für Leistungen an andere Unternehmer für deren Unternehmen. Siehe <a href="${href('e-rechnung-privatperson/')}">E-Rechnung und Privatpersonen</a>. ${src('ustg14', 'Abs. 2 Satz 2 Nr. 1')}</li>
           <li><strong>Geschäfte mit dem Ausland</strong>: Ist einer der Beteiligten nicht im Inland ansässig, besteht keine E-Rechnungspflicht. ${src('ustae', 'Abschnitt 14.1 Abs. 6 Satz 3')}</li>
         </ul>
+        <p><strong>Rechnungen an Behörden</strong> folgen zusätzlich eigenen Regeln, unabhängig vom Umsatzsteuerrecht: An Bundesbehörden sind Rechnungen nach der E-Rechnungsverordnung grundsätzlich elektronisch zu stellen, in der Regel als XRechnung. Ausgenommen sind unter anderem Rechnungen über Direktaufträge bis 1.000 Euro; eine Ausnahme für Kleinunternehmer sieht die Verordnung nicht vor. ${srcs(['erechv3', 'Abs. 1 und 3'], ['erechv4', 'Abs. 1'], ['bmf2026', 'Rn. 24 und 25'])}</p>
 
         <h2 id="empfang">Was „empfangen können“ bedeutet</h2>
-        <p>Es genügt, ein E-Mail-Postfach bereitzustellen; ein eigenes Postfach nur für E-Rechnungen ist nicht nötig. Die Pflicht gilt auch für Kleinunternehmer und für Unternehmen, die nur steuerfreie Umsätze ausführen, zum Beispiel Vermieter oder Arztpraxen. Wer eine E-Rechnung bekommt, sollte die Original-Datei aufbewahren: Rechnungen sind acht Jahre aufzubewahren, bei einer E-Rechnung zumindest der strukturierte Teil in seiner ursprünglichen Form.</p>
+        <p>Es genügt, ein E-Mail-Postfach bereitzustellen; ein eigenes Postfach nur für E-Rechnungen ist nicht nötig. Die Pflicht gilt auch für Kleinunternehmer und für Unternehmen, die nur steuerfreie Umsätze ausführen, zum Beispiel <a href="${href('e-rechnung-vermieter/')}">Vermieter</a> oder Arztpraxen. Wie das im Alltag geht, steht unter <a href="${href('e-rechnung-empfangen/')}">E-Rechnung empfangen</a>. Wer eine E-Rechnung bekommt, sollte die Original-Datei aufbewahren: Rechnungen sind acht Jahre aufzubewahren, bei einer E-Rechnung zumindest der strukturierte Teil in seiner ursprünglichen Form.</p>
         <p>${srcs(['ustae', 'Abschnitt 14.1 Abs. 5'], ['bmf2025', 'Rn. 17 und 60'], ['ustg14b', 'Abs. 1'])}</p>
 
         <h2 id="folgen">Welche Folgen eine falsche Form hat</h2>
@@ -56,18 +63,18 @@ const sections = `        <h2 id="kurz">Das Wichtigste in drei Sätzen</h2>
 export default {
   slug: 'e-rechnung-pflicht-ab-wann/',
   kind: 'ratgeber',
-  title: 'E-Rechnung Pflicht ab wann? Alle Fristen 2025 bis 2028',
-  description: 'E-Rechnung Pflicht ab wann: Empfang seit 1.1.2025, Versand mit Übergang bis Ende 2027. Zeitplan, 800.000-Euro-Grenze und Ausnahmen – mit Quellen.',
+  title: 'E-Rechnung Pflicht ab wann? Was ab 2027 gilt, alle Fristen',
+  description: 'E-Rechnung Pflicht ab wann: Empfang seit 1.1.2025, Versand mit Übergang bis Ende 2027. Jahreswechsel 2027, 800.000-Euro-Grenze, Ausnahmen – mit Quellen.',
   h1: 'E-Rechnung: Pflicht ab wann?',
-  llms: 'Zeitplan der E-Rechnungspflicht in Deutschland: Empfang seit 01.01.2025, Übergangsregeln für den Versand bis 31.12.2027 (800.000-Euro-Grenze, EDI), Pflicht ab 2028, Ausnahmen, Folgen; mit Belegen aus UStG, UStAE und BMF.',
+  llms: 'Zeitplan der E-Rechnungspflicht in Deutschland: Empfang seit 01.01.2025, Übergangsregeln für den Versand bis 31.12.2027 (800.000-Euro-Grenze, EDI), Stolperfalle Jahreswechsel 2026/2027, Pflicht ab 2028, Ausnahmen, Folgen; mit Belegen aus UStG, UStAE und BMF.',
   crumbs: [{ slug: 'e-rechnung-pflicht-ab-wann/', label: 'Pflicht ab wann?' }],
-  updated: '2026-11-04',
+  updated: '2026-11-25',
   faq,
   html: () => ratgeber({
     h1: 'E-Rechnung: Pflicht ab wann?',
     answer: 'E-Rechnungen <strong>empfangen</strong> müssen alle Unternehmen in Deutschland seit dem 1. Januar 2025. E-Rechnungen <strong>ausstellen</strong> müssen sie für Leistungen an andere inländische Unternehmen spätestens für Umsätze ab dem 1. Januar 2028; bis dahin gelten Übergangsregeln.',
     answerSrc: [['ustae', 'Abschnitt 14.1 Abs. 5'], ['ustg27', 'Abs. 38'], ['ustg14', 'Abs. 2 Satz 2 Nr. 1']],
-    tocItems: [['kurz', 'Das Wichtigste'], ['zeitplan', 'Zeitplan als Tabelle'], ['was-ist', 'Was als E-Rechnung zählt'], ['ausnahmen', 'Ausnahmen'], ['empfang', 'Was „empfangen können“ bedeutet'], ['folgen', 'Folgen einer falschen Form'], ['faq', 'Häufige Fragen']],
+    tocItems: [['kurz', 'Das Wichtigste'], ['zeitplan', 'Zeitplan als Tabelle'], ['jahreswechsel', 'Jahreswechsel 2026/2027'], ['was-ist', 'Was als E-Rechnung zählt'], ['ausnahmen', 'Ausnahmen'], ['empfang', 'Was „empfangen können“ bedeutet'], ['folgen', 'Folgen einer falschen Form'], ['faq', 'Häufige Fragen']],
     sections,
     faq,
     relatedSlugs: ['e-rechnung-kleinunternehmer/', 'e-rechnung-privatperson/', 'e-rechnung-arztpraxis/', 'xrechnung-oder-zugferd/'],

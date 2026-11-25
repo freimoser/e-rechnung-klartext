@@ -1,5 +1,5 @@
 import { href, abs, esc } from '../site.mjs';
-import { src, srcs, metaLine, faqHtml, cta, related, LEGAL_NOTE, UPDATED, dateDE } from '../content.mjs';
+import { src, srcs, META_LINE, faqHtml, cta, related, LEGAL_NOTE, UPDATED, dateDE } from '../content.mjs';
 import { loadRules, GROUPS, cmp } from '../rules.mjs';
 import { STAND, standSatz } from '../../src/assets/js/stand.js';
 import { Q } from '../../src/assets/js/quellen.js';
@@ -41,35 +41,32 @@ function rows(rules) {
 
 const all = loadRules();
 const groups = GROUPS.map((g) => ({ ...g, rules: all.filter((r) => r.group === g.key).sort((a, b) => cmp(a.id, b.id)) }));
-const businessCount = groups.filter((g) => !['ubl', 'cii'].includes(g.key)).reduce((n, g) => n + g.rules.length, 0);
+// Fachliche Regeln stehen auf /fehlercodes/, die gleichförmigen Syntaxregeln auf einer eigenen Seite (Seitengröße, Textauszug)
+const SYNTAX = ['ubl', 'cii'];
+const fachGroups = groups.filter((g) => !SYNTAX.includes(g.key));
+const syntaxGroups = groups.filter((g) => SYNTAX.includes(g.key));
+const businessCount = fachGroups.reduce((n, g) => n + g.rules.length, 0);
+const syntaxCount = syntaxGroups.reduce((n, g) => n + g.rules.length, 0);
+const zahl = (n) => n.toLocaleString('de-DE');
 
-const html = () => `      <header class="hero-article">
-        <h1>XRechnung Fehlercodes: alle Prüfregeln erklärt</h1>
-        <p class="answer">Ein XRechnung-Fehlercode wie BR-DE-15 oder BR-CO-10 nennt die offizielle Prüfregel, gegen die eine E-Rechnung verstößt. Hier stehen alle ${all.length.toLocaleString('de-DE')} Regeln mit offiziellem Text, Erklärung in einfacher Sprache, typischer Ursache und der Antwort, wer den Fehler beheben muss.</p>
-        <p class="stand-line"><strong>${esc(standSatz())}</strong> (Schematron ${STAND.kosit.schematron}, Validator-Konfiguration ${dateDE(STAND.kosit.validatorKonfiguration)}) und CEN-Prüfregeln EN 16931 Version ${STAND.cen.version} vom ${dateDE(STAND.cen.vom)}.</p>
-        ${STAND.cen.neuere ? `<p class="stand-line">Hinweis: CEN hat am ${dateDE(STAND.cen.neuere.vom)} die Prüfregeln ${STAND.cen.neuere.version} veröffentlicht. Die KoSIT-Konfiguration und damit das offizielle XRechnung-Prüftool nutzen noch ${STAND.cen.version}; dieses Verzeichnis folgt dem offiziellen Prüftool. ${srcs(['cenSchematron1317'], ['xrValidatorKonfig'])}</p>` : ''}
-        ${metaLine('2026-10-14')}
-      </header>
-
-      <div class="prose">
-        <p>Die Codes stammen direkt aus den offiziellen Prüfregeln. Fachliche Regeln (BR-…, BR-CO-…, BR-DE-… und weitere, zusammen ${businessCount.toLocaleString('de-DE')}) prüfen den Inhalt der Rechnung. Syntaxregeln (UBL-… und CII-…) prüfen den technischen Aufbau der Datei. Die Stufe „Fehler“ entspricht im Prüfbericht „fatal“.</p>
-        <p>${srcs(['xrSchematron'], ['xrValidatorKonfig'], ['cenSchematron'], ['xrSpez', 'Kapitel 12 und 17, deutsche Regeltexte'])}</p>
-        <p>Deine Rechnung zeigt einen dieser Codes? <a href="${href('')}">Öffne sie im Werkzeug</a>: Die Vorprüfung nennt die betroffene Stelle und springt auf Wunsch ins XML. ${IMPLEMENTED.length} Regeln erkennt sie selbst; sie sind mit „Prüft das Werkzeug“ markiert. Wie sie nachgebaut und mit dem offiziellen Prüftool abgeglichen werden, steht unter <a href="${href('quellen/')}#vorpruefung">Quellen und Methodik</a>. Verbindlich ist nur das <a href="${Q.kositValidator.url}">offizielle KoSIT-Prüftool</a>.</p>
-      </div>
-
-      <div class="code-search no-print">
+function suche(n) {
+  return `<div class="code-search no-print">
         <label for="code-filter">Code oder Stichwort suchen</label>
         <input type="search" id="code-filter" placeholder="z. B. BR-DE-15, Leitweg, IBAN" autocomplete="off">
-        <p id="code-count" aria-live="polite">${all.length.toLocaleString('de-DE')} Regeln</p>
-      </div>
+        <p id="code-count" aria-live="polite">${zahl(n)} Regeln</p>
+      </div>`;
+}
 
-      <nav class="toc" aria-label="Regelgruppen">
+function gruppenNav(gs, extra = '') {
+  return `<nav class="toc" aria-label="Regelgruppen">
         <p class="toc-title">Regelgruppen</p>
-        <ol>${groups.map((g) => `<li><a href="#gruppe-${g.key}">${esc(g.title)}</a> (${g.rules.length})</li>`).join('')}</ol>
-      </nav>
+        <ol>${gs.map((g) => `<li><a href="#gruppe-${g.key}">${esc(g.title)}</a> (${g.rules.length})</li>`).join('')}${extra}</ol>
+      </nav>`;
+}
 
-      <div class="rules">
-${groups.map((g, i) => `        <section class="rule-group" data-group="${g.key}" aria-labelledby="gruppe-${g.key}">
+function tabellen(gs, gross = false) {
+  return `<div class="rules${gross ? ' rules-gross' : ''}">
+${gs.map((g, i) => `        <section class="rule-group" data-group="${g.key}" aria-labelledby="gruppe-${g.key}">
           <h2 id="gruppe-${g.key}">${esc(g.title)} <span class="muted">(${g.rules.length} Regeln)</span></h2>
           <p class="muted">${esc(g.lead)}</p>
           <div class="table-scroll rules-table">
@@ -83,7 +80,30 @@ ${rows(g.rules)}
             </table>
           </div>
         </section>`).join('\n')}
+      </div>`;
+}
+
+const stand = () => `<p class="stand-line"><strong>${esc(standSatz())}</strong> (Schematron ${STAND.kosit.schematron}, Validator-Konfiguration ${dateDE(STAND.kosit.validatorKonfiguration)}) und CEN-Prüfregeln EN 16931 Version ${STAND.cen.version} vom ${dateDE(STAND.cen.vom)}.</p>`;
+
+const html = () => `      <header class="hero-article">
+        <h1>XRechnung Fehlercodes: alle Prüfregeln erklärt</h1>
+        <p class="answer">Ein XRechnung-Fehlercode wie BR-DE-15 oder BR-CO-10 nennt die offizielle Prüfregel, gegen die eine E-Rechnung verstößt. Hier stehen alle ${zahl(businessCount)} fachlichen Regeln mit offiziellem Text, Erklärung in einfacher Sprache, typischer Ursache und der Antwort, wer den Fehler beheben muss. Die ${zahl(syntaxCount)} technischen Syntaxregeln stehen unter <a href="${href('fehlercodes/syntax/')}">Syntaxregeln für UBL und CII</a>.</p>
+        ${stand()}
+        ${STAND.cen.neuere ? `<p class="stand-line">Hinweis: CEN hat am ${dateDE(STAND.cen.neuere.vom)} die Prüfregeln ${STAND.cen.neuere.version} veröffentlicht. Die KoSIT-Konfiguration und damit das offizielle XRechnung-Prüftool nutzen noch ${STAND.cen.version}; dieses Verzeichnis folgt dem offiziellen Prüftool. ${srcs(['cenSchematron1317'], ['xrValidatorKonfig'])}</p>` : ''}
+        ${META_LINE}
+      </header>
+
+      <div class="prose">
+        <p>Die Codes stammen direkt aus den offiziellen Prüfregeln. Fachliche Regeln (BR-…, BR-CO-…, BR-DE-… und weitere, zusammen ${zahl(businessCount)}) prüfen den Inhalt der Rechnung; sie stehen hier. Syntaxregeln (UBL-… und CII-…) prüfen den technischen Aufbau der Datei; sie stehen auf einer <a href="${href('fehlercodes/syntax/')}">eigenen Seite</a>. Die Stufe „Fehler“ entspricht im Prüfbericht „fatal“.</p>
+        <p>${srcs(['xrSchematron'], ['xrValidatorKonfig'], ['cenSchematron'], ['xrSpez', 'Kapitel 12 und 17, deutsche Regeltexte'])}</p>
+        <p>Deine Rechnung zeigt einen dieser Codes? <a href="${href('')}">Öffne sie im Werkzeug</a>: Die Vorprüfung nennt die betroffene Stelle und springt auf Wunsch ins XML. ${IMPLEMENTED.length} Regeln erkennt sie selbst; sie sind mit „Prüft das Werkzeug“ markiert. Wie sie nachgebaut und mit dem offiziellen Prüftool abgeglichen werden, steht unter <a href="${href('quellen/')}#vorpruefung">Quellen und Methodik</a>. Verbindlich ist nur das <a href="${Q.kositValidator.url}">offizielle KoSIT-Prüftool</a>.</p>
       </div>
+
+      ${suche(businessCount)}
+
+      ${gruppenNav(fachGroups, `<li><a href="${href('fehlercodes/syntax/')}">Syntaxregeln für UBL und CII</a> (${zahl(syntaxCount)}, eigene Seite)</li>`)}
+
+      ${tabellen(fachGroups)}
 
       <article class="prose">
 ${faqHtml(faq)}
@@ -93,17 +113,17 @@ ${faqHtml(faq)}
       ${LEGAL_NOTE}
       ${related(['zugferd-rechnung-pruefen/', 'begriffe/', 'xrechnung-oder-zugferd/', 'peppol/'])}`;
 
-export default {
+const fehlercodes = {
   slug: 'fehlercodes/',
   kind: 'reference',
   wide: true,
   title: 'XRechnung Fehlercodes: alle Prüfregeln einfach erklärt',
-  description: `XRechnung Fehlercodes wie BR-DE-15 oder BR-CO-10 verstehen: alle ${all.length.toLocaleString('de-DE')} offiziellen Prüfregeln mit Erklärung, Ursache und wer den Fehler beheben muss.`,
+  description: `XRechnung Fehlercodes wie BR-DE-15 oder BR-CO-10 verstehen: alle ${zahl(businessCount)} fachlichen Prüfregeln mit Erklärung, Ursache und wer den Fehler beheben muss.`,
   h1: 'XRechnung Fehlercodes: alle Prüfregeln erklärt',
-  llms: 'Vollständiges Verzeichnis aller Prüfregeln (BR, BR-CO, BR-DE, BR-CL, BR-DEC, PEPPOL, UBL, CII) mit offiziellem Text, einfacher Erklärung, typischer Ursache und Zuständigkeit; Sprungmarke je Code, z. B. /fehlercodes/#br-de-15.',
+  llms: 'Verzeichnis aller fachlichen Prüfregeln (BR, BR-CO, BR-DE, BR-CL, BR-DEC, PEPPOL) mit offiziellem Text, einfacher Erklärung, typischer Ursache und Zuständigkeit; Sprungmarke je Code, z. B. /fehlercodes/#br-de-15. Syntaxregeln (UBL, CII) unter /fehlercodes/syntax/.',
   crumbs: [{ slug: 'fehlercodes/', label: 'Fehlercodes' }],
   published: UPDATED,
-  updated: '2026-10-22',
+  updated: '2026-11-25',
   faq,
   scripts: ['assets/js/fehlercodes.js'],
   jsonld: [{
@@ -113,7 +133,7 @@ export default {
     description: `Offizielle Prüfregeln (KoSIT XRechnung-Schematron ${STAND.kosit.schematron}, CEN ${STAND.cen.version}) mit Erklärung in einfacher Sprache.`,
     url: abs('fehlercodes/'),
     inLanguage: 'de-DE',
-    hasDefinedTerm: groups.filter((g) => !['ubl', 'cii'].includes(g.key)).flatMap((g) => g.rules).map((r) => ({
+    hasDefinedTerm: fachGroups.flatMap((g) => g.rules).map((r) => ({
       '@type': 'DefinedTerm',
       termCode: r.id,
       name: r.id,
@@ -123,3 +143,40 @@ export default {
   }],
   html,
 };
+
+const syntaxHtml = () => `      <header class="hero-article">
+        <h1>Syntaxregeln für UBL und CII</h1>
+        <p class="answer">Syntaxregeln prüfen den technischen Aufbau einer E-Rechnung: welche Elemente der vollen UBL- oder CII-Syntax vorkommen dürfen und wie oft. Hier stehen alle ${zahl(syntaxCount)} Syntaxregeln mit offiziellem Text und kurzer Erklärung. Die meisten sind Warnungen, die die Gültigkeit der Rechnung nicht aufheben. Die fachlichen Regeln wie BR-DE-15 stehen unter <a href="${href('fehlercodes/')}">XRechnung-Fehlercodes</a>.</p>
+        ${stand()}
+        ${META_LINE}
+      </header>
+
+      <div class="prose">
+        <p>${srcs(['xrSchematron'], ['cenSchematron'])}</p>
+      </div>
+
+      ${suche(syntaxCount)}
+
+      ${gruppenNav(syntaxGroups)}
+
+      ${tabellen(syntaxGroups, true)}
+      ${cta('Fehlercode in deiner Rechnung?', 'Öffne die Datei im Werkzeug: Die Vorprüfung zeigt jeden Befund mit Code, Erklärung und Fundstelle im XML.')}
+      ${LEGAL_NOTE}`;
+
+// Nicht im Suchindex: gleichförmige technische Regeln ohne eigenen Suchnutzen; erreichbar aus /fehlercodes/ und dem Werkzeug
+const syntax = {
+  slug: 'fehlercodes/syntax/',
+  kind: 'reference',
+  wide: true,
+  noindex: true,
+  title: 'Syntaxregeln für UBL und CII – E-Rechnung Klartext',
+  description: `Alle ${zahl(syntaxCount)} Syntaxregeln (UBL-CR, UBL-SR, UBL-DT, CII-SR, CII-DT) der EN 16931 mit offiziellem Text und kurzer Erklärung.`,
+  h1: 'Syntaxregeln für UBL und CII',
+  crumbs: [{ slug: 'fehlercodes/', label: 'Fehlercodes' }, { slug: 'fehlercodes/syntax/', label: 'Syntaxregeln' }],
+  published: '2026-11-25',
+  updated: '2026-11-25',
+  scripts: ['assets/js/fehlercodes.js'],
+  html: syntaxHtml,
+};
+
+export default [fehlercodes, syntax];

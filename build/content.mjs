@@ -3,6 +3,10 @@ import { Q, abgerufen } from '../src/assets/js/quellen.js';
 import { href, esc, RATGEBER, AUTHOR } from './site.mjs';
 
 export const UPDATED = '2026-10-08';
+// Erste Veröffentlichung der Inhalte; Standardwert für datePublished
+export const ERSTVEROEFFENTLICHT = '2026-10-08';
+// Platzhalter für die Stand-Zeile: Der Build setzt das endgültige Seitendatum ein (siehe build.mjs)
+export const META_LINE = '<!--meta-line-->';
 
 export function dateDE(iso) {
   const [y, m, d] = iso.split('-');
@@ -26,7 +30,8 @@ export function src(id, fundstelle = '') {
 
 // Mehrere Quellen in einer Zeile
 export function srcs(...items) {
-  return items.map(([id, f]) => src(id, f)).join('');
+  // Leerzeichen dazwischen: optisch ohne Wirkung (Blockelemente), trennt aber die Quellen in Textauszügen
+  return items.map(([id, f]) => src(id, f)).join(' ');
 }
 
 export const LEGAL_NOTE = `<p class="legal-note">Allgemeine Information, keine Steuer- oder Rechtsberatung. Für deinen Einzelfall wende dich an deine Steuerberatung. Wie die Angaben belegt sind, steht unter <a href="${href('quellen/')}">Quellen und Methodik</a>.</p>`;
@@ -40,7 +45,7 @@ export function faqHtml(faq, id = 'faq', title = 'Häufige Fragen') {
       <div class="faq">
         ${faq.map((f) => `<details>
           <summary>${esc(f.q)}</summary>
-          <p>${f.a}</p>${f.src ? `\n          <p>${f.src.map(([id, fs]) => src(id, fs)).join('')}</p>` : ''}
+          <p>${f.a}</p>${f.src ? `\n          <p>${f.src.map(([id, fs]) => src(id, fs)).join(' ')}</p>` : ''}
         </details>`).join('\n        ')}
       </div>`;
 }
@@ -64,6 +69,9 @@ const DESCRIPTIONS = {
   'xrechnung-in-pdf/': 'Schritt für Schritt als PDF speichern und drucken.',
   'zugferd-rechnung-pruefen/': 'Woran man eine gültige ZUGFeRD-Rechnung erkennt.',
   'e-rechnung-pflicht-ab-wann/': 'Zeitplan für Empfang und Versand mit Übergangsregeln.',
+  'e-rechnung-empfangen/': 'Postfach, Viewer, Prüfen und Ablegen – Schritt für Schritt.',
+  'e-rechnung-aufbewahren/': 'Was, wie lange und in welcher Form.',
+  'e-rechnung-vermieter/': 'Empfangen ja, ausstellen meist nicht.',
   'e-rechnung-kleinunternehmer/': 'Was beim Empfangen und Ausstellen gilt.',
   'e-rechnung-privatperson/': 'Was für Privatpersonen gilt und was nicht.',
   'e-rechnung-arztpraxis/': 'Arzt-, Zahnarzt- und Tierarztpraxen: was gilt.',
@@ -90,8 +98,8 @@ export function ratgeber({ h1, answer, answerSrc, sections, faq, relatedSlugs, t
   return `      <header class="hero-article">
         <h1>${esc(h1)}</h1>
         <p class="answer">${answer}</p>
-        ${answerSrc ? `<p class="answer-src">${answerSrc.map(([id, f]) => src(id, f)).join('')}</p>` : ''}
-        ${metaLine()}
+        ${answerSrc ? `<p class="answer-src">${answerSrc.map(([id, f]) => src(id, f)).join(' ')}</p>` : ''}
+        ${META_LINE}
       </header>
       ${tocItems ? toc(tocItems) : ''}
       <article class="prose">

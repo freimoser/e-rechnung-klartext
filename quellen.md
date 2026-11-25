@@ -11,12 +11,15 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 | § 14 UStG – Ausstellung von Rechnungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__14.html> | 08.10.2026 |
 | § 14b UStG – Aufbewahrung von Rechnungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__14b.html> | 08.10.2026 |
 | § 4 UStG – Steuerbefreiungen bei Lieferungen und sonstigen Leistungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__4.html> | 08.10.2026 |
+| § 9 UStG – Verzicht auf Steuerbefreiungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__9.html> | 25.11.2026 |
 | § 19 UStG – Besteuerung der Kleinunternehmer | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__19.html> | 08.10.2026 |
-| § 27 UStG – Allgemeine Übergangsvorschriften (Abs. 38: E-Rechnung) | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__27.html> | 08.10.2026 |
+| § 27 UStG – Allgemeine Übergangsvorschriften (Abs. 38: E-Rechnung) | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__27.html> | 25.11.2026 |
 | § 33 UStDV – Rechnungen über Kleinbeträge | zuletzt geändert durch Art. 7 V v. 19.12.2025 I Nr. 372 | <https://www.gesetze-im-internet.de/ustdv_1980/__33.html> | 08.10.2026 |
 | § 34 UStDV – Fahrausweise als Rechnungen | zuletzt geändert durch Art. 7 V v. 19.12.2025 I Nr. 372 | <https://www.gesetze-im-internet.de/ustdv_1980/__34.html> | 08.10.2026 |
 | § 34a UStDV – Rechnungen in Fällen des § 19 UStG (Kleinunternehmer) | zuletzt geändert durch Art. 7 V v. 19.12.2025 I Nr. 372 | <https://www.gesetze-im-internet.de/ustdv_1980/__34a.html> | 08.10.2026 |
 | § 147 AO – Ordnungsvorschriften für die Aufbewahrung von Unterlagen | zuletzt geändert durch Art. 15 Abs. 6 G v. 3.7.2026 I Nr. 199 | <https://www.gesetze-im-internet.de/ao_1977/__147.html> | 08.10.2026 |
+| § 3 E-Rechnungsverordnung (ERechV) – Verbindlichkeit der elektronischen Form | zuletzt geändert durch Art. 76 V v. 19.6.2020 I 1328 | <https://www.gesetze-im-internet.de/erechv/__3.html> | 25.11.2026 |
+| § 4 E-Rechnungsverordnung (ERechV) – Anforderungen an das Rechnungsdatenmodell und an die Übermittlung | zuletzt geändert durch Art. 76 V v. 19.6.2020 I 1328 | <https://www.gesetze-im-internet.de/erechv/__4.html> | 25.11.2026 |
 
 ## Bundesfinanzministerium
 
@@ -24,8 +27,8 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 |---|---|---|---|
 | BMF-Schreiben „Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025; Ergänzende Regelungen“ | 15.10.2026, GZ III C 5 - S 7287-a/00019/021/017 | <https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2> | 22.10.2026 |
 | BMF-Schreiben „Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025; Anpassung des UStAE“ | 15.10.2025, GZ III C 2 - S 7287-a/00019/007/243 | <https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2025-10-15-einfuehrung-obligatorische-e-rechnung.pdf?__blob=publicationFile&v=5> | 08.10.2026 |
-| BMF-Schreiben „Ausstellung von Rechnungen nach § 14 UStG; Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025“ | 15.10.2024, GZ III C 2 - S 7287-a/23/10001 :007, BStBl I 2024 S. 1320 | Die ursprüngliche PDF-Adresse beim BMF liefert keine Antwort 200 mehr; die Inhalte sind in den UStAE (Stand 2. Juni 2026) eingearbeitet und gelten nach dem BMF-Schreiben vom 15.10.2025 fort. | 08.10.2026 |
-| Umsatzsteuer-Anwendungserlass (UStAE), konsolidierte Fassung | Stand 2. Juni 2026 | <https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/Umsatzsteuer-Anwendungserlass-aktuell.pdf?__blob=publicationFile&v=52> | 08.10.2026 |
+| BMF-Schreiben „Ausstellung von Rechnungen nach § 14 UStG; Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025“ | 15.10.2024, GZ III C 2 - S 7287-a/23/10001 :007, BStBl I 2024 S. 1320 | Die ursprüngliche PDF-Adresse beim BMF liefert keine Antwort 200 mehr; die Inhalte sind in den UStAE (Stand 13. November 2026) eingearbeitet und gelten nach dem BMF-Schreiben vom 15.10.2025 fort. | 08.10.2026 |
+| Umsatzsteuer-Anwendungserlass (UStAE), konsolidierte Fassung | Stand 13. November 2026 | <https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/Umsatzsteuer-Anwendungserlass-aktuell.pdf?__blob=publicationFile&v=52> | 25.11.2026 |
 | BMF: Fragen und Antworten zur Einführung der obligatorischen (verpflichtenden) E-Rechnung zum 1. Januar 2025 | Stand Oktober 2026 (veröffentlicht 29.10.2026) | <https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html> | 04.11.2026 |
 | ELSTER: E-Rechnungs-Viewer der Finanzverwaltung | genannt in der BMF-FAQ, Frage 12a | <https://www.elster.de/eportal/e-rechnung> | 08.10.2026 |
 

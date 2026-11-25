@@ -37,7 +37,7 @@ const faq = [
 ];
 
 const html = () => `      <section class="hero" aria-labelledby="seitentitel">
-        <h1 id="seitentitel">E-Rechnung kostenlos öffnen – XRechnung und ZUGFeRD ohne Upload</h1>
+        <h1 id="seitentitel">XRechnung- und ZUGFeRD-Viewer: E-Rechnung kostenlos öffnen</h1>
         <p class="lead">Datei hineinziehen und die Rechnung lesen wie auf Papier. Dazu eine Vorprüfung nach den offiziellen Regeln, Fehlercodes in normaler Sprache und Export als PDF oder CSV.</p>
         <p class="stand-line">${esc(standSatz())}. Stand ${dateDE(UPDATED)}, Quelle: <a href="${Q.xrVersionen.url}">KoSIT, Versionen und Bundles der XRechnung</a> · <a href="${href('fehlercodes/')}">Was die Fehlercodes bedeuten</a> · <a href="${href('quellen/')}#vorpruefung">Wie die Vorprüfung entsteht</a></p>
       </section>
@@ -112,9 +112,9 @@ export default {
   slug: '',
   kind: 'tool',
   wide: true,
-  title: 'E-Rechnung kostenlos öffnen: XRechnung & ZUGFeRD ohne Upload',
-  description: 'E-Rechnung kostenlos öffnen: XRechnung online ohne Upload anzeigen, ZUGFeRD prüfen, Fehlercodes verstehen und als PDF speichern. Alles bleibt im Browser.',
-  h1: 'E-Rechnung kostenlos öffnen – XRechnung und ZUGFeRD ohne Upload',
+  title: 'XRechnung & ZUGFeRD Viewer: E-Rechnung kostenlos öffnen',
+  description: 'Kostenloser XRechnung- und ZUGFeRD-Viewer: E-Rechnung ohne Upload öffnen, prüfen, Fehlercodes verstehen und als PDF speichern. Alles bleibt im Browser.',
+  h1: 'XRechnung- und ZUGFeRD-Viewer: E-Rechnung kostenlos öffnen',
   llmsTitle: 'Werkzeug: E-Rechnung kostenlos öffnen',
   llms: 'Werkzeug im Browser: XRechnung (UBL/CII) und ZUGFeRD/Factur-X öffnen, Format und Profil erkennen, Vorprüfung nach KoSIT- und EN-16931-Regeln, Export als PDF und CSV, ohne Upload.',
   updated: UPDATED,
