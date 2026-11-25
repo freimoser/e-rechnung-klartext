@@ -71,8 +71,11 @@ export const RATGEBER = [
   { slug: 'xrechnung-in-pdf/', label: 'XRechnung drucken und als PDF speichern' },
   { slug: 'zugferd-rechnung-pruefen/', label: 'ZUGFeRD-Rechnung prüfen' },
   { slug: 'e-rechnung-pflicht-ab-wann/', label: 'E-Rechnung: Pflicht ab wann?' },
+  { slug: 'e-rechnung-empfangen/', label: 'E-Rechnung empfangen' },
+  { slug: 'e-rechnung-aufbewahren/', label: 'E-Rechnung aufbewahren' },
   { slug: 'e-rechnung-kleinunternehmer/', label: 'E-Rechnung für Kleinunternehmer' },
   { slug: 'e-rechnung-privatperson/', label: 'E-Rechnung und Privatpersonen' },
+  { slug: 'e-rechnung-vermieter/', label: 'E-Rechnung für Vermieter' },
   { slug: 'e-rechnung-arztpraxis/', label: 'E-Rechnung in der Arztpraxis' },
   { slug: 'peppol/', label: 'Peppol' },
 ];

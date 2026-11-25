@@ -12,7 +12,7 @@ const faq = [
 const sections = `        <h2 id="ueberblick">Überblick</h2>
         <div class="table-scroll">
           <table>
-            <caption>Rechnungen an Privatpersonen (Endverbraucher). Stand 08.10.2026.</caption>
+            <caption>Rechnungen an Privatpersonen (Endverbraucher).</caption>
             <thead><tr><th scope="col">Situation</th><th scope="col">Was gilt</th><th scope="col">Rechtsgrundlage</th></tr></thead>
             <tbody>
               <tr><th scope="row">Rechnung an eine Privatperson</th><td>Keine E-Rechnungspflicht; die Pflicht gilt nur für Leistungen an andere Unternehmer für deren Unternehmen</td><td>§ 14 Abs. 2 Satz 2 Nr. 1 UStG</td></tr>

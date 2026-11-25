@@ -3,6 +3,13 @@
 export const ABGERUFEN = '2026-10-08';
 
 export const Q = {
+  ustg9: {
+    kurz: '§ 9 UStG',
+    titel: '§ 9 UStG – Verzicht auf Steuerbefreiungen',
+    version: 'zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197',
+    url: 'https://www.gesetze-im-internet.de/ustg_1980/__9.html',
+    abgerufen: '2026-11-25',
+  },
   ustg14: {
     kurz: '§ 14 UStG',
     titel: '§ 14 UStG – Ausstellung von Rechnungen',

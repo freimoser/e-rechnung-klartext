@@ -29,7 +29,7 @@ const sections = `        <h2 id="anleitung">Schritt für Schritt: XRechnung als
         <p>${srcs(['ustae', 'Abschnitt 14.1 Abs. 13 Satz 3–5'], ['bmfFaq', 'Frage 12a'])}</p>
 
         <h2 id="original">PDF oder XML: Was du aufbewahren musst</h2>
-        <p>Rechnungen sind acht Jahre aufzubewahren, und zwar grundsätzlich im empfangenen Format. Bei einer E-Rechnung muss zumindest der strukturierte Teil unversehrt in seiner ursprünglichen Form vorliegen. Das selbst erzeugte PDF ersetzt die XML-Datei deshalb nicht. Speichere beides, wenn das PDF für dich praktisch ist, aber gib für Buchhaltung und Archiv immer die Original-Datei weiter.</p>
+        <p>Rechnungen sind acht Jahre aufzubewahren, und zwar grundsätzlich im empfangenen Format. Bei einer E-Rechnung muss zumindest der strukturierte Teil unversehrt in seiner ursprünglichen Form vorliegen. Das selbst erzeugte PDF ersetzt die XML-Datei deshalb nicht. Speichere beides, wenn das PDF für dich praktisch ist, aber gib für Buchhaltung und Archiv immer die Original-Datei weiter. Mehr dazu unter <a href="${href('e-rechnung-aufbewahren/')}">E-Rechnung aufbewahren</a>.</p>
         <p>${srcs(['ustg14b', 'Abs. 1'], ['ustae', 'Abschnitt 14b.1 Abs. 1'], ['bmf2025', 'Rn. 60'])}</p>
 
         <h2 id="umgekehrt">Umgekehrt: aus einer PDF eine XRechnung machen?</h2>

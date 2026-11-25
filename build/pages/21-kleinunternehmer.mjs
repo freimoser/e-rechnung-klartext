@@ -31,7 +31,7 @@ const sections = `        <h2 id="ueberblick">Überblick: Was für Kleinunterneh
         <p>${src('ustg19', 'Abs. 1 Satz 1')}</p>
 
         <h2 id="empfangen">Empfangen: Was du brauchst</h2>
-        <p>Auch als Kleinunternehmer bekommst du von Lieferanten künftig E-Rechnungen, etwa vom Großhandel, vom Software-Anbieter oder vom Steuerberater. Du musst sie annehmen können; eine Papier- oder PDF-Rechnung kannst du nicht verlangen, wenn der Lieferant zur E-Rechnung verpflichtet ist. Dafür reicht ein E-Mail-Postfach. Zum Lesen der XML-Datei genügt ein Viewer, zum Beispiel <a href="${href('')}">dieses Werkzeug</a>. Bewahre die Original-Datei acht Jahre auf; ein ausgedrucktes PDF ersetzt sie nicht. Wie das geht, steht unter <a href="${href('xrechnung-in-pdf/')}">XRechnung drucken und als PDF speichern</a>.</p>
+        <p>Auch als Kleinunternehmer bekommst du von Lieferanten künftig E-Rechnungen, etwa vom Großhandel, vom Software-Anbieter oder vom Steuerberater. Du musst sie annehmen können; eine Papier- oder PDF-Rechnung kannst du nicht verlangen, wenn der Lieferant zur E-Rechnung verpflichtet ist. Dafür reicht ein E-Mail-Postfach. Zum Lesen der XML-Datei genügt ein Viewer, zum Beispiel <a href="${href('')}">dieses Werkzeug</a>. Bewahre die Original-Datei acht Jahre auf; ein ausgedrucktes PDF ersetzt sie nicht (mehr unter <a href="${href('e-rechnung-aufbewahren/')}">E-Rechnung aufbewahren</a>). Wie das geht, steht unter <a href="${href('xrechnung-in-pdf/')}">XRechnung drucken und als PDF speichern</a>.</p>
         <p>${srcs(['ustae', 'Abschnitt 14.1 Abs. 5'], ['ustg14b', 'Abs. 1'], ['bmf2025', 'Rn. 60'])}</p>
 
         <h2 id="ausstellen">Ausstellen: Was in deine Rechnung muss</h2>

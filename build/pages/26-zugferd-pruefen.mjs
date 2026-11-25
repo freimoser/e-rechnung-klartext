@@ -32,7 +32,7 @@ const sections = `        <h2 id="merkmale">Merkmale einer gültigen ZUGFeRD-Rec
         <h2 id="profile">Die Profile im Überblick</h2>
         <div class="table-scroll">
           <table>
-            <caption>Profile nach FeRD; Kennung (BT-24) laut den offiziellen ZUGFeRD-Beispielrechnungen 2.5.2 bzw. der XRechnung-Spezifikation. * Die Kennungen von MINIMUM und BASIC WL stehen in der ZUGFeRD-Spezifikation, die FeRD nur gegen Angabe von Kontaktdaten abgibt; sie sind hier deshalb nicht aufgeführt. Stand 08.10.2026.</caption>
+            <caption>Profile nach FeRD; Kennung (BT-24) laut den offiziellen ZUGFeRD-Beispielrechnungen 2.5.2 bzw. der XRechnung-Spezifikation. * Die Kennungen von MINIMUM und BASIC WL stehen in der ZUGFeRD-Spezifikation, die FeRD nur gegen Angabe von Kontaktdaten abgibt; sie sind hier deshalb nicht aufgeführt.</caption>
             <thead><tr><th scope="col">Profil</th><th scope="col">Inhalt</th><th scope="col">Gilt als E-Rechnung</th><th scope="col">Kennung im XML (BT-24)</th></tr></thead>
             <tbody>
               <tr><th scope="row">MINIMUM</th><td>Nur Kopfdaten und Gesamtbeträge, keine Positionen, keine Steueraufschlüsselung; Buchungshilfe</td><td>Nein</td><td>nur in der Spezifikation*</td></tr>

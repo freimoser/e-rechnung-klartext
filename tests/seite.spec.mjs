@@ -9,10 +9,10 @@ const SITE = 'https://freimoser.github.io/e-rechnung-klartext/';
 const urls = sitemapUrls();
 const VERIFY = '6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg';
 
-test('Sitemap enthält alle 12 indexierbaren Seiten mit lastmod', async ({ request }) => {
-  expect(urls).toHaveLength(12);
+test('Sitemap enthält alle 15 indexierbaren Seiten mit lastmod', async ({ request }) => {
+  expect(urls).toHaveLength(15);
   const xml = await (await request.get('sitemap.xml')).text();
-  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(12);
+  expect((xml.match(/<lastmod>2026-\d\d-\d\d<\/lastmod>/g) || []).length).toBe(15);
   for (const u of urls) expect(u.startsWith(SITE) && u.endsWith('/')).toBe(true);
 });
 
@@ -83,7 +83,9 @@ test('Unbekannte Adressen zeigen die eigene 404-Seite mit Links', async ({ page 
   expect(res.status()).toBe(404);
   await expect(page.locator('h1')).toHaveText('Seite nicht gefunden');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-  await expect(page.locator('main a.card-link')).toHaveCount(10);
+  // alle Ratgeber plus Fehlercodes und Begriffe
+  const { RATGEBER } = await import('../build/site.mjs');
+  await expect(page.locator('main a.card-link')).toHaveCount(RATGEBER.length + 2);
 });
 
 for (const url of urls) {

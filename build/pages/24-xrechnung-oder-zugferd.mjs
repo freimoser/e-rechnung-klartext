@@ -13,7 +13,7 @@ const faq = [
 const sections = `        <h2 id="vergleich">Vergleichstabelle</h2>
         <div class="table-scroll">
           <table>
-            <caption>XRechnung und ZUGFeRD im Vergleich. Stand 08.10.2026.</caption>
+            <caption>XRechnung und ZUGFeRD im Vergleich.</caption>
             <thead><tr><th scope="col">Merkmal</th><th scope="col">XRechnung</th><th scope="col">ZUGFeRD / Factur-X</th></tr></thead>
             <tbody>
               <tr><th scope="row">Aufbau</th><td>Reine XML-Datei, für Menschen ohne Viewer nicht lesbar</td><td>PDF (PDF/A-3) mit eingebetteter XML-Datei: Sichtteil plus Datenteil</td></tr>

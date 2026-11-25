@@ -11,6 +11,7 @@ Fachlicher Stand der Vorprüfung (zentral gepflegt in `src/assets/js/stand.js`):
 | § 14 UStG – Ausstellung von Rechnungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__14.html> | 08.10.2026 |
 | § 14b UStG – Aufbewahrung von Rechnungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__14b.html> | 08.10.2026 |
 | § 4 UStG – Steuerbefreiungen bei Lieferungen und sonstigen Leistungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__4.html> | 08.10.2026 |
+| § 9 UStG – Verzicht auf Steuerbefreiungen | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__9.html> | 25.11.2026 |
 | § 19 UStG – Besteuerung der Kleinunternehmer | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__19.html> | 08.10.2026 |
 | § 27 UStG – Allgemeine Übergangsvorschriften (Abs. 38: E-Rechnung) | zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197 | <https://www.gesetze-im-internet.de/ustg_1980/__27.html> | 25.11.2026 |
 | § 33 UStDV – Rechnungen über Kleinbeträge | zuletzt geändert durch Art. 7 V v. 19.12.2025 I Nr. 372 | <https://www.gesetze-im-internet.de/ustdv_1980/__33.html> | 08.10.2026 |
