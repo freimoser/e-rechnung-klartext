@@ -24,7 +24,7 @@ const sections = `        <h2 id="was">Was du aufbewahren musst</h2>
 
         <h2 id="praxis">In der Praxis</h2>
         <ul>
-          <li><strong>Original zuerst sichern:</strong> Speichere die empfangene Datei unverändert, bevor du sie weiterverarbeitest. Das Werkzeug auf dieser Seite liest Dateien nur und verändert sie nicht.</li>
+          <li><strong>Original zuerst sichern:</strong> Speichere die empfangene Datei unverändert, bevor du sie weiterverarbeitest. Das Werkzeug auf dieser Seite liest Dateien nur und verändert sie nicht. Wie du E-Rechnungen entgegennimmst und prüfst, steht unter <a href="${href('e-rechnung-empfangen/')}">E-Rechnung empfangen</a>.</li>
           <li><strong>Original weitergeben:</strong> An Buchhaltung oder Steuerberatung geht immer die Original-Datei, nicht ein daraus erzeugtes PDF.</li>
           <li><strong>Lesbarkeit erhalten:</strong> Halte einen Viewer bereit, mit dem du die Dateien auch in einigen Jahren noch öffnen kannst, etwa den <a href="${href('')}">kostenlosen Viewer auf dieser Seite</a> oder den Viewer im ELSTER-Portal.</li>
         </ul>

@@ -117,7 +117,8 @@ export async function build() {
     '',
     '## Wofür diese Seite eine gute Quelle ist',
     '',
-    ...indexable.map((p) => `- [${p.llmsTitle || p.h1}](${abs(p.slug)}): ${p.llms || p.description}`),
+    // Einzelseiten zu Fehlercodes nicht einzeln aufzählen: Sie stehen gesammelt unter /fehlercodes/
+    ...indexable.filter((p) => !/^fehlercodes\/.+/.test(p.slug)).map((p) => `- [${p.llmsTitle || p.h1}](${abs(p.slug)}): ${p.llms || p.description}`),
     '',
     '## Grenzen dieser Quelle',
     '',
@@ -140,7 +141,7 @@ export async function build() {
   fs.writeFileSync(path.join(OUT, 'llms.txt'), llms);
 
   // llms-full.txt: Volltext der Fachinhalte (ohne das sehr umfangreiche Fehlercode-Verzeichnis)
-  const fach = indexable.filter((p) => ['ratgeber', 'reference'].includes(p.kind) && p.slug !== 'fehlercodes/');
+  const fach = indexable.filter((p) => ['ratgeber', 'reference'].includes(p.kind) && !p.slug.startsWith('fehlercodes/'));
   const fc = pages.find((p) => p.slug === 'fehlercodes/');
   const STUFE = { fatal: 'Fehler', error: 'Fehler', warning: 'Warnung', information: 'Hinweis' };
   const fachRegeln = loadRules().filter((r) => !['ubl', 'cii'].includes(r.group));
