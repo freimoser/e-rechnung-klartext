@@ -5,7 +5,8 @@ import crypto from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { BASE, SITE_NAME, TAGLINE, THEME_COLOR, AUTHOR, REPO_URL, abs } from './site.mjs';
 import { renderPage } from './layout.mjs';
-import { loadRules, writeToolData } from './rules.mjs';
+import { META_LINE, metaLine, ERSTVEROEFFENTLICHT } from './content.mjs';
+import { loadRules, writeToolData, GROUPS } from './rules.mjs';
 import { KERNAUSSAGEN, kernaussageZeile, GRENZEN, IRREFUEHREND, irrefuehrendZeile } from './kernaussagen.mjs';
 import { llmsFull } from './llms-full.mjs';
 
@@ -79,6 +80,12 @@ export async function build() {
   const descs = new Set();
   for (const p of pages) {
     if (typeof p.html === 'function') p.html = p.html(ctx);
+    // Seitendatum: das spätere von gepflegtem Datum und jüngstem Abrufdatum der zitierten Quellen.
+    // Sichtbarer Stand, dateModified, lastmod und llms-full.txt lesen alle diesen einen Wert.
+    const quellenStand = [...p.html.matchAll(/<span class="source">Stand (\d{2})\.(\d{2})\.(\d{4})/g)].map((m) => `${m[3]}-${m[2]}-${m[1]}`);
+    p.updated = [p.updated, ...quellenStand].sort().at(-1);
+    p.published ||= ERSTVEROEFFENTLICHT;
+    p.html = p.html.replaceAll(META_LINE, metaLine(p.updated));
     checkPage(p);
     if (!p.noindex) {
       if (titles.has(p.title)) throw new Error(`Doppelter Title: ${p.title}`);
@@ -134,7 +141,16 @@ export async function build() {
 
   // llms-full.txt: Volltext der Fachinhalte (ohne das sehr umfangreiche Fehlercode-Verzeichnis)
   const fach = indexable.filter((p) => ['ratgeber', 'reference'].includes(p.kind) && p.slug !== 'fehlercodes/');
-  fs.writeFileSync(path.join(OUT, 'llms-full.txt'), llmsFull({ siteName: SITE_NAME, pages: fach }));
+  const fc = pages.find((p) => p.slug === 'fehlercodes/');
+  const STUFE = { fatal: 'Fehler', error: 'Fehler', warning: 'Warnung', information: 'Hinweis' };
+  const fachRegeln = loadRules().filter((r) => !['ubl', 'cii'].includes(r.group));
+  const reihenfolge = GROUPS.map((g) => g.key);
+  fachRegeln.sort((a, b) => reihenfolge.indexOf(a.group) - reihenfolge.indexOf(b.group));
+  const anhang = `# XRechnung-Fehlercodes: fachliche Prüfregeln in Kurzform\n\nAdresse: ${abs('fehlercodes/')}\nStand: ${fc.updated}\n\n` + fachRegeln.map((r) => {
+    const st = STUFE[r.flags.UBL || r.flags.CII] || '';
+    return `- ${r.id}${st ? ` (${st})` : ''}: ${r.plain} Typische Ursache: ${r.cause.replace(/\.$/, '')}. Beheben: ${r.who.replace(/\.$/, '')}. ${abs('fehlercodes/')}#${r.id.toLowerCase()}`;
+  }).join('\n');
+  fs.writeFileSync(path.join(OUT, 'llms-full.txt'), llmsFull({ siteName: SITE_NAME, pages: fach, anhang }));
 
   // Web-App-Manifest
   const manifest = {

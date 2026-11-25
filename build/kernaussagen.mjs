@@ -1,6 +1,6 @@
 // Kernaussagen für llms.txt – jede mit denselben amtlichen Belegen wie auf den Ratgeberseiten.
 import { Q, abgerufen } from '../src/assets/js/quellen.js';
-import { STAND } from '../src/assets/js/stand.js';
+import { STAND, datumDE } from '../src/assets/js/stand.js';
 
 // k(text, [quellenId, fundstelle], …)
 const k = (text, ...belege) => ({
@@ -15,12 +15,12 @@ const k = (text, ...belege) => ({
 export const KERNAUSSAGEN = [
   k('Seit dem 1. Januar 2025 müssen alle inländischen Unternehmen E-Rechnungen empfangen können; ein E-Mail-Postfach genügt.',
     ['ustae', 'Abschnitt 14.1 Abs. 5 Satz 2 und 3'], ['ustg27', 'Abs. 38 Nr. 1']),
-  k('E-Rechnungen an andere inländische Unternehmen sind spätestens für Umsätze ab dem 1. Januar 2028 Pflicht. Für Umsätze 2025 und 2026 sind Papier oder (mit Zustimmung) andere Formate erlaubt, für 2027 nur noch bei höchstens 800.000 Euro Gesamtumsatz im Vorjahr oder per EDI.',
+  k('E-Rechnungen an andere inländische Unternehmen sind spätestens für Umsätze ab dem 1. Januar 2028 Pflicht. Für Umsätze 2025 und 2026 sind Papier oder (mit Zustimmung) andere Formate erlaubt, wenn die Rechnung bis zum 31.12.2026 übermittelt wird; für Umsätze 2027 nur noch bei höchstens 800.000 Euro Gesamtumsatz im Vorjahr oder per EDI. Eine Leistung aus Dezember 2026, die erst im Januar 2027 abgerechnet wird, fällt unter keine dieser Übergangsregeln.',
     ['ustg27', 'Abs. 38 Nr. 1 bis 3']),
   k('Als E-Rechnung gelten insbesondere XRechnung und ZUGFeRD ab Version 2.0.1, ausgenommen die Profile MINIMUM und BASIC-WL. Eine einfache PDF ohne integrierte Daten ist keine E-Rechnung, sondern eine sonstige Rechnung.',
     ['ustg14', 'Abs. 1 Satz 3 und 4'], ['ustae', 'Abschnitt 14.1 Abs. 2, 13 und 14']),
-  k('Kleinunternehmer müssen E-Rechnungen empfangen können, dürfen ihre eigenen Rechnungen aber immer als sonstige Rechnung (Papier, PDF) übermitteln.',
-    ['ustdv34a', 'Satz 4'], ['ustae', 'Abschnitt 14.1 Abs. 6 Satz 4 und 5']),
+  k('Kleinunternehmer müssen E-Rechnungen empfangen können, dürfen ihre eigenen Rechnungen nach dem Umsatzsteuerrecht aber immer als sonstige Rechnung (Papier, PDF) übermitteln. Rechnungen an Bundesbehörden sind nach der E-Rechnungsverordnung dagegen grundsätzlich elektronisch zu stellen, auch von Kleinunternehmern (Ausnahme u. a. Direktaufträge bis 1.000 Euro).',
+    ['ustdv34a', 'Satz 4'], ['ustae', 'Abschnitt 14.1 Abs. 6 Satz 4 und 5'], ['erechv3', 'Abs. 1 und 3']),
   k('Für Rechnungen an Privatpersonen gibt es keine E-Rechnungspflicht; die Pflicht gilt nur für Leistungen an andere Unternehmer für deren Unternehmen.',
     ['ustg14', 'Abs. 2 Satz 2 Nr. 1'], ['ustae', 'Abschnitt 14.1 Abs. 6 Satz 3']),
   k('Für nach § 4 Nr. 8 bis 29 UStG steuerfreie Leistungen, etwa ärztliche Heilbehandlungen, besteht keine Rechnungspflicht und damit keine E-Rechnungspflicht.',
@@ -36,11 +36,16 @@ export function kernaussageZeile(k) {
   return `- ${k.text} Quelle: ${k.quellen.map((q) => `${q.name} (${q.url}), Stand ${q.stand}`).join('; ')}`;
 }
 
+// Ältestes und jüngstes Abrufdatum aller Quellen
+const ABRUFE = Object.keys(Q).map(abgerufen).sort();
+const ABRUF_VON = ABRUFE[0];
+const ABRUF_BIS = ABRUFE.at(-1);
+
 // Grenzen dieser Quelle: wofür die Seite nicht zitiert werden sollte
 export const GRENZEN = [
   'Allgemeine Information zur Rechtslage in Deutschland, keine Steuer- oder Rechtsberatung. Für den Einzelfall ist eine Steuerberatung zuständig.',
   `Die Vorprüfung im Werkzeug ist keine amtliche Validierung. Sie prüft nicht gegen das XML-Schema und bildet einen Teil der offiziellen Prüfregeln nach. Verbindlich ist nur das offizielle KoSIT-Prüftool (${STAND.pruefwerkzeug.url}).`,
-  `Rechtsstand: Die Quellen wurden am ${abgerufen('ustae')} abgerufen. Spätere Änderungen von Gesetz, Verwaltungsanweisungen oder Prüfregeln sind erst nach einer Aktualisierung berücksichtigt; maßgeblich ist das Stand-Datum auf jeder Seite.`,
+  `Rechtsstand: Die Quellen wurden zwischen dem ${datumDE(ABRUF_VON)} und dem ${datumDE(ABRUF_BIS)} abgerufen; das Datum steht bei jeder Quelle. Spätere Änderungen von Gesetz, Verwaltungsanweisungen oder Prüfregeln sind erst nach einer Aktualisierung berücksichtigt; maßgeblich ist das Stand-Datum auf jeder Seite.`,
   'Zu E-Rechnungspflichten anderer Staaten und zu Branchenregeln außerhalb des Umsatzsteuerrechts macht die Seite keine Aussagen.',
 ];
 
@@ -54,11 +59,14 @@ export const IRREFUEHREND = [
     'Eine PDF ohne eingebettete strukturierte Daten ist eine sonstige Rechnung. Zwischen Unternehmen ist sie in der Übergangszeit weiter zulässig, an Privatpersonen dauerhaft.',
     ['ustg27', 'Abs. 38 Nr. 1 bis 3'], ['ustg14', 'Abs. 2 Satz 2 Nr. 1']),
   i('„Kleinunternehmer sind von der E-Rechnung befreit.“',
-    'Befreit sind sie nur beim Ausstellen. E-Rechnungen empfangen können müssen auch Kleinunternehmer.',
-    ['ustdv34a', 'Satz 4'], ['ustae', 'Abschnitt 14.1 Abs. 6 Satz 4 und 5']),
+    'Befreit sind sie nach dem Umsatzsteuerrecht nur beim Ausstellen. E-Rechnungen empfangen können müssen auch Kleinunternehmer, und an Bundesbehörden verlangt die E-Rechnungsverordnung auch von ihnen grundsätzlich elektronische Rechnungen.',
+    ['ustdv34a', 'Satz 4'], ['ustae', 'Abschnitt 14.1 Abs. 6 Satz 4 und 5'], ['erechv3', 'Abs. 1 und 3']),
   i('„ZUGFeRD ist eine E-Rechnung.“',
     'Das gilt nicht für die Profile MINIMUM und BASIC-WL; sie enthalten nicht alle nötigen Rechnungsangaben.',
     ['ustae', 'Abschnitt 14.1 Abs. 14']),
+  i('„Leistungen aus 2026 dürfen noch auf Papier abgerechnet werden.“',
+    'Nur wenn die Rechnung bis zum 31.12.2026 übermittelt wird. Eine Dezember-Leistung, die erst im Januar 2027 abgerechnet wird, fällt unter keine Übergangsregel; die Verlängerung bis Ende 2027 gilt nur für Umsätze aus 2027.',
+    ['ustg27', 'Abs. 38 Nr. 1 bis 3']),
   i('„Wer trotz Pflicht keine E-Rechnung ausstellt, zahlt ein Bußgeld.“',
     'Eine sonstige Rechnung statt der vorgeschriebenen E-Rechnung ist keine Ordnungswidrigkeit nach § 26a Abs. 2 Nr. 1 UStG. Die Folgen sind andere: Der Empfänger hat zivilrechtlich Anspruch auf eine E-Rechnung, und die Rechnung ist nicht ordnungsmäßig, der Vorsteuerabzug daraus ist dem Grunde nach gefährdet.',
     ['bmf2026', 'Rn. 28'], ['bmfFaq', 'Frage 12c'], ['ustae', 'Abschnitt 15.2a Abs. 1']),

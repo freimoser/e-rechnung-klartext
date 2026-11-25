@@ -29,10 +29,14 @@ export const LEGAL = {
 // E-Mail-Adresse mit [at] als einfacher Schutz vor Adresssammlern
 export const emailText = (email) => email.replace('@', ' [at] ');
 
+// Dieselbe Kennung (@id) wie auf freimoser.de, damit Suchmaschinen beide Angaben als eine Person erkennen
 export const AUTHOR = {
   '@type': 'Person',
+  '@id': 'https://freimoser.de/#person',
   name: LEGAL.operator,
+  alternateName: 'S. Thomas Freimoser',
   url: 'https://freimoser.de/',
+  sameAs: ['https://github.com/freimoser', 'https://www.linkedin.com/in/thomas-freimoser', 'https://x.com/freimoser'],
 };
 
 // Interne Adresse aus einem Pfad relativ zur Basis ('' = Startseite)
@@ -58,13 +62,13 @@ export const NAV = [
   { slug: 'fehlercodes/', label: 'Fehlercodes' },
   { slug: 'e-rechnung-pflicht-ab-wann/', label: 'Pflicht ab wann?' },
   { slug: 'xrechnung-oder-zugferd/', label: 'XRechnung oder ZUGFeRD' },
-  { slug: 'xrechnung-in-pdf/', label: 'In PDF umwandeln' },
+  { slug: 'xrechnung-in-pdf/', label: 'Drucken und PDF' },
   { slug: 'begriffe/', label: 'Begriffe' },
 ];
 
 export const RATGEBER = [
   { slug: 'xrechnung-oder-zugferd/', label: 'XRechnung oder ZUGFeRD' },
-  { slug: 'xrechnung-in-pdf/', label: 'XRechnung in PDF umwandeln' },
+  { slug: 'xrechnung-in-pdf/', label: 'XRechnung drucken und als PDF speichern' },
   { slug: 'zugferd-rechnung-pruefen/', label: 'ZUGFeRD-Rechnung prüfen' },
   { slug: 'e-rechnung-pflicht-ab-wann/', label: 'E-Rechnung: Pflicht ab wann?' },
   { slug: 'e-rechnung-kleinunternehmer/', label: 'E-Rechnung für Kleinunternehmer' },

@@ -32,6 +32,7 @@ export const Q = {
     titel: '§ 27 UStG – Allgemeine Übergangsvorschriften (Abs. 38: E-Rechnung)',
     version: 'zuletzt geändert durch Art. 5 G v. 29.6.2026 I Nr. 197',
     url: 'https://www.gesetze-im-internet.de/ustg_1980/__27.html',
+    abgerufen: '2026-11-25',
   },
   ustdv33: {
     kurz: '§ 33 UStDV',
@@ -57,6 +58,20 @@ export const Q = {
     version: 'zuletzt geändert durch Art. 15 Abs. 6 G v. 3.7.2026 I Nr. 199',
     url: 'https://www.gesetze-im-internet.de/ao_1977/__147.html',
   },
+  erechv3: {
+    kurz: '§ 3 ERechV',
+    titel: '§ 3 E-Rechnungsverordnung (ERechV) – Verbindlichkeit der elektronischen Form',
+    version: 'zuletzt geändert durch Art. 76 V v. 19.6.2020 I 1328',
+    url: 'https://www.gesetze-im-internet.de/erechv/__3.html',
+    abgerufen: '2026-11-25',
+  },
+  erechv4: {
+    kurz: '§ 4 ERechV',
+    titel: '§ 4 E-Rechnungsverordnung (ERechV) – Anforderungen an das Rechnungsdatenmodell und an die Übermittlung',
+    version: 'zuletzt geändert durch Art. 76 V v. 19.6.2020 I 1328',
+    url: 'https://www.gesetze-im-internet.de/erechv/__4.html',
+    abgerufen: '2026-11-25',
+  },
   bmf2025: {
     kurz: 'BMF-Schreiben vom 15.10.2025',
     titel: 'BMF-Schreiben „Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025; Anpassung des UStAE“',
@@ -75,13 +90,14 @@ export const Q = {
     titel: 'BMF-Schreiben „Ausstellung von Rechnungen nach § 14 UStG; Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025“',
     version: '15.10.2024, GZ III C 2 - S 7287-a/23/10001 :007, BStBl I 2024 S. 1320',
     url: null,
-    hinweis: 'Die ursprüngliche PDF-Adresse beim BMF liefert keine Antwort 200 mehr; die Inhalte sind in den UStAE (Stand 2. Juni 2026) eingearbeitet und gelten nach dem BMF-Schreiben vom 15.10.2025 fort.',
+    hinweis: 'Die ursprüngliche PDF-Adresse beim BMF liefert keine Antwort 200 mehr; die Inhalte sind in den UStAE (Stand 13. November 2026) eingearbeitet und gelten nach dem BMF-Schreiben vom 15.10.2025 fort.',
   },
   ustae: {
-    kurz: 'Umsatzsteuer-Anwendungserlass, Stand 2. Juni 2026',
+    kurz: 'Umsatzsteuer-Anwendungserlass, Stand 13. November 2026',
     titel: 'Umsatzsteuer-Anwendungserlass (UStAE), konsolidierte Fassung',
-    version: 'Stand 2. Juni 2026',
+    version: 'Stand 13. November 2026',
     url: 'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/Umsatzsteuer-Anwendungserlass-aktuell.pdf?__blob=publicationFile&v=52',
+    abgerufen: '2026-11-25',
   },
   bmfFaq: {
     kurz: 'BMF-FAQ zur E-Rechnung, Stand Oktober 2026',

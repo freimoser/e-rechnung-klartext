@@ -1,5 +1,5 @@
 import { href, esc, REPO_URL } from '../site.mjs';
-import { src, srcs, metaLine, cta, related, UPDATED, dateDE } from '../content.mjs';
+import { src, srcs, META_LINE, cta, related, UPDATED, dateDE } from '../content.mjs';
 import { QUELLEN_GRUPPEN } from '../quellen-gruppen.mjs';
 import { Q, ABGERUFEN, abgerufen } from '../../src/assets/js/quellen.js';
 import { STAND } from '../../src/assets/js/stand.js';
@@ -26,7 +26,7 @@ const neuere = STAND.cen.neuere
 const html = () => `      <header class="hero-article">
         <h1>Quellen und Methodik</h1>
         <p class="answer">E-Rechnung Klartext stützt sich ausschließlich auf amtliche und offizielle Quellen: Gesetze, Bundesfinanzministerium, KoSIT, CEN, FeRD und OpenPeppol. Hier stehen alle Quellen mit Version und Abrufdatum, und es ist erklärt, wie die Vorprüfung entsteht und wie sie geprüft wird.</p>
-        ${metaLine('2026-10-14')}
+        ${META_LINE}
       </header>
       <nav class="toc" aria-label="Inhaltsverzeichnis">
         <p class="toc-title">Inhalt</p>
@@ -80,6 +80,8 @@ export default {
   h1: 'Quellen und Methodik',
   llms: 'Quellenverzeichnis (UStG, UStDV, UStAE, BMF, KoSIT, CEN, FeRD, OpenPeppol) mit Version und Abrufdatum; Methodik der Vorprüfung und Abgleich mit dem KoSIT-Validator an der offiziellen Testsuite.',
   crumbs: [{ slug: 'quellen/', label: 'Quellen und Methodik' }],
-  updated: '2026-10-14',
+  published: '2026-10-14',
+  // Die Seite listet alle Quellen mit Abrufdatum: Ihr Stand ist das jüngste davon
+  updated: ['2026-10-14', ...Object.keys(Q).map(abgerufen)].sort().at(-1),
   html,
 };

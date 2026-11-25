@@ -47,11 +47,11 @@ const sections = `        <h2 id="vergleich">Vergleichstabelle</h2>
               <tr><th scope="row">stellst Rechnungen an Unternehmen, die teils noch von Hand buchen</th><td>ZUGFeRD im Profil EN 16931</td><td>Lesbar wie eine PDF und zugleich maschinenlesbar; FeRD empfiehlt EN 16931 für EU-konforme Rechnungen</td></tr>
               <tr><th scope="row">tauschst Rechnungen vollautomatisch mit großen Kunden aus</th><td>Das Format, das ihr vereinbart (häufig XRechnung oder ZUGFeRD EN 16931/EXTENDED)</td><td>Format und Übermittlungsweg sind zivilrechtlich zu klären; EXTENDED braucht laut FeRD eine Absprache</td></tr>
               <tr><th scope="row">bekommst eine E-Rechnung und willst sie lesen</th><td>Egal – beides öffnet das <a href="${href('')}">Werkzeug</a></td><td>Für die Ablage gilt: das Original unverändert aufbewahren</td></tr>
-              <tr><th scope="row">bist Kleinunternehmer</th><td>Keine Pflicht; freiwillig ist beides möglich</td><td>Siehe <a href="${href('e-rechnung-kleinunternehmer/')}">Kleinunternehmer</a></td></tr>
+              <tr><th scope="row">bist Kleinunternehmer</th><td>Keine Pflicht nach dem UStG; freiwillig ist beides möglich. An Bundesbehörden grundsätzlich XRechnung</td><td>Siehe <a href="${href('e-rechnung-kleinunternehmer/')}">Kleinunternehmer</a></td></tr>
             </tbody>
           </table>
         </div>
-        <p>${srcs(['erbPeppol'], ['bmfFaq', 'Frage 6'], ['ferdFaq', 'Profile'], ['ustae', 'Abschnitt 14.1 Abs. 4 Satz 7 und Abs. 12 Satz 5'], ['bmf2025', 'Rn. 60'])}</p>`;
+        <p>${srcs(['erbPeppol'], ['bmfFaq', 'Frage 6'], ['erechv3', 'Abs. 1 und 3'], ['erechv4', 'Abs. 1'], ['ferdFaq', 'Profile'], ['ustae', 'Abschnitt 14.1 Abs. 4 Satz 7 und Abs. 12 Satz 5'], ['bmf2025', 'Rn. 60'])}</p>`;
 
 export default {
   slug: 'xrechnung-oder-zugferd/',

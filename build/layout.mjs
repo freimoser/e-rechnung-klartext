@@ -78,7 +78,7 @@ function articleLd(page) {
     datePublished: page.published || page.updated,
     dateModified: page.updated,
     author: AUTHOR,
-    publisher: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+    publisher: { '@id': AUTHOR['@id'] },
     mainEntityOfPage: abs(page.slug),
     image: abs('og-image.png'),
     ...(citation.length ? { citation } : {}),

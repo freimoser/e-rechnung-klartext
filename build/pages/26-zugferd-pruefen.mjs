@@ -71,17 +71,6 @@ export default {
   crumbs: [{ slug: 'zugferd-rechnung-pruefen/', label: 'ZUGFeRD prüfen' }],
   updated: UPDATED,
   faq,
-  jsonld: [{
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'ZUGFeRD-Rechnung prüfen',
-    description: 'ZUGFeRD-PDF öffnen, eingebettete XML finden, Profil und Version prüfen und die Rechnung vorprüfen.',
-    inLanguage: 'de-DE',
-    totalTime: 'PT3M',
-    estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', value: '0' },
-    tool: [{ '@type': 'HowToTool', name: 'Webbrowser' }],
-    step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.name, text: s.text, url: abs('zugferd-rechnung-pruefen/') + '#anleitung' })),
-  }],
   html: () => ratgeber({
     h1: 'ZUGFeRD-Rechnung prüfen',
     answer: 'Eine gültige ZUGFeRD-Rechnung ist eine PDF mit eingebetteter XML-Datei in Version 2.0.1 oder neuer und in einem Profil ab BASIC; MINIMUM und BASIC-WL gelten nicht als E-Rechnung. Prüfen kannst du das, indem du die PDF in einen Viewer lädst, der die XML ausliest, Profil und Version anzeigt und Summen sowie Pflichtangaben nachrechnet.',

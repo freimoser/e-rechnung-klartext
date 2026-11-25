@@ -1,4 +1,4 @@
-import { href, abs } from '../site.mjs';
+import { href } from '../site.mjs';
 import { src, srcs, ratgeber, UPDATED } from '../content.mjs';
 
 const steps = [
@@ -32,6 +32,11 @@ const sections = `        <h2 id="anleitung">Schritt für Schritt: XRechnung als
         <p>Rechnungen sind acht Jahre aufzubewahren, und zwar grundsätzlich im empfangenen Format. Bei einer E-Rechnung muss zumindest der strukturierte Teil unversehrt in seiner ursprünglichen Form vorliegen. Das selbst erzeugte PDF ersetzt die XML-Datei deshalb nicht. Speichere beides, wenn das PDF für dich praktisch ist, aber gib für Buchhaltung und Archiv immer die Original-Datei weiter.</p>
         <p>${srcs(['ustg14b', 'Abs. 1'], ['ustae', 'Abschnitt 14b.1 Abs. 1'], ['bmf2025', 'Rn. 60'])}</p>
 
+        <h2 id="umgekehrt">Umgekehrt: aus einer PDF eine XRechnung machen?</h2>
+        <p>Oft wird der umgekehrte Weg gesucht: eine PDF-Rechnung in eine XRechnung umwandeln. Das kann dieses Werkzeug nicht, und ein bloßes Umwandeln der Datei reicht dafür auch nicht. Eine E-Rechnung muss die Rechnungsangaben in einem strukturierten Format nach der Norm EN 16931 enthalten; eine einfache PDF ist dagegen eine sonstige Rechnung. Die XRechnung wird deshalb aus den Rechnungsdaten neu erzeugt, in der Regel von der Rechnungs- oder Buchhaltungssoftware. Eine ZUGFeRD-Rechnung ist eine PDF, in die diese Daten als XML-Datei eingebettet sind.</p>
+        <p>Ob eine so erzeugte Datei die Prüfregeln einhält, kannst du anschließend <a href="${href('')}">im Werkzeug vorprüfen</a>.</p>
+        <p>${srcs(['ustg14', 'Abs. 1 Satz 3 und 4'], ['ustae', 'Abschnitt 14.1 Abs. 2 und 14'])}</p>
+
         <h2 id="csv">Positionen nach Excel übernehmen</h2>
         <p>Mit „Positionen als CSV“ erhältst du alle Positionen als Tabelle: Semikolon als Trennzeichen, Komma als Dezimalzeichen und UTF-8 mit Kennung, damit Excel Umlaute richtig anzeigt. Das ist praktisch für Vergleiche mit Bestellungen oder Lieferscheinen.</p>
 
@@ -46,29 +51,18 @@ const sections = `        <h2 id="anleitung">Schritt für Schritt: XRechnung als
 export default {
   slug: 'xrechnung-in-pdf/',
   kind: 'ratgeber',
-  title: 'XRechnung in PDF umwandeln und drucken: Anleitung',
-  description: 'XRechnung in PDF umwandeln und drucken: Schritt für Schritt im Browser, ohne Upload. Mit Hinweis, warum das Original-XML aufbewahrt werden muss.',
-  h1: 'XRechnung in PDF umwandeln und drucken',
-  llms: 'Anleitung: XRechnung (XML) im Browser lesbar machen, als PDF speichern, drucken oder Positionen als CSV exportieren; warum das PDF die Original-XML nicht ersetzt (Aufbewahrung im empfangenen Format).',
+  title: 'XRechnung drucken und als PDF speichern: Anleitung',
+  description: 'XRechnung drucken oder als PDF speichern: Schritt für Schritt im Browser, ohne Upload. Mit Hinweis, warum das Original-XML aufbewahrt werden muss.',
+  h1: 'XRechnung drucken und als PDF speichern',
+  llms: 'Anleitung: XRechnung (XML) im Browser lesbar machen, als PDF speichern, drucken oder Positionen als CSV exportieren; warum das PDF die Original-XML nicht ersetzt (Aufbewahrung im empfangenen Format); warum sich eine PDF nicht einfach in eine XRechnung umwandeln lässt.',
   crumbs: [{ slug: 'xrechnung-in-pdf/', label: 'XRechnung in PDF' }],
-  updated: UPDATED,
+  updated: '2026-11-25',
   faq,
-  jsonld: [{
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'XRechnung in PDF umwandeln und drucken',
-    description: 'XRechnung im Browser öffnen, prüfen und als PDF speichern oder drucken – ohne Upload.',
-    inLanguage: 'de-DE',
-    totalTime: 'PT2M',
-    estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', value: '0' },
-    tool: [{ '@type': 'HowToTool', name: 'Webbrowser' }],
-    step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.name, text: s.text, url: abs('xrechnung-in-pdf/') + '#anleitung' })),
-  }],
   html: () => ratgeber({
-    h1: 'XRechnung in PDF umwandeln und drucken',
-    answer: 'Eine XRechnung wandelst du in ein PDF um, indem du die XML-Datei in einen Viewer lädst und dort „Als PDF speichern“ oder „Drucken“ wählst. Das geht kostenlos hier im Browser, ohne Upload. Wichtig: Das PDF ist nur eine Ansicht – aufbewahren musst du die Original-XML.',
+    h1: 'XRechnung drucken und als PDF speichern',
+    answer: 'Eine XRechnung druckst du oder speicherst sie als PDF, indem du die XML-Datei in einen Viewer lädst und dort „Drucken“ oder „Als PDF speichern“ wählst. Das geht kostenlos hier im Browser, ohne Upload. Wichtig: Das PDF ist nur eine Ansicht – aufbewahren musst du die Original-XML.',
     answerSrc: [['ustae', 'Abschnitt 14b.1 Abs. 1'], ['bmf2025', 'Rn. 60']],
-    tocItems: [['anleitung', 'Schritt-für-Schritt-Anleitung'], ['warum', 'Warum XRechnungen unleserlich aussehen'], ['original', 'PDF oder XML aufbewahren?'], ['csv', 'Positionen nach Excel'], ['probleme', 'Wenn etwas nicht klappt'], ['faq', 'Häufige Fragen']],
+    tocItems: [['anleitung', 'Schritt-für-Schritt-Anleitung'], ['warum', 'Warum XRechnungen unleserlich aussehen'], ['original', 'PDF oder XML aufbewahren?'], ['umgekehrt', 'Umgekehrt: PDF in XRechnung?'], ['csv', 'Positionen nach Excel'], ['probleme', 'Wenn etwas nicht klappt'], ['faq', 'Häufige Fragen']],
     sections,
     faq,
     ctaTitle: 'XRechnung jetzt als PDF speichern',

@@ -227,7 +227,7 @@ h1 {
 
 .stand-line {
   margin: 0.75rem 0 0;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
@@ -1009,7 +1009,7 @@ h1 {
 
 .meta-line {
   margin: 0.75rem 0 0;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
@@ -1126,7 +1126,7 @@ h1 {
 .source {
   display: block;
   margin-top: 0.25rem;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
@@ -1392,11 +1392,15 @@ h1 {
 
 .rule-group {
   margin: 1.75rem 0 0;
+}
+
+/* Nur auf der großen Syntaxseite: Tabellen erst rendern, wenn sie in die Nähe des Sichtbereichs kommen */
+.rules-gross .rule-group {
   content-visibility: auto;
   contain-intrinsic-size: auto 2600px;
 }
 
-.rule-group:first-of-type {
+.rules-gross .rule-group:first-of-type {
   content-visibility: visible;
 }
 
@@ -1534,9 +1538,34 @@ noscript .notice {
     padding: 1.25rem 1rem 2rem;
   }
 
+  /* Navigation als eine wischbare Zeile, damit Überschrift und Datei-Knopf im ersten Bildschirm liegen */
+  .site-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 1rem;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
   .site-nav a {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    white-space: nowrap;
     font-size: 0.8rem;
     padding: 0.45rem 0.55rem;
+  }
+
+  .tagline {
+    display: none;
+  }
+
+  .dropzone-inner {
+    padding: 1.25rem 1rem;
   }
 
   .paper .paper-top {

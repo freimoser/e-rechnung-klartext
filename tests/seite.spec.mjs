@@ -119,7 +119,7 @@ for (const url of urls) {
       expect(faq, 'FAQPage fehlt').toBeTruthy();
       for (const q of faq.mainEntity) await expect(page.getByText(q.name, { exact: true }).first()).toBeVisible();
     }
-    if (/xrechnung-in-pdf|zugferd-rechnung-pruefen/.test(p)) expect(types).toContain('HowTo');
+    expect(types).not.toContain('HowTo'); // seit 2023 ohne Darstellung in den Suchergebnissen, deshalb entfernt
     if (/begriffe|fehlercodes/.test(p)) expect(types).toContain('DefinedTermSet');
     if (p === './') { expect(types).toContain('WebApplication'); expect(types).toContain('WebSite'); }
     const ratgeber = /xrechnung-oder|xrechnung-in-pdf|zugferd-rechnung|pflicht|kleinunternehmer|privatperson|arztpraxis|peppol/.test(p);
@@ -151,9 +151,7 @@ for (const p of [...urls.map(localPath), './impressum/', './datenschutz/']) {
 
   test(`Barrierefreiheit (axe): ${p}`, async ({ page }) => {
     await page.goto(p);
-    // Bei /fehlercodes/ sind die 1.340 Syntaxregeln gleich aufgebaut wie die fachlichen; geprüft werden diese
-    let axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']);
-    if (p.includes('fehlercodes')) axe = axe.exclude('.rule-group[data-group="ubl"] tbody').exclude('.rule-group[data-group="cii"] tbody');
+    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']);
     const res = await axe.analyze();
     expect(res.violations.map((v) => `${v.id}: ${v.nodes.length}× ${v.nodes[0].target}`)).toEqual([]);
   });
@@ -189,7 +187,18 @@ test('Fehlercodes: Sprungmarke und Suche', async ({ page }) => {
   await expect(page.locator('#code-count')).toHaveText(/^\d+ Treffer$/);
   await expect(page.locator('tr#br-co-10')).toBeVisible();
   await expect(page.locator('tr#br-01')).toBeHidden();
-  expect(await page.locator('.rules tr[id]').count()).toBe(1646);
+  // Fachliche Regeln hier, die Syntaxregeln auf einer eigenen, nicht indexierten Seite
+  expect(await page.locator('.rules tr[id]').count()).toBe(307);
+  await page.goto('fehlercodes/syntax/#ubl-cr-002');
+  await expect(page.locator('tr#ubl-cr-002')).toContainText('2.1');
+  expect(await page.locator('.rules tr[id]').count()).toBe(1339);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+});
+
+test('Erklärungen der Syntaxregeln enthalten keine englischen Satzreste', async () => {
+  const { loadRules } = await import('../build/rules.mjs');
+  const kaputt = loadRules().filter((r) => /„[^“]*\b(or|if|when|unless|it|be|than|should|shall|must)\b[^“]*“/i.test(r.plain)).map((r) => r.id);
+  expect(kaputt).toEqual([]);
 });
 
 test('Nach dem ersten Laden auch offline nutzbar', async ({ page, context }) => {

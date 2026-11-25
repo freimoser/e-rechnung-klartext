@@ -32,7 +32,7 @@ export function htmlToText(html) {
   return s.trim();
 }
 
-export function llmsFull({ siteName, pages }) {
+export function llmsFull({ siteName, pages, anhang = '' }) {
   const teile = pages.map((p) => `${htmlToText(p.html).replace(/^# .*/, `# ${p.h1}\n\nAdresse: ${abs(p.slug)}\nStand: ${p.updated}`)}`);
-  return `# ${siteName} – Volltext\n\n> Volltext der Ratgeber und Nachschlageseiten. Allgemeine Information, keine Steuer- oder Rechtsberatung. Jede Aussage zu Pflichten und Fristen trägt ihre amtliche Quelle mit Stand-Datum. Das Fehlercode-Verzeichnis mit allen Prüfregeln steht wegen seines Umfangs nur online: ${abs('fehlercodes/')}\n\n${teile.join('\n\n---\n\n')}\n`;
+  return `# ${siteName} – Volltext\n\n> Volltext der Ratgeber und Nachschlageseiten. Allgemeine Information, keine Steuer- oder Rechtsberatung. Jede Aussage zu Pflichten und Fristen trägt ihre amtliche Quelle mit Stand-Datum. Die fachlichen Prüfregeln (Fehlercodes wie BR-DE-15) stehen am Ende in Kurzform, ausführlich unter ${abs('fehlercodes/')}. Die technischen Syntaxregeln (UBL, CII) stehen nur online: ${abs('fehlercodes/syntax/')}\n\n${teile.join('\n\n---\n\n')}${anhang ? `\n\n---\n\n${anhang}` : ''}\n`;
 }
